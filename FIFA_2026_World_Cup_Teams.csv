@@ -1,0 +1,49 @@
+ID,Name,Short_code,group,rank,coach_name,captain_name,created_by
+1,Algeria,DZA,J,28,Vladimir Petković,Riyad Mahrez,1
+2,Argentina,ARG,J,2,Lionel Scaloni,Lionel Messi,1
+3,Australia,AUS,D,24,Tony Popovic,Mathew Ryan,1
+4,Austria,AUT,J,27,Ralf Rangnick,Marko Arnautović,1
+5,Belgium,BEL,G,7,Rudi Garcia,Youri Tielemans,1
+6,Bosnia and Herzegovina,BIH,B,22,Sergej Barbarez,Edin Džeko,1
+7,Brazil,BRA,C,6,Carlo Ancelotti,Marquinhos,1
+8,Cabo Verde,CPV,H,53,Bubista,Ryan Mendes,1
+9,Canada,CAN,B,30,Jesse Marsch,Alphonso Davies,1
+10,Colombia,COL,K,13,Néstor Lorenzo,James Rodríguez,1
+11,Croatia,CRO,L,10,Zlatko Dalić,Luka Modrić,1
+12,Curaçao,CUW,E,50,Dick Advocaat,Leandro Bacuna,1
+13,Czechia,CZE,A,39,Miroslav Koubek,Tomáš Souček,1
+14,DR Congo,COD,K,63,Sébastien Desabre,Chancel Mbemba,1
+15,Ecuador,ECU,E,20,Sebastián Beccacece,Enner Valencia,1
+16,Egypt,EGY,G,44,Hossam Hassan,Mohamed Salah,1
+17,England,ENG,L,4,Thomas Tuchel,Harry Kane,1
+18,France,FRA,I,1,Didier Deschamps,Kylian Mbappé,1
+19,Germany,GER,E,11,Julian Nagelsmann,Joshua Kimmich,1
+20,Ghana,GHA,L,34,Otto Addo,Jordan Ayew,1
+21,Haiti,HTI,C,45,Frantz Bertin,Johny Placide,1
+22,Iran,IRN,G,46,Amir Ghalenoei,Alireza Jahanbakhsh,1
+23,Iraq,IRQ,I,57,Naji Karim,Jalal Hassan,1
+24,Ivory Coast,CIV,E,35,Emerse Faé,Franck Kessié,1
+25,Japan,JPN,F,14,Hajime Moriyasu,Wataru Endo,1
+26,Jordan,JOR,J,62,Jamal Selamat,Ihsan Haddad,1
+27,Mexico,MEX,A,15,Javier Mascherano,Edson Alvarez,1
+28,Morocco,MAR,C,8,Walid Regragui,Achraf Hakimi,1
+29,Netherlands,NED,F,9,Ronald Koeman,Virgil van Dijk,1
+30,New Zealand,NZL,G,31,Thomas Soetaert,Chris Wood,1
+31,Norway,NOR,I,47,Stale Solbakken,Martin Ødegaard,1
+32,Panama,PAN,L,51,Gorgé Piñas,Anibal Godoy,1
+33,Paraguay,PAR,D,33,Gustavo Alfaro,Gustavo Gomez,1
+34,Poland,POL,B,32,Michał Probierz,Robert Lewandowski,1
+35,Portugal,POR,K,5,Roberto Martinez,Cristiano Ronaldo,1
+36,Qatar,QAT,B,93,Carlos Queirós,Hassan Al-Haydos,1
+37,Saudi Arabia,SAU,H,49,Hervé Renard,Salem Al-Dawsari,1
+38,Scotland,SCO,C,37,Steve Clarke,Andy Robertson,1
+39,Senegal,SEN,I,18,Aliou Cissé,Kalidou Koulibaly,1
+40,South Africa,RSA,A,60,Hugo Broos,Ronwen Williams,1
+41,South Korea,KOR,A,19,Jurgen Klinsmann,Son Heung-min,1
+42,Spain,ESP,H,1,Luis de la Fuente,Rodri,1
+43,Switzerland,SUI,B,23,Murat Yakin,Granit Xhaka,1
+44,Tunisia,TUN,F,41,Éric Gerets,Ellyes Skhiri,1
+45,Turkey,TUR,D,26,Vincenzo Montella,Hakan Çalhanoğlu,1
+46,Uzbekistan,UZB,K,42,Shodmon Abdulloev,Eldor Shomurodov,1
+47,Uruguay,URU,H,12,Marcelo Bielsa,José María Giménez,1
+48,USA,USA,D,16,Mauricio Pochettino,Christian Pulisic,1
