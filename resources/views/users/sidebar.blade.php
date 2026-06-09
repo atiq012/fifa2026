@@ -111,7 +111,7 @@
                 <table class="table table-sm table-hover align-middle mb-0">
                     <thead class="table-header-custom">
                         <tr>
-                            <th style="width:8%"></i>No.</th>
+                            {{-- <th style="width:8%"></i>No.</th> --}}
                             <th style="width:8%"></i>Flag</th>
                             <th style="width:8%"></i>Name</th>
                         </tr>
@@ -119,7 +119,7 @@
                     <tbody>
                         @foreach ($teamsInGroup as $index => $team)
                             <tr>
-                                <td>{{ $index + 1 }}</td>
+                                {{-- <td>{{ $index + 1 }}</td> --}}
                                 <td>
                                     @if ($team->flag)
                                         <img src="{{ $team->flag }}" alt="{{ $team->name }} flag"
