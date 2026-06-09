@@ -37,14 +37,14 @@
                                     <span style="color: black">
                                         {{ Auth::user()->name }}
                                     </span>
-                                    @if ($favorite_team->team)
+                                    @isset ($favorite_team)
                                         <div class="support-team-flag">
                                             <img height="20%" width="20%" class="wc-flag"
                                                 src="{{ $favorite_team->team->flag ?? '' }}" alt="img">
                                             <button class="wc-settings-btn" onclick="showScreen('settings')"
                                                 aria-label="Settings">⚙️</button>
                                         </div>
-                                    @endif
+                                    @endisset
                                 </div>
                             </div>
                         </div>
