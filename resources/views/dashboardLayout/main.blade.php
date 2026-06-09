@@ -14,13 +14,14 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
+    @yield('styles')
 </head>
 
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            {{-- <div class="col-md-8 offset-md-2"> --}}
+            <div class="col-md-10 offset-md-1">
                 <div class="card">
                     <div class="card-body">
                         @include('dashboardLayout.header')

@@ -46,7 +46,9 @@ class DashboardController extends Controller
 
         $favorite_team = MyTeam::where('user_id', Auth::id())->first();
 
-        $teams = Team::all();
+        $teams = Team::orderBy('group', 'asc')
+             ->orderBy('name', 'asc')
+             ->get();
 
         return view('users.dashboard', compact('nextThreeMatches', 'nextThreeAfterThat', 'predictions', 'totalPoints', 'total_correct_predictions','teams','favorite_team'));
     }
