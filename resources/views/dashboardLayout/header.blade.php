@@ -26,11 +26,11 @@
                                         $user = Auth::user();
                                         $emp = DB::table('emps')->where('id', $user->emp_id)->first();
                                     @endphp
-                                    @if ($emp->image_path)
+                                    @isset ($emp)
                                         <img height="60" width="60"
                                             src="https://myportal.galaxybd.com/public/{{ $emp->image_path ?? 'default-avatar.png' }}"
                                             alt="image" style="border-radius: 50%; object-fit: cover">
-                                    @endif
+                                    @endisset
                                 </div>
                                 <div class="col-md-6">
                                     <span style="color: black">
