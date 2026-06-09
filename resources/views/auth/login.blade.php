@@ -377,7 +377,7 @@
                                     <span class="input-group-text">
                                         <i class="bi bi-person"></i>
                                     </span>
-                                    <input type="email" id="email" name="email"
+                                    <input type="text" id="email" name="email"
                                         class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
                                         placeholder="Enter your email" value="{{ old('email') }}" required autofocus
                                         autocomplete="username">

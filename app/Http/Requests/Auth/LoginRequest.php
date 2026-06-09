@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Auth\Events\Lockout;
@@ -28,7 +27,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'email'    => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -38,11 +37,28 @@ class LoginRequest extends FormRequest
      *
      * @throws ValidationException
      */
+    // public function authenticate(): void
+    // {
+    //     $this->ensureIsNotRateLimited();
+
+    //     if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+    //         RateLimiter::hit($this->throttleKey());
+
+    //         throw ValidationException::withMessages([
+    //             'email' => trans('auth.failed'),
+    //         ]);
+    //     }
+
+    //     RateLimiter::clear($this->throttleKey());
+    // }
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        // Try email first, then staff_id
+        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember')) &&
+            ! Auth::attempt(['staff_id' => $this->input('email'), 'password' => $this->input('password')], $this->boolean('remember'))) {
+
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -52,7 +68,6 @@ class LoginRequest extends FormRequest
 
         RateLimiter::clear($this->throttleKey());
     }
-
     /**
      * Ensure the login request is not rate limited.
      *
@@ -81,6 +96,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
     }
 }
