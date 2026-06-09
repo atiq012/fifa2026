@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-6">
-            <div class="card glass-card" >
+            <div class="card glass-card">
                 <div class="card-body card-body-transparent p-0" style="min-height:82px;">
                     <div class="px-2">
                         <div class="d-flex py-2">
@@ -26,19 +26,25 @@
                                         $user = Auth::user();
                                         $emp = DB::table('emps')->where('id', $user->emp_id)->first();
                                     @endphp
+                                    @if ($emp->image_path)
+
                                     <img height="60" width="60"
                                         src="https://myportal.galaxybd.com/public/{{ $emp->image_path ?? 'default-avatar.png' }}"
                                         alt="image" style="border-radius: 50%; object-fit: cover">
+                                    @endif
                                 </div>
                                 <div class="col-md-6">
                                     <span style="color: black">
                                         {{ Auth::user()->name }}
                                     </span>
-                                    <div class="support-team-flag">
-                                        <img height="20%" width="20%" class="wc-flag"
-                                            src="{{ $favorite_team->team->flag ?? '' }}" alt="img">
-                                            <button class="wc-settings-btn" onclick="showScreen('settings')" aria-label="Settings">⚙️</button>
-                                    </div>
+                                    @if ($favorite_team->team)
+                                        <div class="support-team-flag">
+                                            <img height="20%" width="20%" class="wc-flag"
+                                                src="{{ $favorite_team->team->flag ?? '' }}" alt="img">
+                                            <button class="wc-settings-btn" onclick="showScreen('settings')"
+                                                aria-label="Settings">⚙️</button>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
