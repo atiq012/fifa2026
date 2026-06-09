@@ -43,7 +43,7 @@
              *   background-image: url('/images/stadium.jpg');
              *
              * OPTION B — Vite asset pipeline (resources/images/):
-             *   Use inline Blade: style="background-image: url('{{ Vite::asset('resources/images/stadium.jpg') }}')"
+             *   Use inline Blade: style="background-image: url('[ Vite::asset path here ]')"
              *
              * OPTION C (demo fallback below — replace with your image):
              */
