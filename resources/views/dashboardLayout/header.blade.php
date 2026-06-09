@@ -21,7 +21,7 @@
                     <div class="px-2">
                         <div class="d-flex py-2">
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-{{ isset($favorite_team) ? '2' : '4' }}">
                                     @php
                                         $user = Auth::user();
                                         $emp = DB::table('emps')->where('id', $user->emp_id)->first();
