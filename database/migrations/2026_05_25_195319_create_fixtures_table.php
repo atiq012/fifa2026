@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('round');
             $table->integer('actual_team1_goals')->nullable();
             $table->integer('actual_team2_goals')->nullable();
-            $table->interget('winning_team')->nullable();
+            $table->integer('winning_team')->nullable();
             $table->string('is_draw')->nullable();
             $table->integer('created_by')->nullable();
 
