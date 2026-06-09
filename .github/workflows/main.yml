@@ -7,65 +7,31 @@ on:
 
 jobs:
   FTP-Deploy-Action:
-    name: FTP Deploy
+    name: FTP-Deploy-Action
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
+      - name: Get latest code
+        uses: actions/checkout@v3
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      - name: Sync files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /
-          local-dir: ./
-          log-level: verbose
-          dangerous-clean-slate: false
-          state-name: .ftp-deploy-sync-state-fifa2026.json
-          exclude: |
-            **/.git*/**
-            **/node_modules/**
-            **/storage/**
-            **/vendor/**
-            **/tests/**
-            **/.env
-            **/.env.backup
-            **/.env.local
-            **/docker/**
-            **/phpunit.xml
-            **/README.md
-            **/LICENSE
-
-      - name: Laravel optimize on server via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST }}
+          server: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
-          command_timeout: 10m
-          script: |
-            set -e
-            cd /home/fifagala/fifa2026
-            composer install --no-dev --optimize-autoloader --no-interaction
-            php artisan optimize:clear
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
-            if command -v rsync >/dev/null 2>&1; then
-              rsync -av \
-                --exclude='.well-known/' \
-                --exclude='index.php' \
-                --exclude='.htaccess' \
-                /home/fifagala/fifa2026/public/ /home/fifagala/public_html/
-            else
-              (
-                cd /home/fifagala/fifa2026/public
-                tar --exclude='index.php' --exclude='.htaccess' -cf - .
-              ) | (
-                cd /home/fifagala/public_html
-                tar -xf -
-              )
-            fi
+
+          server-dir: /
+
+          exclude: |
+            **/.git*
+            **/node_modules/**
+            **/vendor/**
+            **/.env*
+            **/.github/**
+            **/tests/**
+            **/phpunit.xml
+            **/.phpunit.cache/**
+            **/.idea/**
+            **/.vscode/**
+            **/.fleet/**
+            **/docker/**
