@@ -3,9 +3,9 @@
 @section('content')
     <!-- Leaderboard Screen -->
     <div id="leaderboard" class="screen active">
-        <h2 class="section-title">Global Rankings</h2>
+        {{-- <h2 class="section-title">Global Rankings</h2> --}}
 
-        <div class="medals mb-2">
+        {{-- <div class="medals mb-2">
             <div class="medal-card gold">
                 <div class="medal-icon">🥇</div>
                 <div class="medal-label">1st Place</div>
@@ -108,7 +108,7 @@
             <button>2</button>
             <button>3</button>
             <button>→</button>
-        </div>
+        </div> --}}
     </div>
 
 

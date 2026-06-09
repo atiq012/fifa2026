@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('short_code')->unique();
+            $table->string('flag')->nullable();
             $table->string('group');
             $table->string('rank');
             $table->string('coach_name');

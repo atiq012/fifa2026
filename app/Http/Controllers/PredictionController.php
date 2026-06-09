@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fixture;
+use App\Models\MyTeam;
 use App\Models\Prediction;
 use App\Models\PredictionDetails;
 use App\Models\Team;
@@ -28,8 +29,9 @@ class PredictionController extends Controller
             ->orderBy('time', 'asc')
             ->limit(3)
             ->get();
+        $favorite_team = MyTeam::where('user_id', Auth::id())->first();
 
-        return view('users.prediction', compact('predictions', 'pendingFixtures'));
+        return view('users.prediction', compact('predictions', 'pendingFixtures', 'favorite_team'));
     }
 
     public function store(Request $request): JsonResponse

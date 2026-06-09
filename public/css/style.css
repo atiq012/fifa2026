@@ -45,7 +45,7 @@ body::before {
 
 .card-body {
     background: white;
-    border-radius: 24px;
+    /* border-radius: 24px; */
     box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.25);
     overflow-y: auto;
     overflow-x: hidden;
@@ -74,36 +74,96 @@ body::before {
     background: #a0a0a0;
 }
 
-/* Header */
-.header {
-    background: white;
+/* header 2.0 */
+.wc-header {
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     border-bottom: 0.5px solid #d3d1c7;
-    padding: 1.5rem;
+    background: linear-gradient(135deg, #B71C1C 0%, #8B0000 40%, #F9B81B 70%, #75AADB 100%);
+    /* background: linear-gradient(135deg, #FFD966 0%, #C62828 50%, #902d45 100%); */
+}
+
+.wc-content {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    justify-content: center;
+    text-align: center;
+    padding: 1.8rem 1.2rem 2rem 1.2rem;
+    /* background: #ffffff; */
+    border-radius: 1.5rem;
 }
 
-.header-title h1 {
-    font-size: 22px;
+.wc-trophy {
+    display: block;
+    width: 48px;
+    height: 48px;
+    max-width: 100%;
+    margin: 0 auto 0.75rem auto;
+    filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.2));
+    transition: transform 0.25s ease;
+
+}
+
+.wc-flag {
+    padding-bottom: 5px;
+}
+
+.wc-label {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #ffffff;
+
+}
+
+.wc-predictor {
+
+    font-family: Georgia, serif;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.wc-desc {
+    font-size: 12px;
     font-weight: 500;
-    margin: 0;
+    color: #ffffff;
+
 }
 
-.header-title p {
-    font-size: 13px;
-    color: #5f5e5a;
-    margin: 4px 0 0 0;
+.support-team-flag img {
+    background-color: #f7f8d7;
+    padding: 1px 1.5px 1.5px 1.5px;
 }
 
-.header-actions {
+.wc-settings-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 0.5px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
     display: flex;
-    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    font-size: 18px;
 }
 
+.wc-settings-btn:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+/* Buttons */
 button {
     padding: 8px 12px;
     border: 0.5px solid #d3d1c7;
@@ -411,54 +471,6 @@ button.secondary {
     font-size: 18px;
     font-weight: 500;
 }
-
-/* Modal */
-/* .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem;
-            border-bottom: 0.5px solid #d3d1c7;
-        }
-
-        .modal-header h2 {
-            font-size: 18px;
-            font-weight: 500;
-            margin: 0;
-        }
-
-        .modal-header button {
-            background: transparent;
-            border: none;
-            font-size: 18px;
-            padding: 0;
-            cursor: pointer;
-        }
-
-        .modal-body {
-            padding: 1.5rem;
-        } */
-
 
 /* Ensure modal appears above overlay */
 .modal {
@@ -1081,4 +1093,274 @@ button.primary:hover {
     background: #378add;
     color: white;
     border-color: #378add;
+}
+
+
+/* Select2 modal fixes */
+.select2-container--open {
+    z-index: 9999 !important;
+}
+
+.select2-dropdown {
+    z-index: 1056 !important;
+}
+
+.select2-container--default .select2-selection--single {
+    height: 38px;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 36px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 36px;
+}
+
+/* Fix for Select2 clear button alignment in Bootstrap 5 modals */
+.select2-container--default .select2-selection--single .select2-selection__clear {
+    position: absolute !important;
+    right: 30px !important;
+    /* Position before the arrow */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 1.2rem !important;
+    font-weight: normal !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    height: auto !important;
+    width: auto !important;
+    cursor: pointer !important;
+    z-index: 1 !important;
+}
+
+/* Optional: Style the clear button */
+.select2-container--default .select2-selection--single .select2-selection__clear:hover {
+    color: #dc3545 !important;
+    /* Red on hover */
+}
+
+/* If using Bootstrap 5 theme */
+.select2-container--bootstrap5 .select2-selection__clear {
+    position: absolute !important;
+    right: 30px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 1.2rem !important;
+    line-height: 1 !important;
+}
+
+/* Alternative approach  using vertical alignment */
+.select2-selection__clear {
+    vertical-align: middle !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(255, 255, 255, 0.1) inset;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    width: 100%;
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* inner card body p-0 but keep transparency */
+.card-body-transparent {
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+
+.info-box {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(255, 255, 255, 0.1) inset;
+
+    border-radius: 0.375rem;
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: 80px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.info-box .info-box-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    font-size: 1.875rem;
+    text-align: center;
+    border-radius: 0.375rem;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.info-box .info-box-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+    line-height: 1.8;
+}
+
+.info-box .progress-description, .info-box .info-box-text {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── Responsive: tablet & mobile ── */
+
+@media (max-width: 991px) {
+    .wc-content {
+        padding: 1.2rem 0.8rem 1.4rem;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .wc-content {
+        flex-direction: row !important;
+        align-items: center;
+        text-align: left;
+        padding: 0;
+        margin-left: 0 !important;
+        gap: 10px;
+        background: none;
+        border-radius: 0;
+    }
+
+    .wc-trophy {
+        width: 36px !important;
+        height: 36px !important;
+        margin: 0 !important;
+        flex-shrink: 0;
+    }
+
+    .wc-label {
+        font-size: 13px;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .wc-predictor {
+        font-size: 12px;
+        margin: 0;
+    }
+
+    .wc-desc {
+        font-size: 9px;
+        margin: 0;
+    }
+
+    /* Right side: collapse the nested Bootstrap rows */
+    .wc-header .col-md-6:last-child {
+        flex: 0 0 auto;
+    }
+
+    .wc-header .col-md-6:last-child .row {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 6px;
+        margin: 0 !important;
+        padding-right: 36px;
+        /* space for the settings button */
+    }
+
+    /* Hide the empty spacer col */
+    .wc-header .col-md-6:last-child .col-md-3:first-child {
+        display: none !important;
+    }
+
+    .wc-header .col-md-6:last-child .col-md-3,
+    .wc-header .col-md-6:last-child .col-md-6 {
+        width: auto !important;
+        flex: 0 0 auto;
+        padding: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    /* Shrink avatar */
+    .wc-header img[height="60"] {
+        width: 32px !important;
+        height: 32px !important;
+    }
+
+
+
+    /* Flag stays visible, just smaller */
+    .support-team-flag {
+        display: flex !important;
+        align-items: center;
+    }
+
+    .support-team-flag img,
+    .wc-flag {
+        width: 22px !important;
+        height: auto !important;
+        padding-bottom: 0 !important;
+    }
+
+    .wc-settings-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+/* Nav: horizontal scroll strip */
+@media (max-width: 767px) {
+    .nav-tabs {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-tabs button {
+        flex-shrink: 0;
+        white-space: nowrap;
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .wc-trophy {
+        display: none;
+    }
+
+    .wc-label {
+        font-size: 12px;
+        margin-left: 5px;
+    }
 }

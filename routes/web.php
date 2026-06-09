@@ -11,6 +11,7 @@ Route::get('/', function () {
 
 // dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/saveMyteam', [DashboardController::class, 'saveMyteam'])->middleware(['auth', 'verified'])->name('saveMyteam');
 
 // prediction
 Route::get('/predictions', [PredictionController::class, 'index'])->middleware(['auth', 'verified'])->name('predictions');

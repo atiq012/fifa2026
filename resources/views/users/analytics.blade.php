@@ -160,8 +160,14 @@
     <script>
         const buttons = document.querySelectorAll('.nav-tabs button');
         buttons.forEach(btn => btn.classList.remove('active'));
+        @if(auth()->user()->role_id == 1)
         if (buttons.length >= 5) {
             buttons[4].classList.add('active');
         }
+        @else
+        if (buttons.length >= 4) {
+            buttons[3].classList.add('active');
+        }
+        @endif
     </script>
 @endsection

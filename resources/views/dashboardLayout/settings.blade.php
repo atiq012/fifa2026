@@ -11,15 +11,11 @@
         <input type="email" disabled value="{{ Auth::user()->email }}" />
     </div>
 
-    {{-- <div class="form-group">
-        <label class="form-label">Department</label>
-        <select>
-            <option>Engineering</option>
-            <option>Product</option>
-            <option>Sales</option>
-            <option>HR</option>
-        </select>
-    </div> --}}
+    <div class="form-group">
+        <label class="form-label">My Favourite Team</label>
+        <img height="15%" width="15%" class="wc-flag" src="{{ $favorite_team->team->flag ?? '' }}"
+                        alt="img">
+    </div>
 
     {{-- <div class="form-group">
         <label class="form-label">
@@ -33,7 +29,7 @@
         </label>
     </div> --}}
 
-    <button class="primary" style="width: 100%; margin-bottom: 1rem;">Save Changes</button>
+    {{-- <button class="primary" style="width: 100%; margin-bottom: 1rem;">Save Changes</button> --}}
 
     <form method="POST" action="{{ route('logout') }}">
         @csrf

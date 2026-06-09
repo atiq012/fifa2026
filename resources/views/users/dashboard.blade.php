@@ -28,8 +28,6 @@
 
         <h2 class="section-title">Upcoming Matches</h2>
 
-
-
         @foreach ($nextThreeMatches as $fixture)
             <div class="match-card">
                 <div class="match-header">
@@ -43,14 +41,14 @@
                 </div>
                 <div class="match-body">
                     <div class="team">
-                        <div class="team-name">{{ $fixture->team1->name ?? $fixture->team1_name }}
+                        <div class="team-name"> <img height="8%" width="8%" src="{{  $fixture->team1->flag ?? '' }}" alt=""> {{ $fixture->team1->name ?? $fixture->team1_name }}
                         </div>
                         <div class="team-rank">Rank
                             #{{ $fixture->team1->rank ?? ($fixture->team1_rank ?? 'N/A') }}</div>
                     </div>
                     <div class="vs-text">vs</div>
                     <div class="team">
-                        <div class="team-name">{{ $fixture->team2->name ?? $fixture->team2_name }}
+                        <div class="team-name"><img height="8%" width="8%" src="{{  $fixture->team2->flag ?? '' }}" alt=""> {{ $fixture->team2->name ?? $fixture->team2_name }}
                         </div>
                         <div class="team-rank">Rank
                             #{{ $fixture->team2->rank ?? ($fixture->team2_rank ?? 'N/A') }}</div>
@@ -224,6 +222,41 @@
         @endforeach --}}
 
 
+        {{-- select my team --}}
+        @if ($favorite_team == null)
+            <!-- Modal Structure -->
+            <div class="modal fade" id="teamModal" tabindex="-1" aria-labelledby="teamModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form id="autoForm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="teamModalLabel">Welcome!</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="team1">Select Your Favourite Team</label>
+                                    <select name="team1" id="team1" class="form-control select2">
+                                        @foreach ($teams as $team)
+                                            <option value="{{ $team->id }}">{{ $team->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="primary" onclick="saveTeam()">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endif
+
+
 
         <h2 class="section-title" style="margin-top: 2rem;">Quick Links</h2>
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
@@ -244,6 +277,7 @@
         }
         preventNumberInputScroll('team1_goals');
         preventNumberInputScroll('team2_goals');
+
         function preventNumberInputScroll(inputId) {
             const input = document.getElementById(inputId);
             if (input) {
@@ -252,6 +286,82 @@
                     e.preventDefault();
                 });
             }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            function initSelect2() {
+                $('#team1').select2({
+                    dropdownParent: $('#teamModal'),
+                    placeholder: 'Select a team',
+                    allowClear: true,
+                    width: '100%'
+                });
+            }
+
+            // Check condition from backend
+            @if ($predictions->count() < 1)
+                var modal = new bootstrap.Modal(document.getElementById('teamModal'));
+
+                // Initialize Select2 when modal is fully shown
+                modal._element.addEventListener('shown.bs.modal', function() {
+                    initSelect2();
+                });
+
+                // Show the modal
+                modal.show();
+            @endif
+
+            // Handle form submission
+            $('#submitTeam').on('click', function() {
+                var selectedTeam = $('#team1').val();
+                if (selectedTeam && selectedTeam !== '') {
+                    $('#autoForm').submit();
+                } else {
+                    alert('Please select a team');
+                }
+            });
+        });
+
+
+        function saveTeam() {
+            const team = document.getElementById('team1').value;
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            const formData = new FormData();
+            formData.append('team', team || 0);
+            formData.append('_token', csrfToken);
+
+            fetch('{{ route('saveMyteam') }}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => {
+                            throw err;
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    showToast('Favorite team saved successfully!', 'success');
+
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('teamModal'));
+                    modal.hide();
+
+                    // clear form
+                    document.getElementById('team1').value = '';
+
+                })
+                .catch(error => {
+                    showToast('Failed to save changes. Please try again.', 'danger');
+                });
+
         }
     </script>
 @endsection

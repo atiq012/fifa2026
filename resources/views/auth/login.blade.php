@@ -51,7 +51,8 @@
                 linear-gradient(to bottom, rgba(10, 15, 60, .3) 0%, rgba(10, 15, 60, .2) 50%, rgba(10, 15, 60, .6) 100%),
                 url('/images/stadium.jpeg'); */
 
-            background-image: url('/images/stadium.jpeg');
+            /* background-image: url('/images/stadium.jpeg'); */
+            background-image: url('/images/st.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;

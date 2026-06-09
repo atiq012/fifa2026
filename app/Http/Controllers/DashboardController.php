@@ -2,8 +2,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fixture;
+use App\Models\MyTeam;
 use App\Models\Prediction;
 use App\Models\PredictionDetails;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +36,7 @@ class DashboardController extends Controller
             ->orderBy('created_at', 'asc')
             ->get(['is_correct']);
 
-        $total_correct_predictions = $pred->count();
+        $total_correct_predictions = $pred->where('is_correct','1')->count();
 
         $totalPoints = DB::table('predictions')
             ->leftJoin('prediction_details', 'predictions.id', '=', 'prediction_details.predication_id')
@@ -42,8 +44,26 @@ class DashboardController extends Controller
             ->select(DB::raw('COALESCE(SUM(predictions.points), 0) + COALESCE(SUM(prediction_details.points), 0) as total_points'))
             ->value('total_points');
 
+        $favorite_team = MyTeam::where('user_id', Auth::id())->first();
 
-        return view('users.dashboard', compact('nextThreeMatches', 'nextThreeAfterThat', 'predictions', 'totalPoints', 'total_correct_predictions'));
+        $teams = Team::all();
+
+        return view('users.dashboard', compact('nextThreeMatches', 'nextThreeAfterThat', 'predictions', 'totalPoints', 'total_correct_predictions','teams','favorite_team'));
+    }
+
+    public function saveMyteam(Request $request)
+    {
+        $myTeam = new MyTeam();
+
+        $myTeam->team_id = $request->team;
+        $myTeam->user_id = Auth::user()->id;
+        $myTeam->created_by = Auth::user()->id;
+        $myTeam->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Final result saved successfully',
+        ]);
     }
 
     public function update_result()
@@ -51,8 +71,9 @@ class DashboardController extends Controller
         $fixtures = Fixture::where('date', '>=', now())
         ->where('actual_team1_goals','=',null)
         ->with(['team1', 'team2'])->get();
+        $favorite_team = MyTeam::where('user_id', Auth::id())->first();
 
-        return view('users.update_result', compact('fixtures'));
+        return view('users.update_result', compact('fixtures','favorite_team'));
     }
 
     public function update_result_store(Request $request)
@@ -109,14 +130,18 @@ class DashboardController extends Controller
 
     public function leaderboard()
     {
+        $favorite_team = MyTeam::where('user_id', Auth::id())->first();
+
         // Implementation for leaderboard view
-        return view('users.leaderboard');
+        return view('users.leaderboard',compact('favorite_team'));
     }
 
     public function analytics()
     {
+        $favorite_team = MyTeam::where('user_id', Auth::id())->first();
+
         // Implementation for analytics view
-        return view('users.analytics');
+        return view('users.analytics',compact('favorite_team'));
     }
 
 }
