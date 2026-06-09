@@ -177,7 +177,7 @@
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-label">Your Rank</div>
-                        <div class="stat-value">#1</div>
+                        <div class="stat-value">#</div>
                         <div class="stat-subtitle">of 700 employees</div>
                     </div>
                     <div class="stat-card">
@@ -192,7 +192,7 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-label">Streak</div>
-                        <div class="stat-value">10 🔥</div>
+                        <div class="stat-value">0 🔥</div>
                         <div class="stat-subtitle">Keep it going!</div>
                     </div>
                 </div>
