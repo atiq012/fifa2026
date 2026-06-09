@@ -381,10 +381,12 @@
                                         <div class="form-group">
                                             <label for="team1">Select Your Favourite Team</label>
                                             <select name="team1" id="team1" class="form-control select2">
+                                                <option value="">Select Team</option>
                                                 @foreach ($teams as $team)
                                                     <option value="{{ $team->id }}">{{ $team->name }}</option>
                                                 @endforeach
                                             </select>
+
                                         </div>
 
                                     </div>

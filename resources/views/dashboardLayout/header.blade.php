@@ -21,12 +21,12 @@
                     <div class="px-2">
                         <div class="d-flex py-2">
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-{{ isset($favorite_team) ? 2 : 4 }} col-sm-{{ isset($favorite_team) }} ? 2 : 3 }}">
                                     @php
                                         $user = Auth::user();
                                         $emp = DB::table('emps')->where('id', $user->emp_id)->first();
                                     @endphp
-                                    @isset ($emp)
+                                    @isset($emp)
                                         <img height="60" width="60"
                                             src="https://myportal.galaxybd.com/public/{{ $emp->image_path ?? 'default-avatar.png' }}"
                                             alt="image" style="border-radius: 50%; object-fit: cover">
@@ -40,9 +40,9 @@
                                         @isset($favorite_team)
                                             <img height="20%" width="20%" class="wc-flag"
                                                 src="{{ $favorite_team->team->flag ?? '' }}" alt="img">
-                                            <button class="wc-settings-btn" onclick="showScreen('settings')"
-                                                aria-label="Settings">⚙️</button>
                                         @endisset
+                                        <button class="wc-settings-btn" onclick="showScreen('settings')"
+                                            aria-label="Settings">⚙️</button>
                                     </div>
                                 </div>
                             </div>
