@@ -371,7 +371,7 @@
                             <!-- Email -->
                             <div class="mb-3">
                                 <label for="email" class="form-label form-label-fifa">
-                                    <b>Email Address / Username</b>
+                                    <b>Email Address / Employee Code</b>
                                 </label>
                                 <div class="input-group input-group-fifa">
                                     <span class="input-group-text">
@@ -379,7 +379,7 @@
                                     </span>
                                     <input type="text" id="email" name="email"
                                         class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                                        placeholder="Enter your email" value="{{ old('email') }}" required autofocus
+                                        placeholder="Enter your email/ Employee Code" value="{{ old('email') }}" required autofocus
                                         autocomplete="username">
                                 </div>
                                 @error('email')
