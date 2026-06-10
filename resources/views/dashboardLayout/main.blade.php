@@ -97,7 +97,39 @@
         //     });
         //     event.target.classList.add('active');
         // }
+        function showScreen(screenId, el) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
 
+            // Get URL from the clicked element
+            const url = el ? el.getAttribute('data-predictions-url') : null;
+
+            if (['dashboard', 'leaderboard', 'update_result', 'analytics'].includes(screenId)) {
+                if (url) {
+                    window.location.href = url;
+                    return; // Stop here — page will navigate
+                }
+            }
+
+            if (screenId === 'predictions') {
+                if (url) {
+                    window.location.href = url;
+                    return;
+                }
+                document.getElementById(screenId).classList.add('active');
+            }
+
+            // Update active tab UI
+            const screen = document.getElementById(screenId);
+            if (screen) screen.classList.add('active');
+
+            document.querySelectorAll('.nav-tabs button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            if (el) el.classList.add('active');
+        }
 
         let toastTimeout;
 
