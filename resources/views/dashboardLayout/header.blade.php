@@ -11,7 +11,7 @@
                     <span class="info-box-text">World Cup 2026 • Prediction Game</span>
                     <span class="info-box-number">
                         <p class="wc-desc">Group stage • 48 matches remaining</p>
-                    </span>
+                    </span> 
                 </div>
             </div>
         </div>

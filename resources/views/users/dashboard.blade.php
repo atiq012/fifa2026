@@ -148,6 +148,147 @@
             color: #2d6a4f;
         }
     </style>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .cricket-card {
+            width: 100%;
+            max-width: 460px;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* RESULT header */
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px 10px 16px;
+            border-bottom: 1px solid #E5E9F0;
+            background: #FFFFFF;
+        }
+
+        .result-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #059669;
+            background: #ECFDF5;
+            padding: 2px 10px;
+            border-radius: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        /* .match-location {
+                font-size: 12px;
+                color: #64748B;
+                font-weight: 500;
+            } */
+
+        /* Team rows - exact spacing like image */
+        .team-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 12px 16px;
+            border-bottom: 1px solid #EDF2F7;
+        }
+
+        .team-name-group {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .team-short {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1E293B;
+            letter-spacing: -0.2px;
+        }
+
+        .team-full {
+            font-size: 13px;
+            color: #64748B;
+            font-weight: 450;
+        }
+
+        .team-score-group {
+            display: flex;
+            align-items: baseline;
+            gap: 1px;
+        }
+
+        .runs {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0F172A;
+            letter-spacing: -0.5px;
+        }
+
+        .wickets {
+            font-size: 17px;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        /* Overs + target line - matches image exactly */
+        .overs-target {
+            padding: 8px 16px 6px 16px;
+            font-size: 12px;
+            font-family: 'SF Mono', 'Menlo', monospace;
+            color: #5B6E8C;
+            background: #F8FAFC;
+            border-bottom: 1px solid #E2E8F0;
+            letter-spacing: 0.2px;
+        }
+
+        /* Result message - green pill style */
+        .result-message {
+            padding: 12px 16px;
+            background: #F8FAFC;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .result-message {
+            font-size: 13px;
+            font-weight: 600;
+            color: #0F3B2C;
+            background: #E6F7EF;
+            display: inline-block;
+            width: auto;
+            padding: 5px 14px;
+            border-radius: 24px;
+            margin: 4px 0 4px 5px;
+        }
+
+        /* Schedule link - right aligned with arrow */
+        .schedule-link {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #3B82F6;
+            background: #FFFFFF;
+            cursor: default;
+        }
+
+        .schedule-link svg {
+            stroke: #3B82F6;
+            stroke-width: 1.8;
+        }
+    </style>
 @endsection
 @section('content')
     <div id="dashboard" class="screen active">
@@ -230,8 +371,8 @@
                             </div>
                         </div>
 
-                        <button class="primary" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#predictionModal"
-                            data-fixture-id="{{ $fixture->id }}"
+                        <button class="primary" style="width: 100%;" data-bs-toggle="modal"
+                            data-bs-target="#predictionModal" data-fixture-id="{{ $fixture->id }}"
                             data-team1-name="{{ $fixture->team1->name ?? $fixture->team1_name }}"
                             data-team1-rank="{{ $fixture->team1->rank ?? ($fixture->team1_rank ?? 'N/A') }}"
                             data-team2-name="{{ $fixture->team2->name ?? $fixture->team2_name }}"
@@ -249,7 +390,8 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h2 class="modal-title fs-4" id="predictionModalLabel">Match Prediction</h2>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
 
                             <div class="modal-body">
@@ -313,7 +455,8 @@
                                                 <div>
                                                     <input class="form-check-input" type="radio" name="winner"
                                                         id="winnerDraw" value="draw">
-                                                    <label class="form-check-label fw-medium" for="winnerDraw">Draw</label>
+                                                    <label class="form-check-label fw-medium"
+                                                        for="winnerDraw">Draw</label>
                                                 </div>
                                                 <span class="small text-success fw-semibold">+5 pts</span>
                                             </div>
@@ -412,10 +555,26 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card p-2">
-                    <div class="card-body" style="min-height: 500px;">
-                        <div class="table-responsive">
-                            @include('users.sidebar')
+                <div class="row">
+                    @if ($allPred->count() > 0)
+                        <div class="col-md-12">
+                            <div class="card p-1 m-1">
+                                <div class="card-header">
+                                    All Prediction
+                                </div>
+                                <div class="card-body">
+                                    @include('users.allPredictions')
+
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="col-md-12">
+                        <div class="card p-2">
+                            <div class="card-body" style="min-height: 300px;">
+                                @include('users.sidebar')
+                            </div>
                         </div>
                     </div>
                 </div>

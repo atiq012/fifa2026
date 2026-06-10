@@ -47,7 +47,7 @@ class User extends Authenticatable
 
     public function predictions()
     {
-        return $this->hasMany(Prediction::class);
+        return $this->hasMany(Prediction::class, 'user_id', 'id');
     }
 
     public function team()

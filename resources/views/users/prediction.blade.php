@@ -103,21 +103,21 @@
 
                     </div>
                     <div class="prediction-boxes">
-                        @if ($pending->predictions->first()->winning_team)
-                            <div class="prediction-box">👑 {{ $pending->predictions->first()->winningTeam->name ?? '' }} wins
+                        @if ($pending->predictions->where('user_id', auth()->id())->first()->winning_team)
+                            <div class="prediction-box">👑 {{ $pending->predictions->where('user_id', auth()->id())->first()->winningTeam->name ?? '' }} wins
                             </div>
                         @else
                             <div class="prediction-box">Draw</div>
                         @endif
                         <div class="prediction-box secondary">Predict Score:
-                            {{ $pending->predictions->first()->predictiondetails->team1_goals ?? '' }}-{{ $pending->predictions->first()->predictiondetails->team2_goals ?? '' }}
+                            {{ $pending->predictions->where('user_id', auth()->id())->first()->predictiondetails->team1_goals ?? '' }}-{{ $pending->predictions->where('user_id', auth()->id())->first()->predictiondetails->team2_goals ?? '' }}
                         </div>
                     </div>
                 </div>
 
                 <div class="footer-info">
                     <div>Made:
-                        <strong>{{ date('F j, g:i A', strtotime($pending->predictions->first()->created_at)) }}</strong>
+                        <strong>{{ date('F j, g:i A', strtotime($pending->predictions->where('user_id', auth()->id())->first()->created_at)) }}</strong>
                     </div>
                     <div>Status: <strong class="text-warning">Awaiting Match</strong></div>
                 </div>

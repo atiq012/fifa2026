@@ -22,14 +22,6 @@ class DashboardController extends Controller
             ->limit(3)
             ->get();
 
-        $nextThreeAfterThat = Fixture::where('date', '>=', now())
-            ->with(['team1', 'team2'])
-            ->orderBy('date', 'asc')
-            ->orderBy('time', 'asc')
-            ->skip(3)
-            ->limit(3)
-            ->get();
-
         $predictions = Auth::user()->predictions()->with('fixture')->get();
 
         $pred = Prediction::where('user_id', Auth::id())
@@ -50,7 +42,12 @@ class DashboardController extends Controller
              ->orderBy('name', 'asc')
              ->get();
 
-        return view('users.dashboard', compact('nextThreeMatches', 'nextThreeAfterThat', 'predictions', 'totalPoints', 'total_correct_predictions','teams','favorite_team'));
+        $players = DB::table('v_emp_info')->where('emp_status', 'Active')->select('id', 'full_name','depart_name')->get();
+
+        $allPred = Prediction::where('is_correct',null)->orderBy('created_at', 'asc')->get();
+
+
+        return view('users.dashboard', compact('nextThreeMatches', 'predictions', 'totalPoints', 'total_correct_predictions','teams','favorite_team','players','allPred'));
     }
 
     public function saveMyteam(Request $request)
