@@ -157,21 +157,21 @@
             <div class="medal-card gold">
                 <div class="medal-icon">🥇</div>
                 <div class="medal-label">1st Place</div>
-                <div class="medal-name">Rahul Kumar</div>
+                <div class="medal-name">-</div>
             </div>
             <div class="medal-card silver">
                 <div class="medal-icon">🥈</div>
                 <div class="medal-label">2nd Place</div>
-                <div class="medal-name">Priya Singh</div>
+                <div class="medal-name">-</div>
             </div>
             <div class="medal-card bronze">
                 <div class="medal-icon">🥉</div>
                 <div class="medal-label">3rd Place</div>
-                <div class="medal-name">Ahmed Hassan</div>
+                <div class="medal-name">-</div>
             </div>
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <select onchange="filterLeaderboard(this.value)">
                 <option value="all">All Employees</option>
                 <option value="dept">My Department</option>
@@ -182,7 +182,7 @@
         <div class="search-bar">
             <input type="search" placeholder="Search player..." id="searchInput" onkeyup="filterTable()">
             <button>🔍</button>
-        </div>
+        </div> --}}
 
         {{-- <div class="leaderboard">
             <div class="leaderboard-header">
@@ -249,7 +249,7 @@
                 <div class="leaderboard-cell leaderboard-accuracy">44%</div>
             </div>
         </div> --}}
-        <div class="table-responsive rounded-3 shadow-sm">
+        {{-- <div class="table-responsive rounded-3 shadow-sm">
             <table class="table table-sm table-hover align-middle mb-0">
                 <thead class="table-header-custom">
                     <tr>
@@ -475,7 +475,7 @@
 
                 </tbody>
             </table>
-        </div>
+        </div> --}}
 
         <div class="pagination">
             <button>←</button>

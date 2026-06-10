@@ -21,7 +21,8 @@
                     <div class="px-2">
                         <div class="d-flex py-2">
                             <div class="row">
-                                <div class="col-md-{{ isset($favorite_team) ? 2 : 4 }} col-sm-{{ isset($favorite_team) }} ? 2 : 3 }}">
+                                <div
+                                    class="col-md-{{ isset($favorite_team) ? 2 : 4 }} col-sm-{{ isset($favorite_team) }} ? 2 : 3 }}">
                                     @php
                                         $user = Auth::user();
                                         $emp = DB::table('emps')->where('id', $user->emp_id)->first();
@@ -57,13 +58,25 @@
 
 <!-- Navigation -->
 <div class="nav-tabs">
-    <button onclick="showScreen('dashboard')" data-predictions-url="{{ route('dashboard') }}">Dashboard</button>
-    <button onclick="showScreen('predictions')" data-predictions-url="{{ route('predictions') }}">My
+
+    <button onclick="showScreenWithSave('dashboard', event)"
+        data-predictions-url="{{ route('dashboard') }}">Dashboard</button>
+    <button onclick="showScreenWithSave('predictions', event)" data-predictions-url="{{ route('predictions') }}">My
         Predictions</button>
-    <button onclick="showScreen('leaderboard')" data-predictions-url="{{ route('leaderboard') }}">Leaderboard</button>
-    @if (Auth::user()->role_id == 1)
-        <button onclick="showScreen('update_result')" data-predictions-url="{{ route('update_result') }}">Update
+    <button onclick="showScreenWithSave('leaderboard', event)"
+        data-predictions-url="{{ route('leaderboard') }}">Leaderboard</button>
+
+        @if (Auth::user()->role_id == 1)
+        <button onclick="showScreenWithSave('update_result', event)" data-predictions-url="{{ route('update_result') }}">Update
             Result</button>
     @endif
+    {{-- <button onclick="showScreen('dashboard')" data-predictions-url="{{ route('dashboard') }}">Dashboard</button> --}}
+    {{-- <button onclick="showScreen('predictions')" data-predictions-url="{{ route('predictions') }}">My
+        Predictions</button> --}}
+    {{-- <button onclick="showScreen('leaderboard')" data-predictions-url="{{ route('leaderboard') }}">Leaderboard</button> --}}
+    {{-- @if (Auth::user()->role_id == 1)
+        <button onclick="showScreen('update_result')" data-predictions-url="{{ route('update_result') }}">Update
+            Result</button>
+    @endif --}}
     {{-- <button onclick="showScreen('analytics')" data-predictions-url="{{ route('analytics') }}">Analytics</button> --}}
 </div>

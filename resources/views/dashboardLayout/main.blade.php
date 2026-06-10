@@ -150,6 +150,22 @@
             }
         }
 
+        // Add this after your showScreen function
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check which screen should be active based on URL or localStorage
+            const lastActiveScreen = localStorage.getItem('activeScreen');
+            if (lastActiveScreen && document.getElementById(lastActiveScreen)) {
+                // Activate the last screen without event parameter
+                showScreen(lastActiveScreen);
+            }
+        });
+
+        // Save active screen to localStorage when changing screens
+        function showScreenWithSave(screenId, event = null) {
+            localStorage.setItem('activeScreen', screenId);
+            showScreen(screenId, event);
+        }
+
 
         let toastTimeout;
 
