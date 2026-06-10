@@ -45,57 +45,109 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-        function showScreen(screenId) {
+        // function showScreen(screenId) {
+
+        //     document.querySelectorAll('.screen').forEach(screen => {
+        //         screen.classList.remove('active');
+        //     });
+
+        //     if (screenId === 'predictions') {
+        //         const url = event.target.getAttribute('data-predictions-url');
+        //         if (url) {
+        //             window.location.href = url;
+        //         }
+
+        //         document.getElementById(screenId).classList.add('active');
+        //         document.querySelectorAll('.nav-tabs button').forEach(btn => {
+        //             btn.classList.remove('active');
+        //         });
+        //         event.target.classList.add('active');
+        //     }
+        //     if (screenId === 'dashboard') {
+        //         const url = event.target.getAttribute('data-predictions-url');
+        //         if (url) {
+        //             window.location.href = url;
+        //         }
+
+        //     }
+        //     if (screenId === 'leaderboard') {
+        //         const url = event.target.getAttribute('data-predictions-url');
+        //         if (url) {
+        //             window.location.href = url;
+        //         }
+        //     }
+        //     if (screenId === 'update_result') {
+        //         const url = event.target.getAttribute('data-predictions-url');
+        //         if (url) {
+        //             window.location.href = url;
+        //         }
+        //     }
+        //     if (screenId === 'analytics') {
+        //         const url = event.target.getAttribute('data-predictions-url');
+        //         if (url) {
+        //             window.location.href = url;
+        //         }
+        //     }
+
+        //     document.getElementById(screenId).classList.add('active');
+        //     document.querySelectorAll('.nav-tabs button').forEach(btn => {
+        //         btn.classList.remove('active');
+        //     });
+        //     event.target.classList.add('active');
+        // }
+
+        function showScreen(screenId, event = null) {
             // Hide all screens
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
             });
 
-
             // ajax call to load screen data if needed
             if (screenId === 'predictions') {
-                const url = event.target.getAttribute('data-predictions-url');
+                const url = event && event.target ? event.target.getAttribute('data-predictions-url') : null;
                 if (url) {
                     window.location.href = url;
+                    return;
                 }
+            }
+            if (screenId === 'dashboard') {
+                const url = event && event.target ? event.target.getAttribute('data-predictions-url') : null;
+                if (url) {
+                    window.location.href = url;
+                    return;
+                }
+            }
+            if (screenId === 'leaderboard') {
+                const url = event && event.target ? event.target.getAttribute('data-predictions-url') : null;
+                if (url) {
+                    window.location.href = url;
+                    return;
+                }
+            }
+            if (screenId === 'update_result') {
+                const url = event && event.target ? event.target.getAttribute('data-predictions-url') : null;
+                if (url) {
+                    window.location.href = url;
+                    return;
+                }
+            }
+            if (screenId === 'analytics') {
+                const url = event && event.target ? event.target.getAttribute('data-predictions-url') : null;
+                if (url) {
+                    window.location.href = url;
+                    return;
+                }
+            }
 
-                document.getElementById(screenId).classList.add('active');
+            document.getElementById(screenId).classList.add('active');
+
+            // Only try to update tab active state if event exists
+            if (event && event.target) {
                 document.querySelectorAll('.nav-tabs button').forEach(btn => {
                     btn.classList.remove('active');
                 });
                 event.target.classList.add('active');
             }
-            if (screenId === 'dashboard') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
-
-            }
-            if (screenId === 'leaderboard') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
-            }
-            if (screenId === 'update_result') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
-            }
-            if (screenId === 'analytics') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
-            }
-
-            document.getElementById(screenId).classList.add('active');
-            document.querySelectorAll('.nav-tabs button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
         }
 
 
