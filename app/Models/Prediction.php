@@ -32,6 +32,10 @@ class Prediction extends Model
     {
         return Prediction::where('fixture_id', $f_id)->where('winning_team', $team_id)->count();
     }
+    public function total_draw_predictions($f_id, $draw)
+    {
+        return Prediction::where('fixture_id', $f_id)->where('is_draw',1)->count();
+    }
 
     public function createdBy()
     {

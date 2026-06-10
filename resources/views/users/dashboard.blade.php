@@ -150,11 +150,6 @@
     </style>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
         .cricket-card {
             width: 100%;
@@ -228,8 +223,8 @@
         }
 
         .runs {
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 13px;
+            font-weight: 500;
             color: #0F172A;
             letter-spacing: -0.5px;
         }
@@ -334,7 +329,7 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-label">Streak</div>
-                        <div class="stat-value">0 🔥</div>
+                        <div class="stat-value">0</div>
                         <div class="stat-subtitle">Keep it going!</div>
                     </div>
                 </div>
@@ -561,7 +556,7 @@
                         <div class="col-md-12">
                             <div class="card p-1 m-1">
                                 <div class="card-header">
-                                    All Prediction
+                                    Predictions
                                 </div>
                                 <div class="card-body">
                                     @include('users.allPredictions')

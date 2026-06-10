@@ -4,39 +4,71 @@
             <div class="cricket-card">
                 <!-- RESULT header line -->
                 <div class="result-header">
-                    <span class="result-label">Total Predictions : {{ $pred->total_predictions($pred->fixture_id) }}</span>
+                    <span class="result-label">Total Predictions :
+                        {{ $pred->total_predictions($pred->fixture_id) }}</span>
                 </div>
 
                 <!-- Bangladesh row -->
                 <div class="team-row">
                     <div class="team-name-group">
-                        <span class="team-short"><img height="20" width="20" src="{{ $pred->fixture->team1->flag ?? '' }}" alt=""></span>
+                        <span class="team-short"><img height="20" width="20"
+                                src="{{ $pred->fixture->team1->flag ?? '' }}" alt=""></span>
                         <span class="team-full">{{ $pred->fixture->team1->name ?? '' }}</span>
                     </div>
                     <div class="team-score-group">
-                        <span class="runs">{{ $pred->total_win_predictions($pred->fixture_id,$pred->fixture->team1_id) }} </span>
+                        <span
+                            class="runs">👑 {{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team1_id) }}
+                            People Predicted</span>
                     </div>
                 </div>
 
                 <!-- Australia row -->
                 <div class="team-row">
                     <div class="team-name-group">
-                         <span class="team-short"><img height="20" width="20" src="{{ $pred->fixture->team2->flag ?? '' }}" alt=""></span>
+                        <span class="team-short"><img height="20" width="20"
+                                src="{{ $pred->fixture->team2->flag ?? '' }}" alt=""></span>
                         <span class="team-full">{{ $pred->fixture->team2->name ?? '' }}</span>
                     </div>
                     <div class="team-score-group">
-                        <span class="runs">{{ $pred->total_win_predictions($pred->fixture_id,$pred->fixture->team2_id) }}</span>
+                        <span class="runs">👑
+                            {{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team2_id) }} People
+                            Predicted</span>
+                    </div>
+                </div>
+
+                <div class="team-row">
+                    <div class="team-name-group">
+                        {{-- <span class="team-short"><img height="20" width="20" src="{{ $pred->fixture->team2->flag ?? '' }}" alt=""></span> --}}
+                        <span class="team-full">Draw</span>
+                    </div>
+                    <div class="team-score-group">
+                        @if ($pred->total_draw_predictions($pred->fixture_id, $pred->is_draw) > 0)
+                            <span class="runs"> {{ $pred->total_draw_predictions($pred->fixture_id, $pred->is_draw) }}
+                                People Predicted</span>
+                        @else
+                            -
+                        @endif
                     </div>
                 </div>
 
                 <!-- Result message -->
                 <div class="result-message">
-                    @if ($pred->total_win_predictions($pred->fixture_id,$pred->fixture->team1_id) > $pred->total_win_predictions($pred->fixture_id,$pred->fixture->team2_id))
-                        {{ $pred->fixture->team1->name ?? "" }} won {{ $pred->total_win_predictions($pred->fixture_id,$pred->fixture->team1_id) }} of the predictions
-                    @elseif ($pred->total_win_predictions($pred->fixture_id,$pred->fixture->team1_id) < $pred->total_win_predictions($pred->fixture_id,$pred->fixture->team2_id))
-                        {{ $pred->fixture->team2->name ?? "" }} won {{ $pred->total_win_predictions($pred->fixture_id,$pred->fixture->team2_id) }} of the predictions
+                    @php
+                        $team1Predictions = $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team1_id);
+                        $team2Predictions = $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team2_id);
+                        $totalPredictions = $team1Predictions + $team2Predictions;
+                        $team1Percentage =
+                            $totalPredictions > 0 ? round(($team1Predictions / $totalPredictions) * 100) : 0;
+                        $team2Percentage =
+                            $totalPredictions > 0 ? round(($team2Predictions / $totalPredictions) * 100) : 0;
+                    @endphp
+                    Winning Percentage
+                    @if ($team1Predictions > $team2Predictions)
+                        {{ $pred->fixture->team1->short_code ?? '' }} ({{ $team1Percentage }}%) - {{ $pred->fixture->team2->short_code ?? '' }} ({{ $team2Percentage }})%
+                    @elseif ($team1Predictions < $team2Predictions)
+                        {{ $pred->fixture->team2->short_code ?? '' }} ({{ $team2Percentage }}%) - {{ $pred->fixture->team1->short_code ?? '' }}({{ $team1Percentage }})%
                     @else
-                        Draw
+                        Draw (50% - 50%)
                     @endif
                 </div>
 
