@@ -184,7 +184,8 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            padding: 12px 16px;
+            /* padding: 12px 16px; */
+            padding: 8px 18px;
             border-bottom: 1px solid #EDF2F7;
         }
 
