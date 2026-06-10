@@ -11,7 +11,7 @@
                     <span class="info-box-text">World Cup 2026 • Prediction Game</span>
                     <span class="info-box-number">
                         <p class="wc-desc">Group stage • 48 matches remaining</p>
-                    </span> 
+                    </span>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
                     <div class="px-2">
                         <div class="d-flex py-2">
                             <div class="row">
-                                <div class="col-md-{{ isset($favorite_team) ? 2 : 4 }} col-sm-{{ isset($favorite_team) }} ? 2 : 3 }}">
+                                <div class="col-md-{{ isset($favorite_team) ? 2 : 4 }} col-sm-{{ isset($favorite_team) ? 2 : 3 }}  }}">
                                     @php
                                         $user = Auth::user();
                                         $emp = DB::table('emps')->where('id', $user->emp_id)->first();
@@ -32,7 +32,7 @@
                                             alt="image" style="border-radius: 50%; object-fit: cover">
                                     @endisset
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-5 col-sm-3">
                                     <span style="color: black">
                                         {{ Auth::user()->name }}
                                     </span>

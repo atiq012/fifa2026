@@ -249,7 +249,7 @@
                 <div class="leaderboard-cell leaderboard-accuracy">44%</div>
             </div>
         </div> --}}
-        {{-- <div class="table-responsive rounded-3 shadow-sm">
+        <div class="table-responsive rounded-3 shadow-sm">
             <table class="table table-sm table-hover align-middle mb-0">
                 <thead class="table-header-custom">
                     <tr>
@@ -475,7 +475,7 @@
 
                 </tbody>
             </table>
-        </div> --}}
+        </div>
 
         <div class="pagination">
             <button>←</button>

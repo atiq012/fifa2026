@@ -122,8 +122,10 @@ class PredictionController extends Controller
 
     public function predictionDetails($id)
     {
+        $favorite_team = MyTeam::where('user_id', Auth::id())->first();
+
         $predictions = Prediction::where('fixture_id', $id)->with('predictiondetails')->get();
-        return view('users.allPredictionDetails', compact('predictions'));
+        return view('users.allPredictionDetails', compact('predictions','favorite_team'));
 
     }
 }
