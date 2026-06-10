@@ -123,7 +123,7 @@ class PredictionController extends Controller
     public function predictionDetails($id)
     {
         $predictions = Prediction::where('fixture_id', $id)->with('predictiondetails')->get();
-        return view('users.allPrediction', compact('predictions'));
+        return view('users.allPredictionDetails', compact('predictions'));
 
     }
 }

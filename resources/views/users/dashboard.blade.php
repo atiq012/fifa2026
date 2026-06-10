@@ -281,7 +281,8 @@
             font-weight: 500;
             color: #3B82F6;
             background: #FFFFFF;
-            cursor: default;
+            /* cursor: default; */
+            text-decoration: none;
         }
 
         .schedule-link svg {

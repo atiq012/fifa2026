@@ -27,24 +27,35 @@
                         </div>
 
                         <h3 style="margin: 0 0 1rem; font-size: 15px; font-weight: 500; color: #2c2c2a;">
-                            <img height="20" width="20" src="{{ $prediction->fixture->team1->flag }}" alt="">
-                            {{ $prediction->fixture->team1->name }}
+                            <div class="d-flex">
+                                <img height="20" class="me-2" width="20" src="{{ $prediction->fixture->team1->flag }}" alt="">
+                                {{ $prediction->fixture->team1->name }}
+                                <div class="badge bg-success ms-auto">{{ $prediction->predictiondetails->team1_goals ?? '' }}</div>
+                            </div>
+
                             <span style="margin: 0 0 1rem; font-size: 15px; font-weight: 500; color: #2c2c2a;">
                                 <br>
                             </span>
 
-                            <img height="20" width="20" src="{{ $prediction->fixture->team2->flag }}" alt="">
-                            {{ $prediction->fixture->team2->name }}
+                            <div class="d-flex">
+                                <img height="20" class="me-2" width="20" src="{{ $prediction->fixture->team2->flag }}" alt="">
+                                {{ $prediction->fixture->team2->name }}
+                                <div class="badge bg-danger ms-auto">{{ $prediction->predictiondetails->team2_goals ?? '' }}</div>
+                            </div>
                         </h3>
 
                         <div class="prediction-info">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                                <span style="font-size: 12px; font-weight: 500;">Your Prediction</span>
+                                <span style="font-size: 12px; font-weight: 500;">Prediction</span>
 
                             </div>
                             <div class="prediction-boxes">
-                                <div class="prediction-box">👑
-                                    {{ $prediction->winningTeam->short_code ?? '' }} Wins
+                                <div class="prediction-box">
+                                    @if ($prediction->winningTeam)
+                                        👑 {{ $prediction->winningTeam->short_code }} wins
+                                    @else
+                                        Draw
+                                    @endif
                                 </div>
                                 <div class="prediction-box secondary">Predict Score:
                                     {{ $prediction->predictiondetails->team1_goals ?? '' }}-{{ $prediction->predictiondetails->team2_goals ?? '' }}
