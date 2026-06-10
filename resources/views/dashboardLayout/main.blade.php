@@ -45,125 +45,62 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-        // function showScreen(screenId) {
-
-        //     document.querySelectorAll('.screen').forEach(screen => {
-        //         screen.classList.remove('active');
-        //     });
-
-        //     if (screenId === 'predictions') {
-        //         const url = event.target.getAttribute('data-predictions-url');
-        //         if (url) {
-        //             window.location.href = url;
-        //         }
-
-        //         document.getElementById(screenId).classList.add('active');
-        //         document.querySelectorAll('.nav-tabs button').forEach(btn => {
-        //             btn.classList.remove('active');
-        //         });
-        //         event.target.classList.add('active');
-        //     }
-        //     if (screenId === 'dashboard') {
-        //         const url = event.target.getAttribute('data-predictions-url');
-        //         if (url) {
-        //             window.location.href = url;
-        //         }
-
-        //     }
-        //     if (screenId === 'leaderboard') {
-        //         const url = event.target.getAttribute('data-predictions-url');
-        //         if (url) {
-        //             window.location.href = url;
-        //         }
-        //     }
-        //     if (screenId === 'update_result') {
-        //         const url = event.target.getAttribute('data-predictions-url');
-        //         if (url) {
-        //             window.location.href = url;
-        //         }
-        //     }
-        //     if (screenId === 'analytics') {
-        //         const url = event.target.getAttribute('data-predictions-url');
-        //         if (url) {
-        //             window.location.href = url;
-        //         }
-        //     }
-
-        //     document.getElementById(screenId).classList.add('active');
-        //     document.querySelectorAll('.nav-tabs button').forEach(btn => {
-        //         btn.classList.remove('active');
-        //     });
-        //     event.target.classList.add('active');
-        // }
-
-        function showScreen(screenId, event = null) {
-            // Hide all screens
+        function showScreen(screenId) {
+            // Add this line to check if event exists
+            if (typeof event === 'undefined') {
+                var event = {
+                    target: null
+                };
+            }
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
             });
 
+
             // ajax call to load screen data if needed
             if (screenId === 'predictions') {
-                const url = event && event.target ? event.target.getAttribute('data-predictions-url') : null;
+                const url = event.target.getAttribute('data-predictions-url');
                 if (url) {
                     window.location.href = url;
-                    return;
                 }
-            }
-            if (screenId === 'dashboard') {
-                const url = event && event.target ? event.target.getAttribute('data-predictions-url') : null;
-                if (url) {
-                    window.location.href = url;
-                    return;
-                }
-            }
-            if (screenId === 'leaderboard') {
-                const url = event && event.target ? event.target.getAttribute('data-predictions-url') : null;
-                if (url) {
-                    window.location.href = url;
-                    return;
-                }
-            }
-            if (screenId === 'update_result') {
-                const url = event && event.target ? event.target.getAttribute('data-predictions-url') : null;
-                if (url) {
-                    window.location.href = url;
-                    return;
-                }
-            }
-            if (screenId === 'analytics') {
-                const url = event && event.target ? event.target.getAttribute('data-predictions-url') : null;
-                if (url) {
-                    window.location.href = url;
-                    return;
-                }
-            }
 
-            document.getElementById(screenId).classList.add('active');
-
-            // Only try to update tab active state if event exists
-            if (event && event.target) {
+                document.getElementById(screenId).classList.add('active');
                 document.querySelectorAll('.nav-tabs button').forEach(btn => {
                     btn.classList.remove('active');
                 });
                 event.target.classList.add('active');
             }
-        }
+            if (screenId === 'dashboard') {
+                const url = event.target.getAttribute('data-predictions-url');
+                if (url) {
+                    window.location.href = url;
+                }
 
-        // Add this after your showScreen function
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check which screen should be active based on URL or localStorage
-            const lastActiveScreen = localStorage.getItem('activeScreen');
-            if (lastActiveScreen && document.getElementById(lastActiveScreen)) {
-                // Activate the last screen without event parameter
-                showScreen(lastActiveScreen);
             }
-        });
+            if (screenId === 'leaderboard') {
+                const url = event.target.getAttribute('data-predictions-url');
+                if (url) {
+                    window.location.href = url;
+                }
+            }
+            if (screenId === 'update_result') {
+                const url = event.target.getAttribute('data-predictions-url');
+                if (url) {
+                    window.location.href = url;
+                }
+            }
+            if (screenId === 'analytics') {
+                const url = event.target.getAttribute('data-predictions-url');
+                if (url) {
+                    window.location.href = url;
+                }
+            }
 
-        // Save active screen to localStorage when changing screens
-        function showScreenWithSave(screenId, event = null) {
-            localStorage.setItem('activeScreen', screenId);
-            showScreen(screenId, event);
+            document.getElementById(screenId).classList.add('active');
+            document.querySelectorAll('.nav-tabs button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
         }
 
 
