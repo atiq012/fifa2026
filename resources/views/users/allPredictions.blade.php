@@ -38,7 +38,7 @@
 
                 <div class="team-row">
                     <div class="team-name-group">
-                        {{-- <span class="team-short"><img height="20" width="20" src="{{ $pred->fixture->team2->flag ?? '' }}" alt=""></span> --}}
+
                         <span class="team-full">Draw</span>
                     </div>
                     <div class="team-score-group">

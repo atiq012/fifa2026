@@ -147,9 +147,6 @@
             font-weight: 600;
             color: #2d6a4f;
         }
-    </style>
-
-    <style>
 
         .cricket-card {
             width: 100%;
@@ -181,12 +178,6 @@
             border-radius: 4px;
             letter-spacing: 0.3px;
         }
-
-        /* .match-location {
-                font-size: 12px;
-                color: #64748B;
-                font-weight: 500;
-            } */
 
         /* Team rows - exact spacing like image */
         .team-row {
@@ -254,7 +245,7 @@
         }
 
         .result-message {
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 600;
             color: #0F3B2C;
             background: #E6F7EF;
