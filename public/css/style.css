@@ -376,7 +376,7 @@ button.secondary {
 
 .leaderboard-header {
     display: grid;
-    grid-template-columns: 50px 1fr 80px 90px 70px;
+    grid-template-columns: 100px 215px 250px 90px 200px;
     gap: 0;
     background: #f1efe8;
     padding: 0;
@@ -385,7 +385,7 @@ button.secondary {
 
 .leaderboard-row {
     display: grid;
-    grid-template-columns: 50px 1fr 80px 90px 70px;
+    grid-template-columns: 100px 215px 250px 90px 200px;
     gap: 0;
     border-bottom: 0.5px solid #d3d1c7;
     padding: 0;

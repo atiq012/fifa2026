@@ -171,20 +171,20 @@
             </div>
         </div>
 
-        {{-- <div class="form-group">
-            <select onchange="filterLeaderboard(this.value)">
+        <div class="form-group">
+            {{-- <select onchange="filterLeaderboard(this.value)">
                 <option value="all">All Employees</option>
                 <option value="dept">My Department</option>
                 <option value="week">This Week</option>
-            </select>
+            </select> --}}
         </div>
 
         <div class="search-bar">
             <input type="search" placeholder="Search player..." id="searchInput" onkeyup="filterTable()">
             <button>🔍</button>
-        </div> --}}
+        </div>
 
-        {{-- <div class="leaderboard">
+        <div class="leaderboard">
             <div class="leaderboard-header">
                 <div class="leaderboard-cell">Rank</div>
                 <div class="leaderboard-cell">Player</div>
@@ -192,64 +192,30 @@
                 <div class="leaderboard-cell leaderboard-points">Points</div>
                 <div class="leaderboard-cell leaderboard-accuracy">Accuracy</div>
             </div>
+            @foreach ($players as $player)
             <div class="leaderboard-row highlight">
-                <div class="leaderboard-cell leaderboard-rank">1</div>
-                <div class="leaderboard-cell">Rahul Kumar</div>
-                <div class="leaderboard-cell">Eng</div>
-                <div class="leaderboard-cell leaderboard-points">245</div>
-                <div class="leaderboard-cell leaderboard-accuracy">58%</div>
+                <div class="leaderboard-cell leaderboard-rank">
+                    @if ($loop->first)
+                                    <span class="rank-badge rank-gold">
+                                        <i class="fas fa-crown" style="font-size:0.65rem;"></i>
+                                    </span>
+                                @elseif($loop->iteration == 2)
+                                    <span class="rank-badge rank-silver">2</span>
+                                @elseif($loop->iteration == 3)
+                                    <span class="rank-badge rank-bronze">3</span>
+                                @else
+                                    <span class="rank-badge rank-plain">{{ $loop->iteration }}</span>
+                                @endif
+                </div>
+                <div class="leaderboard-cell">{{ $player->full_name }}</div>
+                <div class="leaderboard-cell">{{ $player->depart_name }}</div>
+                <div class="leaderboard-cell leaderboard-points">0</div>
+                <div class="leaderboard-cell leaderboard-accuracy">0%</div>
             </div>
-            <div class="leaderboard-row">
-                <div class="leaderboard-cell leaderboard-rank">2</div>
-                <div class="leaderboard-cell">Priya Singh</div>
-                <div class="leaderboard-cell">Prod</div>
-                <div class="leaderboard-cell leaderboard-points">228</div>
-                <div class="leaderboard-cell leaderboard-accuracy">56%</div>
-            </div>
-            <div class="leaderboard-row">
-                <div class="leaderboard-cell leaderboard-rank">3</div>
-                <div class="leaderboard-cell">Ahmed Hassan</div>
-                <div class="leaderboard-cell">Sales</div>
-                <div class="leaderboard-cell leaderboard-points">215</div>
-                <div class="leaderboard-cell leaderboard-accuracy">53%</div>
-            </div>
-            <div class="leaderboard-row">
-                <div class="leaderboard-cell leaderboard-rank">4</div>
-                <div class="leaderboard-cell">Lisa Wong</div>
-                <div class="leaderboard-cell">HR</div>
-                <div class="leaderboard-cell leaderboard-points">201</div>
-                <div class="leaderboard-cell leaderboard-accuracy">49%</div>
-            </div>
-            <div class="leaderboard-row">
-                <div class="leaderboard-cell leaderboard-rank">5</div>
-                <div class="leaderboard-cell">Carlos Mendez</div>
-                <div class="leaderboard-cell">Ops</div>
-                <div class="leaderboard-cell leaderboard-points">195</div>
-                <div class="leaderboard-cell leaderboard-accuracy">51%</div>
-            </div>
-            <div class="leaderboard-row">
-                <div class="leaderboard-cell leaderboard-rank">6</div>
-                <div class="leaderboard-cell">Sofia Martinez</div>
-                <div class="leaderboard-cell">Eng</div>
-                <div class="leaderboard-cell leaderboard-points">188</div>
-                <div class="leaderboard-cell leaderboard-accuracy">47%</div>
-            </div>
-            <div class="leaderboard-row">
-                <div class="leaderboard-cell leaderboard-rank">7</div>
-                <div class="leaderboard-cell">James Chen</div>
-                <div class="leaderboard-cell">Prod</div>
-                <div class="leaderboard-cell leaderboard-points">175</div>
-                <div class="leaderboard-cell leaderboard-accuracy">46%</div>
-            </div>
-            <div class="leaderboard-row">
-                <div class="leaderboard-cell leaderboard-rank">8</div>
-                <div class="leaderboard-cell">Nadia Patel</div>
-                <div class="leaderboard-cell">Fin</div>
-                <div class="leaderboard-cell leaderboard-points">162</div>
-                <div class="leaderboard-cell leaderboard-accuracy">44%</div>
-            </div>
-        </div> --}}
-        <div class="table-responsive rounded-3 shadow-sm">
+            @endforeach
+        </div>
+
+        {{-- <div class="table-responsive rounded-3 shadow-sm">
             <table class="table table-sm table-hover align-middle mb-0">
                 <thead class="table-header-custom">
                     <tr>
@@ -263,7 +229,6 @@
                 </thead>
                 <tbody>
 
-                    <!-- Rank 1 -->
                     @foreach ($players as $player)
                         <tr style="background:#fffbef;">
                             <td class="text-center">
@@ -278,8 +243,7 @@
                                 @else
                                     <span class="rank-badge rank-plain">{{ $loop->iteration }}</span>
                                 @endif
-                                {{-- <span class="rank-badge rank-gold"><i class="fas fa-crown"
-                                        style="font-size:0.65rem;"></i></span> --}}
+
                             </td>
                             <td class="player-sub">{{ $player->emp_code }}</td>
                             <td>
@@ -304,191 +268,9 @@
                             </td>
                         </tr>
                     @endforeach
-
-                    {{-- <!-- Rank 2 -->
-                    <tr>
-                        <td class="text-center"><span class="rank-badge rank-silver">2</span></td>
-                        <td class="player-sub">GTI025</td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-
-                                <div>
-                                    <div class="player-name">Shirajul Alam Khan</div>
-                                    <div class="player-sub">Product</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="dept-badge"><i class="fas fa-cubes me-1"
-                                    style="font-size:0.6rem;"></i>Product</span>
-                        </td>
-                        <td class="text-end points-value">228</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="acc-bar-wrap">
-                                    <div class="acc-bar-fill" style="width:56%;"></div>
-                                </div>
-                                <span class="acc-text">56%</span>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <!-- Rank 3 -->
-                    <tr>
-                        <td class="text-center"><span class="rank-badge rank-bronze">3</span></td>
-                        <td class="player-sub">GTI005</td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-
-                                <div>
-                                    <div class="player-name">Imteaz Ahmed</div>
-                                    <div class="player-sub">Sales</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="dept-badge"><i class="fas fa-chart-simple me-1"
-                                    style="font-size:0.6rem;"></i>Sales</span></td>
-                        <td class="text-end points-value">215</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="acc-bar-wrap">
-                                    <div class="acc-bar-fill" style="width:53%;"></div>
-                                </div>
-                                <span class="acc-text">53%</span>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <!-- Rank 4 -->
-                    <tr>
-                        <td class="text-center"><span class="rank-plain">4</span></td>
-                        <td class="player-sub">GTI030</td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-
-                                <div>
-                                    <div class="player-name">Zareen Bano</div>
-                                    <div class="player-sub">Human Resources</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="dept-badge"><i class="fas fa-users me-1" style="font-size:0.6rem;"></i>Human
-                                Resources</span></td>
-                        <td class="text-end points-value">201</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="acc-bar-wrap">
-                                    <div class="acc-bar-fill" style="width:49%; background:#17a2b8;"></div>
-                                </div>
-                                <span class="acc-text" style="color:#0e6b7a;">49%</span>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <!-- Rank 5 -->
-                    <tr>
-                        <td class="text-center"><span class="rank-plain">5</span></td>
-                        <td class="player-sub">GTI013</td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-
-                                <div>
-                                    <div class="player-name">A.H.A Mazed</div>
-                                    <div class="player-sub">Operations</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="dept-badge"><i class="fas fa-truck-fast me-1"
-                                    style="font-size:0.6rem;"></i>Operations</span></td>
-                        <td class="text-end points-value">195</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="acc-bar-wrap">
-                                    <div class="acc-bar-fill" style="width:51%;"></div>
-                                </div>
-                                <span class="acc-text">51%</span>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <!-- Rank 6 -->
-                    <tr>
-                        <td class="text-center"><span class="rank-plain">6</span></td>
-                        <td class="player-sub">GTI015</td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-
-                                <div>
-                                    <div class="player-name">Rajjab Ali</div>
-                                    <div class="player-sub">Engineering</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="dept-badge"><i class="fas fa-microchip me-1"
-                                    style="font-size:0.6rem;"></i>Engineering</span></td>
-                        <td class="text-end points-value">188</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="acc-bar-wrap">
-                                    <div class="acc-bar-fill" style="width:47%; background:#fd7e14;"></div>
-                                </div>
-                                <span class="acc-text" style="color:#a85200;">47%</span>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <!-- Rank 7 -->
-                    <tr>
-                        <td class="text-center"><span class="rank-plain">7</span></td>
-                        <td class="player-sub">GTI019</td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-
-                                <div>
-                                    <div class="player-name">Kazi Faruque Hossain</div>
-                                    <div class="player-sub">Product</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="dept-badge"><i class="fas fa-cubes me-1"
-                                    style="font-size:0.6rem;"></i>Product</span></td>
-                        <td class="text-end points-value">175</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <span class="acc-text" style="color:#a85200;">46%</span>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <!-- Rank 8 -->
-                    <tr>
-                        <td class="text-center"><span class="rank-plain">8</span></td>
-                        <td class="player-sub">GTI037</td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-
-                                <div>
-                                    <div class="player-name">Md. Feroj Iftekar</div>
-                                    <div class="player-sub">Finance</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="dept-badge"><i class="fas fa-coins me-1"
-                                    style="font-size:0.6rem;"></i>Finance</span></td>
-                        <td class="text-end points-value">162</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="acc-bar-wrap">
-                                    <div class="acc-bar-fill" style="width:44%; background:#dc3545;"></div>
-                                </div>
-                                <span class="acc-text" style="color:#9c1c28;">44%</span>
-                            </div>
-                        </td>
-                    </tr> --}}
-
                 </tbody>
             </table>
-        </div>
+        </div> --}}
 
         {{-- <div class="pagination">
             <button>←</button>
