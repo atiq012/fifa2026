@@ -17,6 +17,7 @@ Route::post('/saveMyteam', [DashboardController::class, 'saveMyteam'])->middlewa
 Route::get('/predictions', [PredictionController::class, 'index'])->middleware(['auth', 'verified'])->name('predictions');
 Route::post('/predictions-store', [PredictionController::class, 'store'])->middleware(['auth', 'verified'])->name('predictions.store');
 
+Route::get('/predictionDetails/{id}', [PredictionController::class, 'predictionDetails'])->middleware(['auth', 'verified'])->name('predictionDetails');
 // leaderboard
 Route::get('/leaderboard', [DashboardController::class, 'leaderboard'])->middleware(['auth', 'verified'])->name('leaderboard');
 

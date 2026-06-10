@@ -119,4 +119,11 @@ class PredictionController extends Controller
             ], 500);
         }
     }
+
+    public function predictionDetails($id)
+    {
+        $predictions = Prediction::where('fixture_id', $id)->with('predictiondetails')->get();
+        return view('users.allPrediction', compact('predictions'));
+
+    }
 }

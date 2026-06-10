@@ -32,4 +32,9 @@ class Prediction extends Model
     {
         return Prediction::where('fixture_id', $f_id)->where('winning_team', $team_id)->count();
     }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
