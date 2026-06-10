@@ -45,35 +45,6 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-        // Mobile pull-to-refresh fix: when .card-body is scrolled to the top
-        // and user pulls down, allow the native browser refresh gesture.
-        document.addEventListener('DOMContentLoaded', function() {
-            const cardBody = document.querySelector('.card-body');
-            if (!cardBody) return;
-
-            let startY = 0;
-
-            cardBody.addEventListener('touchstart', function(e) {
-                startY = e.touches[0].pageY;
-            }, { passive: true });
-
-            cardBody.addEventListener('touchmove', function(e) {
-                const currentY = e.touches[0].pageY;
-                const isAtTop = cardBody.scrollTop <= 0;
-                const isPullingDown = currentY > startY;
-
-                if (isAtTop && isPullingDown) {
-                    // Allow the event to propagate to the browser for pull-to-refresh
-                    cardBody.style.overflowY = 'hidden';
-                    setTimeout(function() {
-                        cardBody.style.overflowY = 'auto';
-                    }, 100);
-                }
-            }, { passive: true });
-        });
-    </script>
-
-    <script>
         function showScreen(screenId) {
             // Hide all screens
             document.querySelectorAll('.screen').forEach(screen => {

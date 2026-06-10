@@ -50,8 +50,6 @@ body::before {
     scroll-behavior: smooth;
     padding: 0;
     position: relative;
-    /* Allow pull-to-refresh to propagate to browser on mobile */
-    overscroll-behavior-y: auto;
 }
 
 /* Custom scrollbar for card-body (polished) */
@@ -824,6 +822,15 @@ select:focus {
     to {
         transform: translateX(100%);
         opacity: 0;
+    }
+}
+
+/* Mobile: let the document body scroll so pull-to-refresh works */
+@media (max-width: 991px) {
+    .card-body {
+        overflow-y: visible;
+        overflow-x: visible;
+        max-height: none;
     }
 }
 
