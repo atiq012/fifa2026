@@ -14,7 +14,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    @yield('styles')
+    @yield('styles') 
 </head>
 
 <body>
@@ -45,88 +45,88 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-        // function showScreen(screenId) {
-        //     // Hide all screens
-        //     document.querySelectorAll('.screen').forEach(screen => {
-        //         screen.classList.remove('active');
-        //     });
-
-
-        //     // ajax call to load screen data if needed
-        //     if (screenId === 'predictions') {
-        //         const url = event.target.getAttribute('data-predictions-url');
-        //         if (url) {
-        //             window.location.href = url;
-        //         }
-
-        //         document.getElementById(screenId).classList.add('active');
-        //         document.querySelectorAll('.nav-tabs button').forEach(btn => {
-        //             btn.classList.remove('active');
-        //         });
-        //         event.target.classList.add('active');
-        //     }
-        //     if (screenId === 'dashboard') {
-        //         const url = event.target.getAttribute('data-predictions-url');
-        //         if (url) {
-        //             window.location.href = url;
-        //         }
-
-        //     }
-        //     if (screenId === 'leaderboard') {
-        //         const url = event.target.getAttribute('data-predictions-url');
-        //         if (url) {
-        //             window.location.href = url;
-        //         }
-        //     }
-        //     if (screenId === 'update_result') {
-        //         const url = event.target.getAttribute('data-predictions-url');
-        //         if (url) {
-        //             window.location.href = url;
-        //         }
-        //     }
-        //     if (screenId === 'analytics') {
-        //         const url = event.target.getAttribute('data-predictions-url');
-        //         if (url) {
-        //             window.location.href = url;
-        //         }
-        //     }
-
-        //     document.getElementById(screenId).classList.add('active');
-        //     document.querySelectorAll('.nav-tabs button').forEach(btn => {
-        //         btn.classList.remove('active');
-        //     });
-        //     event.target.classList.add('active');
-        // }
-
-        // Nav button handler — works on both mobile and desktop
+        // Mobile pull-to-refresh fix: when .card-body is scrolled to the top
+        // and user pulls down, allow the native browser refresh gesture.
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.nav-tabs button').forEach(function(btn) {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    var url = this.getAttribute('data-url');
-                    if (url) {
-                        window.location.href = url;
-                    }
-                });
+            const cardBody = document.querySelector('.card-body');
+            if (!cardBody) return;
 
-                // Also add touchend for mobile reliability
-                btn.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    var url = this.getAttribute('data-url');
-                    if (url) {
-                        window.location.href = url;
-                    }
-                });
-            });
+            let startY = 0;
+
+            cardBody.addEventListener('touchstart', function(e) {
+                startY = e.touches[0].pageY;
+            }, { passive: true });
+
+            cardBody.addEventListener('touchmove', function(e) {
+                const currentY = e.touches[0].pageY;
+                const isAtTop = cardBody.scrollTop <= 0;
+                const isPullingDown = currentY > startY;
+
+                if (isAtTop && isPullingDown) {
+                    // Allow the event to propagate to the browser for pull-to-refresh
+                    cardBody.style.overflowY = 'hidden';
+                    setTimeout(function() {
+                        cardBody.style.overflowY = 'auto';
+                    }, 100);
+                }
+            }, { passive: true });
         });
+    </script>
 
+    <script>
         function showScreen(screenId) {
-            document.querySelectorAll('.screen').forEach(function(screen) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
             });
-            var screen = document.getElementById(screenId);
-            if (screen) screen.classList.add('active');
+
+
+            // ajax call to load screen data if needed
+            if (screenId === 'predictions') {
+                const url = event.target.getAttribute('data-predictions-url');
+                if (url) {
+                    window.location.href = url;
+                }
+
+                document.getElementById(screenId).classList.add('active');
+                document.querySelectorAll('.nav-tabs button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                event.target.classList.add('active');
+            }
+            if (screenId === 'dashboard') {
+                const url = event.target.getAttribute('data-predictions-url');
+                if (url) {
+                    window.location.href = url;
+                }
+
+            }
+            if (screenId === 'leaderboard') {
+                const url = event.target.getAttribute('data-predictions-url');
+                if (url) {
+                    window.location.href = url;
+                }
+            }
+            if (screenId === 'update_result') {
+                const url = event.target.getAttribute('data-predictions-url');
+                if (url) {
+                    window.location.href = url;
+                }
+            }
+            if (screenId === 'analytics') {
+                const url = event.target.getAttribute('data-predictions-url');
+                if (url) {
+                    window.location.href = url;
+                }
+            }
+
+            document.getElementById(screenId).classList.add('active');
+            document.querySelectorAll('.nav-tabs button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
         }
+
 
         let toastTimeout;
 
