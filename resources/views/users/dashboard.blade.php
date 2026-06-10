@@ -618,7 +618,7 @@
             }
 
             // Check condition from backend
-            @if ($predictions->count() < 1 && $favorite_team == null)
+            @if ($favorite_team == null)
                 var modal = new bootstrap.Modal(document.getElementById('teamModal'));
 
                 // Initialize Select2 when modal is fully shown
