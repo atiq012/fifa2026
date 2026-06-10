@@ -203,7 +203,7 @@
         }
 
         .team-full {
-            font-size: 13px;
+            font-size: 12px;
             color: #64748B;
             font-weight: 450;
         }
