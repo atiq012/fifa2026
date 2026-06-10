@@ -46,12 +46,7 @@
 
     <script>
         function showScreen(screenId) {
-            // Add this line to check if event exists
-            if (typeof event === 'undefined') {
-                var event = {
-                    target: null
-                };
-            }
+            // Hide all screens
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
             });
