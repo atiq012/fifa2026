@@ -137,9 +137,10 @@ class DashboardController extends Controller
     public function leaderboard()
     {
         $favorite_team = MyTeam::where('user_id', Auth::id())->first();
+        $players = DB::table('v_emp_info')->where('emp_status', 'Active')->select('id', 'full_name', 'depart_name','emp_code')->get();
 
         // Implementation for leaderboard view
-        return view('users.leaderboard', compact('favorite_team'));
+        return view('users.leaderboard', compact('favorite_team','players'));
     }
 
     public function analytics()

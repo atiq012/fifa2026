@@ -253,8 +253,8 @@
             <table class="table table-sm table-hover align-middle mb-0">
                 <thead class="table-header-custom">
                     <tr>
-                        <th style="width:8%"><i class="fas fa-hashtag me-1"></i>Rank</th>
-                        <th style="width:10%">ID</th>
+                        <th style="width:8%"></i>Rank</th>
+                        <th style="width:10%">Employee</th>
                         <th style="width:32%"><i class="fas fa-user me-1"></i>Player</th>
                         <th style="width:18%"><i class="fas fa-building me-1"></i>Dept</th>
                         <th style="width:12%" class="text-end"><i class="fas fa-chart-line me-1"></i>Pts</th>
@@ -264,35 +264,48 @@
                 <tbody>
 
                     <!-- Rank 1 -->
-                    <tr style="background:#fffbef;">
-                        <td class="text-center">
-                            <span class="rank-badge rank-gold"><i class="fas fa-crown"
-                                    style="font-size:0.65rem;"></i></span>
-                        </td>
-                        <td class="player-sub">GTI026</td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
+                    @foreach ($players as $player)
+                        <tr style="background:#fffbef;">
+                            <td class="text-center">
+                                @if ($loop->first)
+                                    <span class="rank-badge rank-gold">
+                                        <i class="fas fa-crown" style="font-size:0.65rem;"></i>
+                                    </span>
+                                @elseif($loop->iteration == 2)
+                                    <span class="rank-badge rank-silver">2</span>
+                                @elseif($loop->iteration == 3)
+                                    <span class="rank-badge rank-bronze">3</span>
+                                @else
+                                    <span class="rank-badge rank-plain">{{ $loop->iteration }}</span>
+                                @endif
+                                {{-- <span class="rank-badge rank-gold"><i class="fas fa-crown"
+                                        style="font-size:0.65rem;"></i></span> --}}
+                            </td>
+                            <td class="player-sub">{{ $player->emp_code }}</td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
 
-                                <div>
-                                    <div class="player-name">Quazi Rizwan Ahmed (Nayan)</div>
-                                    <div class="player-sub">Engineering</div>
+                                    <div>
+                                        <div class="player-name">{{ $player->full_name }}</div>
+                                        <div class="player-sub">{{ $player->depart_name }}</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td><span class="dept-badge"><i class="fas fa-microchip me-1"
-                                    style="font-size:0.6rem;"></i>Engineering</span></td>
-                        <td class="text-end points-value">245</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="acc-bar-wrap">
-                                    <div class="acc-bar-fill" style="width:58%;"></div>
+                            </td>
+                            <td><span class="dept-badge"><i class="fas fa-microchip me-1"
+                                        style="font-size:0.6rem;"></i>{{ $player->depart_name }}</span></td>
+                            <td class="text-end points-value">0</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="acc-bar-wrap">
+                                        <div class="acc-bar-fill" style="width:0%;"></div>
+                                    </div>
+                                    <span class="acc-text">0%</span>
                                 </div>
-                                <span class="acc-text">58%</span>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    @endforeach
 
-                    <!-- Rank 2 -->
+                    {{-- <!-- Rank 2 -->
                     <tr>
                         <td class="text-center"><span class="rank-badge rank-silver">2</span></td>
                         <td class="player-sub">GTI025</td>
@@ -471,19 +484,19 @@
                                 <span class="acc-text" style="color:#9c1c28;">44%</span>
                             </div>
                         </td>
-                    </tr>
+                    </tr> --}}
 
                 </tbody>
             </table>
         </div>
 
-        <div class="pagination">
+        {{-- <div class="pagination">
             <button>←</button>
             <button class="active">1</button>
             <button>2</button>
             <button>3</button>
             <button>→</button>
-        </div>
+        </div> --}}
     </div>
 @endsection
 

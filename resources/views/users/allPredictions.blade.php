@@ -42,12 +42,12 @@
                         <span class="team-full">Draw</span>
                     </div>
                     <div class="team-score-group">
-                        @if ($pred->total_draw_predictions($pred->fixture_id, $pred->is_draw) > 0)
+                        {{-- @if ($pred->total_draw_predictions($pred->fixture_id, $pred->is_draw) > 0) --}}
                             <span class="runs"> {{ $pred->total_draw_predictions($pred->fixture_id, $pred->is_draw) }}
                                 People Predicted</span>
-                        @else
-                            -
-                        @endif
+                        {{-- @else --}}
+                            {{-- - --}}
+                        {{-- @endif --}}
                     </div>
                 </div>
 
