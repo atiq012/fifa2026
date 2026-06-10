@@ -97,38 +97,35 @@
         //     });
         //     event.target.classList.add('active');
         // }
-        function showScreen(screenId, el) {
-            // Hide all screens
-            document.querySelectorAll('.screen').forEach(screen => {
+
+        // Nav button handler — works on both mobile and desktop
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-tabs button').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var url = this.getAttribute('data-url');
+                    if (url) {
+                        window.location.href = url;
+                    }
+                });
+
+                // Also add touchend for mobile reliability
+                btn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    var url = this.getAttribute('data-url');
+                    if (url) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(function(screen) {
                 screen.classList.remove('active');
             });
-
-            // Get URL from the clicked element
-            const url = el ? el.getAttribute('data-predictions-url') : null;
-
-            if (['dashboard', 'leaderboard', 'update_result', 'analytics'].includes(screenId)) {
-                if (url) {
-                    window.location.href = url;
-                    return; // Stop here — page will navigate
-                }
-            }
-
-            if (screenId === 'predictions') {
-                if (url) {
-                    window.location.href = url;
-                    return;
-                }
-                document.getElementById(screenId).classList.add('active');
-            }
-
-            // Update active tab UI
-            const screen = document.getElementById(screenId);
+            var screen = document.getElementById(screenId);
             if (screen) screen.classList.add('active');
-
-            document.querySelectorAll('.nav-tabs button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            if (el) el.classList.add('active');
         }
 
         let toastTimeout;
