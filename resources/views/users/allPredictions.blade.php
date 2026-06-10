@@ -17,7 +17,7 @@
                     </div>
                     <div class="team-score-group">
                         <span
-                            class="runs">👑 win {{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team1_id) }}
+                            class="runs">👑 {{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team1_id) }}
                             People Predicted</span>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         <span class="team-full">{{ $pred->fixture->team2->name ?? '' }}</span>
                     </div>
                     <div class="team-score-group">
-                        <span class="runs">👑Win
+                        <span class="runs">👑
                             {{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team2_id) }} People
                             Predicted</span>
                     </div>

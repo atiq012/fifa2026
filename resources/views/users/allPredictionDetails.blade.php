@@ -44,7 +44,7 @@
                             </div>
                         </h3>
 
-                        <div class="prediction-info">
+                        {{-- <div class="prediction-info">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                                 <span style="font-size: 12px; font-weight: 500;">Prediction</span>
 
@@ -61,7 +61,7 @@
                                     {{ $prediction->predictiondetails->team1_goals ?? '' }}-{{ $prediction->predictiondetails->team2_goals ?? '' }}
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             @endforeach
