@@ -45,58 +45,58 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-        function showScreen(screenId) {
-            // Hide all screens
-            document.querySelectorAll('.screen').forEach(screen => {
-                screen.classList.remove('active');
-            });
+        // function showScreen(screenId) {
+        //     // Hide all screens
+        //     document.querySelectorAll('.screen').forEach(screen => {
+        //         screen.classList.remove('active');
+        //     });
 
 
-            // ajax call to load screen data if needed
-            if (screenId === 'predictions') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
+        //     // ajax call to load screen data if needed
+        //     if (screenId === 'predictions') {
+        //         const url = event.target.getAttribute('data-predictions-url');
+        //         if (url) {
+        //             window.location.href = url;
+        //         }
 
-                document.getElementById(screenId).classList.add('active');
-                document.querySelectorAll('.nav-tabs button').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                event.target.classList.add('active');
-            }
-            if (screenId === 'dashboard') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
+        //         document.getElementById(screenId).classList.add('active');
+        //         document.querySelectorAll('.nav-tabs button').forEach(btn => {
+        //             btn.classList.remove('active');
+        //         });
+        //         event.target.classList.add('active');
+        //     }
+        //     if (screenId === 'dashboard') {
+        //         const url = event.target.getAttribute('data-predictions-url');
+        //         if (url) {
+        //             window.location.href = url;
+        //         }
 
-            }
-            if (screenId === 'leaderboard') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
-            }
-            if (screenId === 'update_result') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
-            }
-            if (screenId === 'analytics') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
-            }
+        //     }
+        //     if (screenId === 'leaderboard') {
+        //         const url = event.target.getAttribute('data-predictions-url');
+        //         if (url) {
+        //             window.location.href = url;
+        //         }
+        //     }
+        //     if (screenId === 'update_result') {
+        //         const url = event.target.getAttribute('data-predictions-url');
+        //         if (url) {
+        //             window.location.href = url;
+        //         }
+        //     }
+        //     if (screenId === 'analytics') {
+        //         const url = event.target.getAttribute('data-predictions-url');
+        //         if (url) {
+        //             window.location.href = url;
+        //         }
+        //     }
 
-            document.getElementById(screenId).classList.add('active');
-            document.querySelectorAll('.nav-tabs button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
+        //     document.getElementById(screenId).classList.add('active');
+        //     document.querySelectorAll('.nav-tabs button').forEach(btn => {
+        //         btn.classList.remove('active');
+        //     });
+        //     event.target.classList.add('active');
+        // }
 
 
         let toastTimeout;
