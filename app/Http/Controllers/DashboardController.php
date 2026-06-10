@@ -15,7 +15,7 @@ class DashboardController extends Controller
     public function index()
     {
         $nextThreeMatches = Fixture::where('date', '>=', now())
-            ->where('actual_team1_goals','=',null)
+            ->where('actual_team1_goals', '=', null)
             ->with(['team1', 'team2'])
             ->orderBy('date', 'asc')
             ->orderBy('time', 'asc')
@@ -28,7 +28,7 @@ class DashboardController extends Controller
             ->orderBy('created_at', 'asc')
             ->get(['is_correct']);
 
-        $total_correct_predictions = $pred->where('is_correct','1')->count();
+        $total_correct_predictions = $pred->where('is_correct', '1')->count();
 
         $totalPoints = DB::table('predictions')
             ->leftJoin('prediction_details', 'predictions.id', '=', 'prediction_details.predication_id')
@@ -39,23 +39,30 @@ class DashboardController extends Controller
         $favorite_team = MyTeam::where('user_id', Auth::id())->first();
 
         $teams = Team::orderBy('group', 'asc')
-             ->orderBy('name', 'asc')
-             ->get();
+            ->orderBy('name', 'asc')
+            ->get();
 
-        $players = DB::table('v_emp_info')->where('emp_status', 'Active')->select('id', 'full_name','depart_name')->get();
+        $players = DB::table('v_emp_info')->where('emp_status', 'Active')->select('id', 'full_name', 'depart_name')->get();
 
-        $allPred = Prediction::where('is_correct',null)->orderBy('created_at', 'asc')->get();
+        // In your controller
+        $allPred = Prediction::where('is_correct', null)
+            ->with(['fixture.team1', 'fixture.team2'])
+            ->orderBy('created_at', 'asc')
+            ->get()
+            ->groupBy('fixture_id')
+            ->map(function ($predictions) {
+                return $predictions->first(); // Take first prediction for each fixture
+            });
 
-
-        return view('users.dashboard', compact('nextThreeMatches', 'predictions', 'totalPoints', 'total_correct_predictions','teams','favorite_team','players','allPred'));
+        return view('users.dashboard', compact('nextThreeMatches', 'predictions', 'totalPoints', 'total_correct_predictions', 'teams', 'favorite_team', 'players', 'allPred'));
     }
 
     public function saveMyteam(Request $request)
     {
         $myTeam = new MyTeam();
 
-        $myTeam->team_id = $request->team;
-        $myTeam->user_id = Auth::user()->id;
+        $myTeam->team_id    = $request->team;
+        $myTeam->user_id    = Auth::user()->id;
         $myTeam->created_by = Auth::user()->id;
         $myTeam->save();
 
@@ -68,11 +75,11 @@ class DashboardController extends Controller
     public function update_result()
     {
         $fixtures = Fixture::where('date', '>=', now())
-        ->where('actual_team1_goals','=',null)
-        ->with(['team1', 'team2'])->get();
+            ->where('actual_team1_goals', '=', null)
+            ->with(['team1', 'team2'])->get();
         $favorite_team = MyTeam::where('user_id', Auth::id())->first();
 
-        return view('users.update_result', compact('fixtures','favorite_team'));
+        return view('users.update_result', compact('fixtures', 'favorite_team'));
     }
 
     public function update_result_store(Request $request)
@@ -132,7 +139,7 @@ class DashboardController extends Controller
         $favorite_team = MyTeam::where('user_id', Auth::id())->first();
 
         // Implementation for leaderboard view
-        return view('users.leaderboard',compact('favorite_team'));
+        return view('users.leaderboard', compact('favorite_team'));
     }
 
     public function analytics()
@@ -140,7 +147,7 @@ class DashboardController extends Controller
         $favorite_team = MyTeam::where('user_id', Auth::id())->first();
 
         // Implementation for analytics view
-        return view('users.analytics',compact('favorite_team'));
+        return view('users.analytics', compact('favorite_team'));
     }
 
 }
