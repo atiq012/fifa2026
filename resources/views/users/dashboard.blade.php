@@ -351,7 +351,7 @@
                                     #{{ $fixture->team2->rank ?? ($fixture->team2_rank ?? 'N/A') }}</div>
                             </div>
                         </div>
-                        {{ dump($myPr->contains($fixture->id)) }}
+                        {{ dump($myPr) }}
                         @if ($myPr->contains((int) $fixture->id))
 
                         @else
