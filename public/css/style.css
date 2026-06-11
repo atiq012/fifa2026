@@ -376,16 +376,16 @@ button.secondary {
 
 .leaderboard-header {
     display: grid;
-    grid-template-columns: 100px 215px 250px 90px 200px;
+    grid-template-columns: 100px 252px 267px 100px;
     gap: 0;
     background: #f1efe8;
-    padding: 0;
+    padding: 0 0 0 25px;
     border-bottom: 0.5px solid #d3d1c7;
 }
 
 .leaderboard-row {
     display: grid;
-    grid-template-columns: 100px 215px 250px 90px 200px;
+    grid-template-columns: 100px 252px 267px 100px;
     gap: 0;
     border-bottom: 0.5px solid #d3d1c7;
     padding: 0;
@@ -885,7 +885,8 @@ select:focus {
 
     .leaderboard-header,
     .leaderboard-row {
-        grid-template-columns: 40px 1fr 60px 60px;
+        grid-template-columns: 60px 69px 60px 74px;
+
     }
 
     .header {
@@ -993,6 +994,16 @@ button.primary {
 
 button.primary:hover {
     background: #2d6ba8;
+}
+
+button.secondary {
+    background: #c07725;
+    color: white;
+    border-color: #378add;
+}
+
+button.secondary:hover {
+    background: #c078258f;
 }
 
 /* Prediction Cards */

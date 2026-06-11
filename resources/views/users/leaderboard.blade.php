@@ -188,7 +188,7 @@
             <div class="leaderboard-header">
                 <div class="leaderboard-cell">Rank</div>
                 <div class="leaderboard-cell">Player</div>
-                <div class="leaderboard-cell">Dept</div>
+                {{-- <div class="leaderboard-cell">Dept</div> --}}
                 <div class="leaderboard-cell leaderboard-points">Points</div>
                 <div class="leaderboard-cell leaderboard-accuracy">Accuracy</div>
             </div>
@@ -207,8 +207,12 @@
                                     <span class="rank-badge rank-plain">{{ $loop->iteration }}</span>
                                 @endif
                 </div>
-                <div class="leaderboard-cell">{{ $player->full_name }}</div>
-                <div class="leaderboard-cell">{{ $player->depart_name }}</div>
+                <div class="leaderboard-cell">
+                    {{ $player->full_name }}
+                    <br>
+                    <small>{{  $player->depart_name }}</small>
+                </div>
+                {{-- <div class="leaderboard-cell">{{ $player->depart_name }}</div> --}}
                 <div class="leaderboard-cell leaderboard-points">0</div>
                 <div class="leaderboard-cell leaderboard-accuracy">0%</div>
             </div>

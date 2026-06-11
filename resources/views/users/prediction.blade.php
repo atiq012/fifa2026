@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="card-actions">
-                    <button style="width: 100%;" data-bs-toggle="modal" data-bs-target="#predictionModal"
+                    <button class="secondary" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#predictionModal"
                         data-fixture-id="{{ $pending->id }}"
                         data-team1-name="{{ $pending->team1->name ?? $pending->team1_name }}"
                         data-team1-rank="{{ $pending->team1->rank ?? ($pending->team1_rank ?? 'N/A') }}"
