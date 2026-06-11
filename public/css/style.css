@@ -376,19 +376,19 @@ button.secondary {
 
 .leaderboard-header {
     display: grid;
-    grid-template-columns: 100px 252px 267px 100px;
+    grid-template-columns: 300px 320px;
     gap: 0;
     background: #f1efe8;
-    padding: 0 0 0 25px;
+    padding: 0 0 0 50px;
     border-bottom: 0.5px solid #d3d1c7;
 }
 
 .leaderboard-row {
     display: grid;
-    grid-template-columns: 100px 252px 267px 100px;
+    grid-template-columns: 300px 300px;
     gap: 0;
     border-bottom: 0.5px solid #d3d1c7;
-    padding: 0;
+    padding:0 0 0 50px;
     align-items: center;
 }
 

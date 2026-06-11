@@ -186,36 +186,48 @@
 
         <div class="leaderboard">
             <div class="leaderboard-header">
-                <div class="leaderboard-cell">Rank</div>
+                {{-- <div class="leaderboard-cell">SL</div> --}}
                 <div class="leaderboard-cell">Player</div>
                 {{-- <div class="leaderboard-cell">Dept</div> --}}
-                <div class="leaderboard-cell leaderboard-points">Points</div>
-                <div class="leaderboard-cell leaderboard-accuracy">Accuracy</div>
+                <div class="leaderboard-cell leaderboard-points">Points / Rank</div>
+                {{-- <div class="leaderboard-cell leaderboard-accuracy">Accuracy</div> --}}
             </div>
             @foreach ($players as $player)
-            <div class="leaderboard-row highlight">
-                <div class="leaderboard-cell leaderboard-rank">
-                    @if ($loop->first)
-                                    <span class="rank-badge rank-gold">
-                                        <i class="fas fa-crown" style="font-size:0.65rem;"></i>
-                                    </span>
-                                @elseif($loop->iteration == 2)
-                                    <span class="rank-badge rank-silver">2</span>
-                                @elseif($loop->iteration == 3)
-                                    <span class="rank-badge rank-bronze">3</span>
-                                @else
-                                    <span class="rank-badge rank-plain">{{ $loop->iteration }}</span>
-                                @endif
+                <div class="leaderboard-row highlight">
+
+                    <div class="leaderboard-cell">
+                        {{ $player->full_name }}
+
+                        @php
+                            $user = DB::table('users')->where('staff_id', $player->emp_code)->first();
+                            $playerTeam = DB::table('my_teams')
+                                ->where('user_id', $user->id)
+                                ->select('id', 'team_id')
+                                ->first();
+
+                            if ($playerTeam) {
+                                $team = DB::table('teams')
+                                    ->where('id', $playerTeam->team_id)
+                                    ->select('name', 'flag')
+                                    ->first();
+                            } else {
+                                $team = null;
+                            }
+                        @endphp
+
+                        @if ($playerTeam && $team)
+                            <img  height="8%" width="8%" src="{{ $team->flag }}" alt="">
+                        @endif
+                        <br>
+                        <small>{{ $player->depart_name }}</small>
+                    </div>
+
+                    <div class="leaderboard-cell leaderboard-points">
+                        <i class="fas fa-coins me-1"></i> 0
+                        <br>
+                        <small>Rank #0</small>
+                    </div>
                 </div>
-                <div class="leaderboard-cell">
-                    {{ $player->full_name }}
-                    <br>
-                    <small>{{  $player->depart_name }}</small>
-                </div>
-                {{-- <div class="leaderboard-cell">{{ $player->depart_name }}</div> --}}
-                <div class="leaderboard-cell leaderboard-points">0</div>
-                <div class="leaderboard-cell leaderboard-accuracy">0%</div>
-            </div>
             @endforeach
         </div>
 
