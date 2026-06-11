@@ -14,11 +14,18 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $nextThreeMatches = Fixture::where('date', '>=', now())
-            ->where('actual_team1_goals', '=', null)
+        // $nextThreeMatches = Fixture::where('date', '>=', now())
+        //     ->where('actual_team1_goals', '=', null)
+        //     ->with(['team1', 'team2'])
+        //     ->orderBy('date', 'asc')
+        //     ->orderBy('time', 'asc')
+        //     ->limit(3)
+        //     ->get();
+
+        $nextThreeMatches = Fixture::upcoming()
             ->with(['team1', 'team2'])
             ->orderBy('date', 'asc')
-            ->orderBy('time', 'asc')
+            ->orderByRaw("STR_TO_DATE(time, '%h:%i %p') asc")
             ->limit(3)
             ->get();
 
@@ -54,8 +61,8 @@ class DashboardController extends Controller
                 return $predictions->first(); // Take first prediction for each fixture
             });
         $myPr = $allPred->pluck('fixture_id');
-        // dd($myPr);
-        return view('users.dashboard', compact('myPr','nextThreeMatches', 'predictions', 'totalPoints', 'total_correct_predictions', 'teams', 'favorite_team', 'players', 'allPred'));
+
+        return view('users.dashboard', compact('myPr', 'nextThreeMatches', 'predictions', 'totalPoints', 'total_correct_predictions', 'teams', 'favorite_team', 'players', 'allPred'));
     }
 
     public function saveMyteam(Request $request)
@@ -138,10 +145,10 @@ class DashboardController extends Controller
     public function leaderboard()
     {
         $favorite_team = MyTeam::where('user_id', Auth::id())->first();
-        $players = DB::table('v_emp_info')->where('emp_status', 'Active')->select('id', 'full_name', 'depart_name','emp_code')->get();
+        $players       = DB::table('v_emp_info')->where('emp_status', 'Active')->select('id', 'full_name', 'depart_name', 'emp_code')->get();
 
         // Implementation for leaderboard view
-        return view('users.leaderboard', compact('favorite_team','players'));
+        return view('users.leaderboard', compact('favorite_team', 'players'));
     }
 
     public function analytics()

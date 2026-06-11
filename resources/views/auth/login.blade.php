@@ -370,9 +370,9 @@
 
                             <!-- Email -->
                             <div class="mb-3">
-                                <label for="email" class="form-label form-label-fifa">
+                                {{-- <label for="email" class="form-label form-label-fifa">
                                     <b>Email Address / Employee Code</b>
-                                </label>
+                                </label> --}}
                                 <div class="input-group input-group-fifa">
                                     <span class="input-group-text">
                                         <i class="bi bi-person"></i>
@@ -389,7 +389,7 @@
 
                             <!-- Password -->
                             <div class="mb-3">
-                                <label for="password" class="form-label form-label-fifa">Password</label>
+                                {{-- <label for="password" class="form-label form-label-fifa">Password</label> --}}
                                 <div class="input-group input-group-fifa">
                                     <span class="input-group-text">
                                         <i class="bi bi-lock"></i>
