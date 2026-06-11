@@ -336,7 +336,7 @@
                                 {{ \Carbon\Carbon::parse($fixture->time)->format('g:i A') }}
                             </span>
                             <span class="text-muted" style="font-size: 12px;">
-                                {{ \Carbon\Carbon::parse($fixture->date)->diffForHumans(now(), ['parts' => 2]) }}
+                                Starts in {{ \Carbon\Carbon::parse($fixture->date)->diff(\Carbon\Carbon::now())->cascade()->forHumans(['parts' => 2]) }}
                             </span>
                         </div>
                         <div class="match-body">
