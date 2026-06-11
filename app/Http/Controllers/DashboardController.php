@@ -14,27 +14,27 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // $nextThreeMatches = Fixture::where('date', '>=', now()->addDay())
-        //     ->where('actual_team1_goals', '=', null)
-        //     ->with(['team1', 'team2'])
-        //     ->orderBy('date', 'asc')
-        //     ->orderBy('time', 'asc')
-        //     ->limit(3)
-        //     ->get();
-
-        $nextThreeMatches = Fixture::where(function ($query) {
-            $query->where('date', '>', now()->toDateString()) // Future dates
-                ->orWhere(function ($query) {
-                    $query->where('date', '=', now()->toDateString()) // Today's date
-                        ->where('time', '>', now()->format('h:i A'));     // But time is in the future
-                });
-        })
+        $nextThreeMatches = Fixture::where('date', '>=', now()->addDay())
             ->where('actual_team1_goals', '=', null)
             ->with(['team1', 'team2'])
             ->orderBy('date', 'asc')
             ->orderBy('time', 'asc')
             ->limit(3)
             ->get();
+
+        // $nextThreeMatches = Fixture::where(function ($query) {
+        //     $query->where('date', '>', now()->toDateString()) // Future dates
+        //         ->orWhere(function ($query) {
+        //             $query->where('date', '=', now()->toDateString()) // Today's date
+        //                 ->where('time', '>', now()->format('h:i A'));     // But time is in the future
+        //         });
+        // })
+        //     ->where('actual_team1_goals', '=', null)
+        //     ->with(['team1', 'team2'])
+        //     ->orderBy('date', 'asc')
+        //     ->orderBy('time', 'asc')
+        //     ->limit(3)
+        //     ->get();
 
         // $nextThreeMatches = Fixture::upcomings()
         //     ->with(['team1', 'team2'])
