@@ -344,7 +344,8 @@
 
                         <h1 class="mb-2 text-center">Galaxy Bangladesh</h1>
                         <p class="text-black mb-4" style="font-size:.87rem;">
-                            Welcome back. Please enter your credentials to access your dashboard.
+                            Your predictions could put you on top. Log in and let's find out.
+                            {{-- Please enter your credentials to access your dashboard. --}}
                         </p>
 
                         <!-- Session Status -->
