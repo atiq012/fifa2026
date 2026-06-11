@@ -14,20 +14,20 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // $nextThreeMatches = Fixture::where('date', '>=', now())
-        //     ->where('actual_team1_goals', '=', null)
-        //     ->with(['team1', 'team2'])
-        //     ->orderBy('date', 'asc')
-        //     ->orderBy('time', 'asc')
-        //     ->limit(3)
-        //     ->get();
-
-        $nextThreeMatches = Fixture::upcoming()
+        $nextThreeMatches = Fixture::where('date', '>=', now())
+            ->where('actual_team1_goals', '=', null)
             ->with(['team1', 'team2'])
             ->orderBy('date', 'asc')
-            ->orderByRaw("STR_TO_DATE(time, '%h:%i %p') asc")
+            ->orderBy('time', 'asc')
             ->limit(3)
             ->get();
+
+        // $nextThreeMatches = Fixture::upcoming()
+        //     ->with(['team1', 'team2'])
+        //     ->orderBy('date', 'asc')
+        //     ->orderByRaw("STR_TO_DATE(time, '%h:%i %p') asc")
+        //     ->limit(3)
+        //     ->get();
 
         $predictions = Auth::user()->predictions()->with('fixture')->get();
 
