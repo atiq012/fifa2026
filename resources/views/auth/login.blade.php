@@ -382,7 +382,7 @@
                                     </span>
                                     <input type="text" id="email" name="email"
                                         class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                                        placeholder="Enter your email/ Employee Code" value="{{ old('email') }}"
+                                        placeholder="Enter Employee Code" value="{{ old('email') }}"
                                         required autofocus autocomplete="username">
                                 </div>
                                 @error('email')
