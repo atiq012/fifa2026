@@ -30,6 +30,10 @@
                             <div class="d-flex">
                                 <img height="20" class="me-2" width="20" src="{{ $prediction->fixture->team1->flag }}" alt="">
                                 {{ $prediction->fixture->team1->name }}
+                                @if ($prediction->winning_team == $prediction->fixture->team1->id)
+                                    <i class="fas fa-trophy ms-1"></i>
+                                @endif
+
                                 <div class="badge bg-success ms-auto">{{ $prediction->predictiondetails->team1_goals ?? '' }}</div>
                             </div>
 
@@ -40,6 +44,9 @@
                             <div class="d-flex">
                                 <img height="20" class="me-2" width="20" src="{{ $prediction->fixture->team2->flag }}" alt="">
                                 {{ $prediction->fixture->team2->name }}
+                                @if ($prediction->winning_team == $prediction->fixture->team2->id)
+                                    <i class="fas fa-trophy ms-1"></i>
+                                @endif
                                 <div class="badge bg-danger ms-auto">{{ $prediction->predictiondetails->team2_goals ?? '' }}</div>
                             </div>
                         </h3>
