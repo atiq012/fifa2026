@@ -61,7 +61,7 @@ class DashboardController extends Controller
                 return $predictions->first(); // Take first prediction for each fixture
             });
         $myPr = $allPred->where('user_id', Auth::id())->pluck('fixture_id');
-
+        // dd($myPr);
         return view('users.dashboard', compact('myPr', 'nextThreeMatches', 'predictions', 'totalPoints', 'total_correct_predictions', 'teams', 'favorite_team', 'players', 'allPred'));
     }
 
