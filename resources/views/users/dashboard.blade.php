@@ -342,6 +342,7 @@
                                     #{{ $fixture->team1->rank ?? ($fixture->team1_rank ?? 'N/A') }}</div>
                             </div>
                             <div class="vs-text">vs</div>
+
                             <div class="team">
                                 <div class="team-name"><img height="18" width="18"
                                         src="{{ $fixture->team2->flag ?? '' }}" alt="">
