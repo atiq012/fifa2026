@@ -184,117 +184,54 @@
             <button>🔍</button>
         </div>
 
-        <div class="leaderboard">
-            <div class="leaderboard-header">
-                {{-- <div class="leaderboard-cell">SL</div> --}}
-                <div class="leaderboard-cell">Player</div>
-                {{-- <div class="leaderboard-cell">Dept</div> --}}
-                <div class="leaderboard-cell leaderboard-points">Points / Rank</div>
-                {{-- <div class="leaderboard-cell leaderboard-accuracy">Accuracy</div> --}}
-            </div>
-            @foreach ($players as $player)
-                <div class="leaderboard-row highlight">
-
-                    <div class="leaderboard-cell">
-                        {{ $player->full_name }}
-
-                        @php
-                            $user = DB::table('users')->where('staff_id', $player->emp_code)->first();
-                            $playerTeam = DB::table('my_teams')
-                                ->where('user_id', $user->id)
-                                ->select('id', 'team_id')
-                                ->first();
-
-                            if ($playerTeam) {
-                                $team = DB::table('teams')
-                                    ->where('id', $playerTeam->team_id)
-                                    ->select('name', 'flag')
-                                    ->first();
-                            } else {
-                                $team = null;
-                            }
-                        @endphp
-
-                        @if ($playerTeam && $team)
-                            <img  height="8%" width="8%" src="{{ $team->flag }}" alt="">
-                        @endif
-                        <br>
-                        <small>{{ $player->depart_name }}</small>
+        <div class="card">
+            <div class="card-body">
+                <div class="leaderboard">
+                    <div class="leaderboard-header">
+                        <div class="leaderboard-cell">Player</div>
+                        <div class="leaderboard-cell leaderboard-points">Points / Rank</div>
                     </div>
+                    @foreach ($players as $player)
+                        <div class="leaderboard-row highlight">
 
-                    <div class="leaderboard-cell leaderboard-points">
-                        <i class="fas fa-coins me-1"></i> 0
-                        <br>
-                        <small>Rank #0</small>
-                    </div>
+                            <div class="leaderboard-cell">
+                                {{ $player->full_name }}
+
+                                @php
+                                    $user = DB::table('users')->where('staff_id', $player->emp_code)->first();
+                                    $playerTeam = DB::table('my_teams')
+                                        ->where('user_id', $user->id)
+                                        ->select('id', 'team_id')
+                                        ->first();
+
+                                    if ($playerTeam) {
+                                        $team = DB::table('teams')
+                                            ->where('id', $playerTeam->team_id)
+                                            ->select('name', 'flag')
+                                            ->first();
+                                    } else {
+                                        $team = null;
+                                    }
+                                @endphp
+
+                                @if ($playerTeam && $team)
+                                    <img height="8%" width="8%" src="{{ $team->flag }}" alt="">
+                                @endif
+                                <br>
+                                <small>{{ $player->depart_name }}</small>
+                            </div>
+
+                            <div class="leaderboard-cell leaderboard-points">
+                                <i class="fas fa-coins me-1"></i> 0
+                                <br>
+                                <small>Rank #0</small>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
+            </div>
         </div>
 
-        {{-- <div class="table-responsive rounded-3 shadow-sm">
-            <table class="table table-sm table-hover align-middle mb-0">
-                <thead class="table-header-custom">
-                    <tr>
-                        <th style="width:8%"></i>Rank</th>
-                        <th style="width:10%">Employee</th>
-                        <th style="width:32%"><i class="fas fa-user me-1"></i>Player</th>
-                        <th style="width:18%"><i class="fas fa-building me-1"></i>Dept</th>
-                        <th style="width:12%" class="text-end"><i class="fas fa-chart-line me-1"></i>Pts</th>
-                        <th style="width:20%"><i class="fas fa-bullseye me-1"></i>Accuracy</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach ($players as $player)
-                        <tr style="background:#fffbef;">
-                            <td class="text-center">
-                                @if ($loop->first)
-                                    <span class="rank-badge rank-gold">
-                                        <i class="fas fa-crown" style="font-size:0.65rem;"></i>
-                                    </span>
-                                @elseif($loop->iteration == 2)
-                                    <span class="rank-badge rank-silver">2</span>
-                                @elseif($loop->iteration == 3)
-                                    <span class="rank-badge rank-bronze">3</span>
-                                @else
-                                    <span class="rank-badge rank-plain">{{ $loop->iteration }}</span>
-                                @endif
-
-                            </td>
-                            <td class="player-sub">{{ $player->emp_code }}</td>
-                            <td>
-                                <div class="d-flex align-items-center gap-2">
-
-                                    <div>
-                                        <div class="player-name">{{ $player->full_name }}</div>
-                                        <div class="player-sub">{{ $player->depart_name }}</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="dept-badge"><i class="fas fa-microchip me-1"
-                                        style="font-size:0.6rem;"></i>{{ $player->depart_name }}</span></td>
-                            <td class="text-end points-value">0</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="acc-bar-wrap">
-                                        <div class="acc-bar-fill" style="width:0%;"></div>
-                                    </div>
-                                    <span class="acc-text">0%</span>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div> --}}
-
-        {{-- <div class="pagination">
-            <button>←</button>
-            <button class="active">1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>→</button>
-        </div> --}}
     </div>
 @endsection
 
