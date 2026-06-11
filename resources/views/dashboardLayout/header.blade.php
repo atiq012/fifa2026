@@ -86,7 +86,11 @@
                         {{-- Avatar --}}
                         @isset($emp)
                             <img class="wc-avatar"  height="60" width="60"
-                                src="https://myportal.galaxybd.com/public/{{ $emp->image_path ?? 'https://myportal.galaxybd.com/resources/images/appimages/man.png' }}"
+                                @if($emp->image_path)
+                                src="https://myportal.galaxybd.com/public/{{ $emp->image_path}}"
+                                @else
+                                src="https://www.svgrepo.com/show/422421/account-avatar-multimedia.svg"
+                                @endif
                                 alt="avatar" style="border-radius: 50%; object-fit: cover">
                         @endisset
 
