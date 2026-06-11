@@ -571,13 +571,13 @@
                         </div>
                     @endif
 
-                    <div class="col-md-12">
+                    {{-- <div class="col-md-12">
                         <div class="card p-2">
                             <div class="card-body" style="min-height: 300px;">
                                 @include('users.sidebar')
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>

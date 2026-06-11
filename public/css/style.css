@@ -824,6 +824,7 @@ select:focus {
         opacity: 0;
     }
 }
+
 .user-card-inner {
     display: flex;
     align-items: center;
@@ -831,6 +832,7 @@ select:focus {
     padding: 10px 14px;
     min-height: 82px;
 }
+
 /* Mobile: let the document body scroll so pull-to-refresh works */
 @media (max-width: 991px) {
     .card-body {
@@ -867,8 +869,14 @@ select:focus {
         font-size: 14px;
     }
 }
+
 /* Responsive */
 @media (max-width: 480px) {
+    .user-card-inner {
+        padding: 8px 12px;
+        min-height: 68px;
+        gap: 10px;
+    }
 
     .stats-grid,
     .medals {
@@ -1402,7 +1410,8 @@ button.primary:hover {
         font-size: 12px;
         margin-left: 5px;
     }
-    .wc-settings-btn{
+
+    .wc-settings-btn {
         width: 30px;
         height: 30px;
         font-size: 15px;
