@@ -351,7 +351,7 @@
                                     #{{ $fixture->team2->rank ?? ($fixture->team2_rank ?? 'N/A') }}</div>
                             </div>
                         </div>
-                        @if ($myPr->contains($fixture->id))
+                        @if ($myPr->contains((int) $fixture->id))
 
                         @else
                             <button class="primary" style="width: 100%;" data-bs-toggle="modal"
