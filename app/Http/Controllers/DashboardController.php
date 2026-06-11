@@ -22,7 +22,7 @@ class DashboardController extends Controller
             ->limit(3)
             ->get();
 
-        // $nextThreeMatches = Fixture::upcoming()
+        // $nextThreeMatches = Fixture::upcomings()
         //     ->with(['team1', 'team2'])
         //     ->orderBy('date', 'asc')
         //     ->orderByRaw("STR_TO_DATE(time, '%h:%i %p') asc")
