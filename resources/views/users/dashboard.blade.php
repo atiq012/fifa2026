@@ -334,7 +334,7 @@
                         </div>
                         <div class="match-body">
                             <div class="team">
-                                <div class="team-name"> <img height="8%" width="8%"
+                                <div class="team-name"> <img height="18" width="18"
                                         src="{{ $fixture->team1->flag ?? '' }}" alt="">
                                     {{ $fixture->team1->name ?? $fixture->team1_name }}
                                 </div>
@@ -343,7 +343,7 @@
                             </div>
                             <div class="vs-text">vs</div>
                             <div class="team">
-                                <div class="team-name"><img height="8%" width="8%"
+                                <div class="team-name"><img height="18" width="18"
                                         src="{{ $fixture->team2->flag ?? '' }}" alt="">
                                     {{ $fixture->team2->name ?? $fixture->team2_name }}
                                 </div>
