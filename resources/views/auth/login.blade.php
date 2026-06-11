@@ -38,26 +38,28 @@
 
         /* ── Stadium background ── */
         .bg-stadium {
-            /*
-             * OPTION A — public folder:
-             *   background-image: url('/images/stadium.jpg');
-             *
-             * OPTION B — Vite asset pipeline (resources/images/):
-             *   Use inline Blade: style="background-image: url('[ Vite::asset path here ]')"
-             *
-             * OPTION C (demo fallback below — replace with your image):
-             */
-            /* background-image:
-                linear-gradient(to bottom, rgba(10, 15, 60, .3) 0%, rgba(10, 15, 60, .2) 50%, rgba(10, 15, 60, .6) 100%),
-                url('/images/stadium.jpeg'); */
 
-            /* background-image: url('/images/stadium.jpeg'); */
             background-image: url('/images/st.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             min-height: 100vh;
             animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        @media (max-width: 576px) {
+            .bg-stadium {
+                background-size: contain;
+                /* Shows FULL image instead of cover */
+                background-position: center top;
+                /* Aligns from top */
+                background-repeat: no-repeat;
+                background-attachment: scroll;
+                background-color: #000000;
+                /* Black background for empty areas */
+                min-height: 100vh;
+                width: 100%;
+            }
         }
 
         @keyframes slowZoom {
@@ -342,10 +344,10 @@
                 <div class="col-lg-4 col-md-5 col-sm-10 col-12">
                     <div class="card-login p-4 p-lg-5">
 
-                        <h1 class="mb-2 text-center">Galaxy Bangladesh</h1>
+                        <h1 class="mb-2 text-center">World Cup 2026 • Prediction Game</h1>
+                        <h2 class="mb-2 text-center" style="font-size:1.2rem;">Galaxy Bangladesh</h2>
                         <p class="text-black mb-4" style="font-size:.87rem;">
                             Your predictions could put you on top. Log in and let's find out.
-                            {{-- Please enter your credentials to access your dashboard. --}}
                         </p>
 
                         <!-- Session Status -->
@@ -380,8 +382,8 @@
                                     </span>
                                     <input type="text" id="email" name="email"
                                         class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                                        placeholder="Enter your email/ Employee Code" value="{{ old('email') }}" required autofocus
-                                        autocomplete="username">
+                                        placeholder="Enter your email/ Employee Code" value="{{ old('email') }}"
+                                        required autofocus autocomplete="username">
                                 </div>
                                 @error('email')
                                     <div class="text-danger mt-1" style="font-size:.78rem;">{{ $message }}</div>
