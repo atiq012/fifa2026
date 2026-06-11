@@ -316,8 +316,8 @@ button.secondary {
 }
 
 .match-time.urgent {
-    background: #e24b4a;
-    color: white;
+    background: #E6F7EF;
+    color: #059669;
     font-weight: 500;
 }
 
@@ -844,6 +844,9 @@ select:focus {
 
 /* Mobile */
 @media (max-width: 576px) {
+    .match-time {
+        font-size: 7px;
+    }
     .user-card-inner {
         padding: 8px 12px;
         min-height: 68px;

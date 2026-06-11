@@ -302,29 +302,7 @@
                     </div>
                 </div>
 
-                <h2 class="section-title">Your Performance</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-label">Your Rank</div>
-                        <div class="stat-value">#</div>
-                        <div class="stat-subtitle">of 700 employees</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Total Points</div>
-                        <div class="stat-value">{{ $totalPoints }}</div>
-                        <div class="stat-subtitle">{{ $total_correct_predictions }} correct predictions</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Accuracy</div>
-                        <div class="stat-value">0%</div>
-                        <div class="stat-subtitle">Above average</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Streak</div>
-                        <div class="stat-value">0</div>
-                        <div class="stat-subtitle">Keep it going!</div>
-                    </div>
-                </div>
+
 
                 <h2 class="section-title">Upcoming Matches</h2>
 
@@ -586,13 +564,13 @@
                         </div>
                     @endif
 
-                    {{-- <div class="col-md-12">
+                    <div class="col-md-12">
                         <div class="card p-2">
                             <div class="card-body" style="min-height: 300px;">
                                 @include('users.sidebar')
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
 
             </div>

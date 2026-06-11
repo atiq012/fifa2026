@@ -49,7 +49,7 @@ class DashboardController extends Controller
             ->orderBy('name', 'asc')
             ->get();
 
-        $players = DB::table('v_emp_info')->where('emp_status', 'Active')->select('id', 'full_name', 'depart_name')->get();
+        // $players = DB::table('v_emp_info')->where('emp_status', 'Active')->select('id', 'full_name', 'depart_name')->get();
 
         // In your controller
         $allPred = Prediction::where('is_correct', null)
@@ -62,7 +62,7 @@ class DashboardController extends Controller
             });
         $myPr = $allPred->where('user_id', Auth::id())->pluck('fixture_id');
         // dd($myPr);
-        return view('users.dashboard', compact('myPr', 'nextThreeMatches', 'predictions', 'totalPoints', 'total_correct_predictions', 'teams', 'favorite_team', 'players', 'allPred'));
+        return view('users.dashboard', compact('myPr', 'nextThreeMatches', 'predictions', 'totalPoints', 'total_correct_predictions', 'teams', 'favorite_team', 'allPred'));
     }
 
     public function saveMyteam(Request $request)

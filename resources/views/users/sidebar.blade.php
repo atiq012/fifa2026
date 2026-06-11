@@ -1,4 +1,4 @@
-<div class="card">
+{{-- <div class="card">
     <div class="card-body">
         <div class="table-responsive ">
             <table class="table table-sm table-hover align-middle mb-0">
@@ -44,5 +44,32 @@
             </table>
         </div>
     </div>
-</div>
+</div> --}}
 
+<div class="card">
+    <div class="card-body p-3">
+        <h2 class="section-title">Your Performance</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Your Rank</div>
+                <div class="stat-value">#</div>
+                <div class="stat-subtitle">of 700 employees</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Points</div>
+                <div class="stat-value">{{ $totalPoints }}</div>
+                <div class="stat-subtitle">{{ $total_correct_predictions }} correct predictions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Accuracy</div>
+                <div class="stat-value">0%</div>
+                <div class="stat-subtitle">Above average</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Streak</div>
+                <div class="stat-value">0</div>
+                <div class="stat-subtitle">Keep it going!</div>
+            </div>
+        </div>
+    </div>
+</div>
