@@ -824,7 +824,13 @@ select:focus {
         opacity: 0;
     }
 }
-
+.user-card-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    min-height: 82px;
+}
 /* Mobile: let the document body scroll so pull-to-refresh works */
 @media (max-width: 991px) {
     .card-body {
@@ -834,6 +840,33 @@ select:focus {
     }
 }
 
+/* Mobile */
+@media (max-width: 576px) {
+    .user-card-inner {
+        padding: 8px 12px;
+        min-height: 68px;
+        gap: 10px;
+    }
+
+    .wc-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .user-name {
+        font-size: 13px;
+    }
+
+    .wc-flag {
+        width: 22px;
+    }
+
+    .wc-settings-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+}
 /* Responsive */
 @media (max-width: 480px) {
 
@@ -1373,7 +1406,7 @@ button.primary:hover {
         width: 30px;
         height: 30px;
         font-size: 15px;
-        top: 40px;
+        top: 18px;
         right: 10px;
     }
 }

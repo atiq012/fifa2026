@@ -288,17 +288,17 @@
                     <div class="medal-card gold">
                         <div class="medal-icon">🥇</div>
                         <div class="medal-label">1st Place</div>
-                        <div class="medal-name">-</div>
+                        <div class="medal-name">Be the first!</div>
                     </div>
                     <div class="medal-card silver">
                         <div class="medal-icon">🥈</div>
                         <div class="medal-label">2nd Place</div>
-                        <div class="medal-name">-</div>
+                        <div class="medal-name">Be the first!</div>
                     </div>
                     <div class="medal-card bronze">
                         <div class="medal-icon">🥉</div>
                         <div class="medal-label">3rd Place</div>
-                        <div class="medal-name">-</div>
+                        <div class="medal-name">Be the first!</div>
                     </div>
                 </div>
 
