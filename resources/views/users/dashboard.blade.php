@@ -336,7 +336,22 @@
                                 {{ \Carbon\Carbon::parse($fixture->time)->format('g:i A') }}
                             </span>
                             <span class="text-muted" style="font-size: 12px;">
-                                Starts in {{ \Carbon\Carbon::parse($fixture->date)->diff(\Carbon\Carbon::now())->cascade()->forHumans(['parts' => 2]) }}
+                                @php
+                                    $date = $fixture->date;
+                                    $time = $fixture->time;
+                                    $datetime = DateTime::createFromFormat('Y-m-d g:i a', $date . ' ' . $time);
+                                    $result = $datetime->format('Y-m-d H:i:s');
+
+                                    $target = \Carbon\Carbon::parse($result, 'Asia/Dhaka');
+                                    $now = \Carbon\Carbon::now('Asia/Dhaka');
+
+                                    $diff = $target->diff($now);
+                                    $totalHours = $diff->days * 24 + $diff->h;
+                                @endphp
+                                Starts in
+                                {{
+                                $totalHours . ' hours ' . $diff->i . ' minutes';
+                                }}
                             </span>
                         </div>
                         <div class="match-body">
@@ -359,7 +374,7 @@
                             </div>
                         </div>
                         @if ($myPr->contains($fixture->id))
-                        {{-- <button class="secondary" style="width: 100%;" data-bs-toggle="modal"
+                            {{-- <button class="secondary" style="width: 100%;" data-bs-toggle="modal"
                             data-bs-target="#predictionModal" data-fixture-id="{{ $fixture->id }}"
                             data-team1-name="{{ $fixture->team1->name ?? $fixture->team1_name }}"
                             data-team1-rank="{{ $fixture->team1->rank ?? ($fixture->team1_rank ?? 'N/A') }}"
@@ -370,16 +385,16 @@
                             Prediction Submitted
                         </button> --}}
                         @else
-                        <button class="primary" style="width: 100%;" data-bs-toggle="modal"
-                            data-bs-target="#predictionModal" data-fixture-id="{{ $fixture->id }}"
-                            data-team1-name="{{ $fixture->team1->name ?? $fixture->team1_name }}"
-                            data-team1-rank="{{ $fixture->team1->rank ?? ($fixture->team1_rank ?? 'N/A') }}"
-                            data-team2-name="{{ $fixture->team2->name ?? $fixture->team2_name }}"
-                            data-team2-rank="{{ $fixture->team2->rank ?? ($fixture->team2_rank ?? 'N/A') }}"
-                            data-date="{{ \Carbon\Carbon::parse($fixture->date)->format('M d, Y') }}"
-                            data-time="{{ \Carbon\Carbon::parse($fixture->time)->format('g:i A') }}">
-                            ✏️ Make Prediction
-                        </button>
+                            <button class="primary" style="width: 100%;" data-bs-toggle="modal"
+                                data-bs-target="#predictionModal" data-fixture-id="{{ $fixture->id }}"
+                                data-team1-name="{{ $fixture->team1->name ?? $fixture->team1_name }}"
+                                data-team1-rank="{{ $fixture->team1->rank ?? ($fixture->team1_rank ?? 'N/A') }}"
+                                data-team2-name="{{ $fixture->team2->name ?? $fixture->team2_name }}"
+                                data-team2-rank="{{ $fixture->team2->rank ?? ($fixture->team2_rank ?? 'N/A') }}"
+                                data-date="{{ \Carbon\Carbon::parse($fixture->date)->format('M d, Y') }}"
+                                data-time="{{ \Carbon\Carbon::parse($fixture->time)->format('g:i A') }}">
+                                ✏️ Make Prediction
+                            </button>
                         @endif
 
                     </div>

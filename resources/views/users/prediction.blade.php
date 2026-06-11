@@ -87,8 +87,24 @@
                         <span
                             style="font-size: 11px; color: #888780; background: #f1efe8; padding: 4px 8px; border-radius: 6px;">Group
                             {{ $pending->team1->group }}</span>
-                        <span style="font-size: 11px; color: #ba7517; margin-left: 4px;">In
-                            {{ \Carbon\Carbon::parse($pending->date)->diffForHumans(now(), ['parts' => 2]) }}</span>
+                        <span style="font-size: 11px; color: #ba7517; margin-left: 4px;"> Starting in
+                            @php
+                                    $date = $pending->date;
+                                    $time = $pending->time;
+                                    $datetime = DateTime::createFromFormat('Y-m-d g:i a', $date . ' ' . $time);
+                                    $result = $datetime->format('Y-m-d H:i:s');
+
+                                    $target = \Carbon\Carbon::parse($result, 'Asia/Dhaka');
+                                    $now = \Carbon\Carbon::now('Asia/Dhaka');
+
+                                    $diff = $target->diff($now);
+                                    $totalHours = $diff->days * 24 + $diff->h;
+                                @endphp
+                                Starts in
+                                {{
+                                $totalHours . ' hours ' . $diff->i . ' minutes';
+                                }}
+                            {{-- {{ \Carbon\Carbon::parse($pending->date)->diffForHumans(now(), ['parts' => 2]) }}</span> --}}
                     </div>
 
                 </div>
