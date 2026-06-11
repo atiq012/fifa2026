@@ -20,7 +20,8 @@
                                             alt="image" style="border-radius: 50%; object-fit: cover">
                                     </span>
                                 @endisset
-                                <span class="status-badge pending" style="font-size: 11px; color: #888780; background: #f1efe8; padding: 4px 8px; border-radius: 6px;">{{ $prediction->createdBy->name }}</span>
+                                <span class="status-badge pending"
+                                    style="font-size: 11px; color: #888780; background: #f1efe8; padding: 4px 8px; border-radius: 6px;">{{ $prediction->createdBy->name }}</span>
 
                             </div>
 
@@ -28,13 +29,19 @@
 
                         <h3 style="margin: 0 0 1rem; font-size: 15px; font-weight: 500; color: #2c2c2a;">
                             <div class="d-flex">
-                                <img height="20" class="me-2" width="20" src="{{ $prediction->fixture->team1->flag }}" alt="">
+                                <img height="20" class="me-2" width="20"
+                                    src="{{ $prediction->fixture->team1->flag }}" alt="">
                                 {{ $prediction->fixture->team1->name }}
                                 @if ($prediction->winning_team == $prediction->fixture->team1->id)
-                                    <i class="fas fa-trophy ms-1"></i>
+                                    <i class="fas fa-trophy ms-1" style="color: goldenrod"></i>
                                 @endif
 
-                                <div class="badge bg-success ms-auto">{{ $prediction->predictiondetails->team1_goals ?? '' }}</div>
+                                <div class="ms-auto">
+                                    <i class="fas fa-futbol me-1"></i>
+                                    <span class="badge bg-success">
+                                    {{ $prediction->predictiondetails->team1_goals ?? '' }}
+                                    </span>
+                                </div>
                             </div>
 
                             <span style="margin: 0 0 1rem; font-size: 15px; font-weight: 500; color: #2c2c2a;">
@@ -42,12 +49,18 @@
                             </span>
 
                             <div class="d-flex">
-                                <img height="20" class="me-2" width="20" src="{{ $prediction->fixture->team2->flag }}" alt="">
+                                <img height="20" class="me-2" width="20"
+                                    src="{{ $prediction->fixture->team2->flag }}" alt="">
                                 {{ $prediction->fixture->team2->name }}
                                 @if ($prediction->winning_team == $prediction->fixture->team2->id)
-                                    <i class="fas fa-trophy ms-1"></i>
+                                    <i class="fas fa-trophy ms-1" style="color: goldenrod"></i>
                                 @endif
-                                <div class="badge bg-danger ms-auto">{{ $prediction->predictiondetails->team2_goals ?? '' }}</div>
+                                <div class="ms-auto">
+                                    <i class="fas fa-futbol me-1"></i>
+                                    <span class="badge bg-success">
+                                    {{ $prediction->predictiondetails->team2_goals ?? '' }}
+                                    </span>
+                                </div>
                             </div>
                         </h3>
 
