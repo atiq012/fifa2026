@@ -328,7 +328,7 @@
                                 @endphp
                                 Starts in
                                 {{
-                                $totalHours . ' hours ' . $diff->i . ' minutes';
+                                $totalHours .'H ' . $diff->i .'M';
                                 }}
                             </span>
                         </div>

@@ -62,7 +62,7 @@
                         $team2Percentage =
                             $totalPredictions > 0 ? round(($team2Predictions / $totalPredictions) * 100) : 0;
                     @endphp
-                    Winning Percentage
+                    Win Probability
                     @if ($team1Predictions > $team2Predictions)
                         {{ $pred->fixture->team1->short_code ?? '' }} ({{ $team1Percentage }}%) - {{ $pred->fixture->team2->short_code ?? '' }} ({{ $team2Percentage }})%
                     @elseif ($team1Predictions < $team2Predictions)
