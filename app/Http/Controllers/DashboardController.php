@@ -53,8 +53,9 @@ class DashboardController extends Controller
             ->map(function ($predictions) {
                 return $predictions->first(); // Take first prediction for each fixture
             });
-
-        return view('users.dashboard', compact('nextThreeMatches', 'predictions', 'totalPoints', 'total_correct_predictions', 'teams', 'favorite_team', 'players', 'allPred'));
+        $myPr = $allPred->pluck('fixture_id');
+        // dd($myPr);
+        return view('users.dashboard', compact('myPr','nextThreeMatches', 'predictions', 'totalPoints', 'total_correct_predictions', 'teams', 'favorite_team', 'players', 'allPred'));
     }
 
     public function saveMyteam(Request $request)
