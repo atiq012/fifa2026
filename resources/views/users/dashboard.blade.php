@@ -359,7 +359,7 @@
                             </div>
                         </div>
                         @if ($myPr->contains($fixture->id))
-                        <button class="secondary" style="width: 100%;" data-bs-toggle="modal"
+                        {{-- <button class="secondary" style="width: 100%;" data-bs-toggle="modal"
                             data-bs-target="#predictionModal" data-fixture-id="{{ $fixture->id }}"
                             data-team1-name="{{ $fixture->team1->name ?? $fixture->team1_name }}"
                             data-team1-rank="{{ $fixture->team1->rank ?? ($fixture->team1_rank ?? 'N/A') }}"
@@ -368,7 +368,7 @@
                             data-date="{{ \Carbon\Carbon::parse($fixture->date)->format('M d, Y') }}"
                             data-time="{{ \Carbon\Carbon::parse($fixture->time)->format('g:i A') }}">
                             Prediction Submitted
-                        </button>
+                        </button> --}}
                         @else
                         <button class="primary" style="width: 100%;" data-bs-toggle="modal"
                             data-bs-target="#predictionModal" data-fixture-id="{{ $fixture->id }}"
