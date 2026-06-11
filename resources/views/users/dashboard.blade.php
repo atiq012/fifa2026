@@ -352,7 +352,7 @@
                             </div>
                         </div>
                         @if ($myPr->contains($fixture->id))
-                            {{ dd($myPr->contains($fixture->id)) }}
+
                         @else
                             <button class="primary" style="width: 100%;" data-bs-toggle="modal"
                                 data-bs-target="#predictionModal" data-fixture-id="{{ $fixture->id }}"
