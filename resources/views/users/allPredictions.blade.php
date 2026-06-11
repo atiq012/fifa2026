@@ -18,7 +18,7 @@
                     <div class="team-score-group">
                         <span
                             class="runs">👑 {{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team1_id) }}
-                            People Predicted</span>
+                            Person Predicted</span>
                     </div>
                 </div>
 
@@ -31,7 +31,7 @@
                     </div>
                     <div class="team-score-group">
                         <span class="runs">👑
-                            {{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team2_id) }} People
+                            {{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team2_id) }} Person
                             Predicted</span>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="team-score-group">
                         {{-- @if ($pred->total_draw_predictions($pred->fixture_id, $pred->is_draw) > 0) --}}
                             <span class="runs"> {{ $pred->total_draw_predictions($pred->fixture_id, $pred->is_draw) }}
-                                People Predicted</span>
+                                Person Predicted</span>
                         {{-- @else --}}
                             {{-- - --}}
                         {{-- @endif --}}
