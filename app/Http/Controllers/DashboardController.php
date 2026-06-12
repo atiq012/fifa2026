@@ -17,6 +17,7 @@ class DashboardController extends Controller
     {
 
         $nextThreeMatches = Fixture::where('date', '>=', now()->setTimezone('Asia/Dhaka'))
+            ->where('date', '<=', now()->setTimezone('Asia/Dhaka')->addDays(1))
             ->where('actual_team1_goals', '=', null)
             ->with(['team1', 'team2'])
             ->orderBy('date', 'asc')
