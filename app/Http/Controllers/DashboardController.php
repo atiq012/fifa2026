@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function index()
     {
 
-        $nextThreeMatches = Fixture::where('date', '>=', now()->setTimezone('Asia/Dhaka'))
+        $nextThreeMatches = Fixture::where('date', '>=', now()->setTimezone('Asia/Dhaka')->startOfDay())
             ->where('date', '<=', now()->setTimezone('Asia/Dhaka')->addDays(1))
             ->where('actual_team1_goals', '=', null)
             ->with(['team1', 'team2'])
