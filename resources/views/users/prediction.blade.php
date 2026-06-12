@@ -139,6 +139,7 @@
                 </div>
 
                 <div class="card-actions">
+                    {{-- @if ( $pending->time > now() ) --}}
                     <button class="secondary" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#predictionModal"
                         data-fixture-id="{{ $pending->id }}"
                         data-team1-name="{{ $pending->team1->name ?? $pending->team1_name }}"
@@ -149,6 +150,7 @@
                         data-time="{{ \Carbon\Carbon::parse($pending->time)->format('g:i A') }}">
                         Edit Prediction
                     </button>
+                    {{-- @endif --}}
                 </div>
             </div>
         @endforeach
