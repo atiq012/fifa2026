@@ -15,7 +15,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $nextThreeMatches = Fixture::where('date', '>=', now())
+        $nextThreeMatches = Fixture::where('date', '>=', now())//->addDay()
             ->where('actual_team1_goals', '=', null)
             ->with(['team1', 'team2'])
             ->orderBy('date', 'asc')
