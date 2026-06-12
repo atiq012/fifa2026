@@ -183,7 +183,7 @@
         .team-row {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
             /* padding: 12px 16px; */
             padding: 8px 18px;
             border-bottom: 1px solid #EDF2F7;
@@ -191,7 +191,7 @@
 
         .team-name-group {
             display: flex;
-            align-items: baseline;
+            align-items: center;
             gap: 8px;
         }
 
@@ -206,19 +206,38 @@
             font-size: 12px;
             color: #64748B;
             font-weight: 450;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100px;
         }
 
         .team-score-group {
             display: flex;
-            align-items: baseline;
+            align-items: center;
             gap: 1px;
         }
 
         .runs {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
             font-size: 13px;
             font-weight: 500;
             color: #0F172A;
             letter-spacing: -0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 130px;
+        }
+
+        .pred-icon {
+            display: inline-flex;
+            align-items: center;
+            font-size: 14px;
+            line-height: 1;
+            flex-shrink: 0;
         }
 
         .wickets {
@@ -276,29 +295,65 @@
             stroke: #3B82F6;
             stroke-width: 1.8;
         }
+
+        .predictions-scroll {
+            max-height: 520px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: transparent transparent;
+            transition: scrollbar-color 0.2s;
+        }
+
+        .predictions-scroll:hover {
+            scrollbar-color: #cbd5e1 transparent;
+        }
+
+        .predictions-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .predictions-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .predictions-scroll::-webkit-scrollbar-thumb {
+            background: transparent;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .predictions-scroll:hover::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
     </style>
 @endsection
 @section('content')
     <div id="dashboard" class="screen active">
-        <div class="row m-1">
-            <div class="col-md-8 ">
+        <div class="row g-0 m-0">
+            <div class="col-12 col-md-8 px-md-3">
 
                 <h2 class="section-title mt-1">Top Standings</h2>
                 <div class="medals mb-2">
-                    <div class="medal-card gold">
+                    <div class="medal-card gold" data-rank="1">
+                        <div class="medal-top-bar"></div>
                         <div class="medal-icon">🥇</div>
                         <div class="medal-label">1st Place</div>
-                        <div class="medal-name">Be the first!</div>
+                        <div class="medal-name">--</div>
+                        <div class="medal-ball">⚽ Top Predictor</div>
                     </div>
-                    <div class="medal-card silver">
+                    <div class="medal-card silver" data-rank="2">
+                        <div class="medal-top-bar"></div>
                         <div class="medal-icon">🥈</div>
                         <div class="medal-label">2nd Place</div>
-                        <div class="medal-name">Be the first!</div>
+                        <div class="medal-name">--</div>
+                        <div class="medal-ball">⚽ Runner Up</div>
                     </div>
-                    <div class="medal-card bronze">
+                    <div class="medal-card bronze" data-rank="3">
+                        <div class="medal-top-bar"></div>
                         <div class="medal-icon">🥉</div>
                         <div class="medal-label">3rd Place</div>
-                        <div class="medal-name">Be the first!</div>
+                        <div class="medal-name">--</div>
+                        <div class="medal-ball">⚽ 3rd Place</div>
                     </div>
                 </div>
 
@@ -366,7 +421,7 @@
                                 data-team2-rank="{{ $fixture->team2->rank ?? ($fixture->team2_rank ?? 'N/A') }}"
                                 data-date="{{ \Carbon\Carbon::parse($fixture->date)->format('M d, Y') }}"
                                 data-time="{{ \Carbon\Carbon::parse($fixture->time)->format('g:i A') }}">
-                                ✏️ Make Prediction
+                                🏆 Make Prediction
                             </button>
                         @endif
 
@@ -543,28 +598,19 @@
                         data-predictions-url="{{ route('leaderboard') }}">🏆 Leaderboard</button>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-12 col-md-4 px-md-2">
                 <div class="row">
                     @if ($allPred->count() > 0)
                         <div class="col-md-12">
-                            <div class="card p-1 m-1">
-                                <div class="card-header">
-                                    Predictions
-                                </div>
-                                <div class="card-body">
-                                    @include('users.allPredictions')
-
-                                </div>
+                            <h2 class="section-title mt-3">Predictions</h2>
+                            <div class="predictions-scroll">
+                                @include('users.allPredictions')
                             </div>
                         </div>
                     @endif
 
                     <div class="col-md-12">
-                        <div class="card p-2">
-                            <div class="card-body" style="min-height: 300px;">
-                                @include('users.sidebar')
-                            </div>
-                        </div>
+                        @include('users.sidebar')
                     </div>
                 </div>
 

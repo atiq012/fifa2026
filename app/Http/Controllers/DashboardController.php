@@ -6,6 +6,7 @@ use App\Models\MyTeam;
 use App\Models\Prediction;
 use App\Models\PredictionDetails;
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -159,6 +160,26 @@ class DashboardController extends Controller
 
         // Implementation for analytics view
         return view('users.analytics', compact('favorite_team'));
+    }
+
+    public function updateAvatar(Request $request, $id)
+    {
+        $request->validate(['avatar' => 'required|image|max:2048']);
+
+        $user = User::findOrFail($id);
+        $emp  = DB::table('emps')->where('id', $user->emp_id)->first();
+
+        $empCode  = $emp->emp_code ?? ('user_' . $id);
+        $ext      = $request->file('avatar')->getClientOriginalExtension();
+        $filename = $empCode . '.' . $ext;
+
+        $savePath = env('PORTAL_IMAGE_SAVE_PATH', public_path('resources/images/userimages'));
+        $request->file('avatar')->move($savePath, $filename);
+
+        $relativePath = 'public/resources/images/userimages/' . $filename;
+        DB::table('emps')->where('id', $user->emp_id)->update(['image_path' => $relativePath]);
+
+        return response()->json(['success' => true, 'avatar' => 'https://myportal.galaxybd.com/public/' . $relativePath]);
     }
 
 }

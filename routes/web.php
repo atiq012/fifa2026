@@ -28,6 +28,9 @@ Route::post('/final/save-result', [DashboardController::class, 'update_result_st
 // analytics
 Route::get('/analytics', [DashboardController::class, 'analytics'])->middleware(['auth', 'verified'])->name('analytics');
 
+// user avatar upload
+Route::post('/user/{id}/avatar', [DashboardController::class, 'updateAvatar'])->middleware(['auth', 'verified'])->name('user.updateAvatar');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

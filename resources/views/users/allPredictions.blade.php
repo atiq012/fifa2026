@@ -16,9 +16,7 @@
                         <span class="team-full">{{ $pred->fixture->team1->name ?? '' }}</span>
                     </div>
                     <div class="team-score-group">
-                        <span
-                            class="runs">👑 {{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team1_id) }}
-                            Person Predicted</span>
+                        <span class="runs"><span class="pred-icon">👑</span><span>{{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team1_id) }} Predicted</span></span>
                     </div>
                 </div>
 
@@ -30,24 +28,17 @@
                         <span class="team-full">{{ $pred->fixture->team2->name ?? '' }}</span>
                     </div>
                     <div class="team-score-group">
-                        <span class="runs">👑
-                            {{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team2_id) }} Person
-                            Predicted</span>
+                        <span class="runs"><span class="pred-icon">👑</span><span>{{ $pred->total_win_predictions($pred->fixture_id, $pred->fixture->team2_id) }} Predicted</span></span>
                     </div>
                 </div>
 
                 <div class="team-row">
                     <div class="team-name-group">
-
+                        <span class="team-short">🤝</span>
                         <span class="team-full">Draw</span>
                     </div>
                     <div class="team-score-group">
-                        {{-- @if ($pred->total_draw_predictions($pred->fixture_id, $pred->is_draw) > 0) --}}
-                            <span class="runs"> {{ $pred->total_draw_predictions($pred->fixture_id, $pred->is_draw) }}
-                                Person Predicted</span>
-                        {{-- @else --}}
-                            {{-- - --}}
-                        {{-- @endif --}}
+                        <span class="runs"><span class="pred-icon">🤝</span><span>{{ $pred->total_draw_predictions($pred->fixture_id, $pred->is_draw) }} Predicted</span></span>
                     </div>
                 </div>
 

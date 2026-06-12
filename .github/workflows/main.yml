@@ -23,6 +23,16 @@ jobs:
           npm ci
           npm run build
 
+      - name: Ensure portal upload dir writable
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            mkdir -p /home/myportal/public_html/public/public/resources/images/userimages
+            chmod 775 /home/myportal/public_html/public/public/resources/images/userimages
+
       - name: Sync files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:

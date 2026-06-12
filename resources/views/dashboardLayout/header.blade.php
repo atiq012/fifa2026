@@ -42,7 +42,7 @@
                                                 src="{{ $favorite_team->team->flag ?? '' }}" alt="img">
                                         @endisset
                                         <button class="wc-settings-btn" onclick="showScreen('settings')"
-                                            aria-label="Settings">⚙️</button>
+                                            aria-label="Settings"><img src="{{ asset('images/football.svg') }}" class="football-icon-3d" alt="football"></button>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                 @endisset
                                 <button class="wc-settings-btn"
                                     onclick="showScreen('settings')"
-                                    aria-label="Settings">⚙️</button>
+                                    aria-label="Settings"><img src="{{ asset('images/football.svg') }}" class="football-icon-3d" alt="football"></button>
                             </div>
                         </div>
                     </div>
@@ -118,13 +118,23 @@
 
 <!-- Navigation -->
 <div class="nav-tabs">
-    <button onclick="showScreen('dashboard')" data-predictions-url="{{ route('dashboard') }}">Dashboard</button>
-    <button onclick="showScreen('predictions')" data-predictions-url="{{ route('predictions') }}">My
-        Predictions</button>
-    <button onclick="showScreen('leaderboard')" data-predictions-url="{{ route('leaderboard') }}">Leaderboard</button>
+    <button class="nav-tab-btn nav-tab-dashboard" onclick="showScreen('dashboard')" data-predictions-url="{{ route('dashboard') }}">
+        <i class="fa fa-home nav-tab-icon"></i>
+        <span class="nav-tab-label">Dashboard</span>
+    </button>
+    <button class="nav-tab-btn nav-tab-predictions" onclick="showScreen('predictions')" data-predictions-url="{{ route('predictions') }}">
+        <i class="fa fa-bullseye nav-tab-icon"></i>
+        <span class="nav-tab-label">My Predictions</span>
+    </button>
+    <button class="nav-tab-btn nav-tab-leaderboard" onclick="showScreen('leaderboard')" data-predictions-url="{{ route('leaderboard') }}">
+        <i class="fa fa-trophy nav-tab-icon"></i>
+        <span class="nav-tab-label">Leaderboard</span>
+    </button>
     @if (Auth::user()->role_id == 1)
-        <button onclick="showScreen('update_result')" data-predictions-url="{{ route('update_result') }}">Update
-            Result</button>
+        <button class="nav-tab-btn nav-tab-update" onclick="showScreen('update_result')" data-predictions-url="{{ route('update_result') }}">
+            <i class="fa fa-edit nav-tab-icon"></i>
+            <span class="nav-tab-label">Update Result</span>
+        </button>
     @endif
     {{-- <button onclick="showScreen('analytics')" data-predictions-url="{{ route('analytics') }}">Analytics</button> --}}
 </div>

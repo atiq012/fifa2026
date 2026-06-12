@@ -34,6 +34,7 @@
         <!-- Toast Notification -->
         <div id="toast" class="toast"></div>
     </div>
+
     <!-- Add this in the head section or before your custom scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -46,56 +47,33 @@
 
     <script>
         function showScreen(screenId) {
+            const btn = event.target.closest('button');
+
             // Hide all screens
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
             });
 
-
-            // ajax call to load screen data if needed
-            if (screenId === 'predictions') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
+            const url = btn ? btn.getAttribute('data-predictions-url') : null;
+            if (url) {
+                const icon = btn.querySelector('.nav-tab-icon');
+                if (icon) {
+                    const ball = document.createElement('img');
+                    ball.src = '/images/football.svg';
+                    ball.className = 'football-icon-3d nav-tab-loading';
+                    ball.style.width = '16px';
+                    ball.style.height = '16px';
+                    icon.replaceWith(ball);
                 }
-
-                document.getElementById(screenId).classList.add('active');
-                document.querySelectorAll('.nav-tabs button').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                event.target.classList.add('active');
-            }
-            if (screenId === 'dashboard') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
-
-            }
-            if (screenId === 'leaderboard') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
-            }
-            if (screenId === 'update_result') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
-            }
-            if (screenId === 'analytics') {
-                const url = event.target.getAttribute('data-predictions-url');
-                if (url) {
-                    window.location.href = url;
-                }
+                window.location.href = url;
+                return;
             }
 
             document.getElementById(screenId).classList.add('active');
-            document.querySelectorAll('.nav-tabs button').forEach(btn => {
-                btn.classList.remove('active');
+            document.querySelectorAll('.nav-tabs button').forEach(b => {
+                b.classList.remove('active');
             });
-            event.target.classList.add('active');
+            if (btn) btn.classList.add('active');
         }
 
 
