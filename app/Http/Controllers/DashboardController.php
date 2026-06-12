@@ -98,8 +98,7 @@ class DashboardController extends Controller
 
     public function update_result()
     {
-        $fixtures = Fixture::where('date', '>=', now())
-            ->where('actual_team1_goals', '=', null)
+        $fixtures = Fixture::where('actual_team1_goals', '=', null)
             ->with(['team1', 'team2'])->get();
         $favorite_team = MyTeam::where('user_id', Auth::id())->first();
 

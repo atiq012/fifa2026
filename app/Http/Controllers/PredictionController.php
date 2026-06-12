@@ -21,8 +21,7 @@ class PredictionController extends Controller
             ->pluck('fixture_id')
             ->toArray();
 
-        $pendingFixtures = Fixture::where('date', '>=', now())
-            ->with('predictions.winningTeam')
+        $pendingFixtures = Fixture::with('predictions.winningTeam')
             ->whereIn('id', $predictedFixtureIds)
             ->with(['team1', 'team2'])
             ->orderBy('date', 'asc')

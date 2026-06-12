@@ -140,7 +140,6 @@
 
                 <div class="card-actions">
                     @if ( $pending->time > now() )
-
                     <button class="secondary" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#predictionModal"
                         data-fixture-id="{{ $pending->id }}"
                         data-team1-name="{{ $pending->team1->name ?? $pending->team1_name }}"
