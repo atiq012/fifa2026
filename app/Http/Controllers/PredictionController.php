@@ -28,7 +28,7 @@ class PredictionController extends Controller
             ->orderBy('time', 'asc')
             ->limit(3)
             ->get();
-
+        // dd($pendingFixtures);
         $favorite_team = MyTeam::where('user_id', Auth::id())->first();
 
         return view('users.prediction', compact('predictions', 'pendingFixtures', 'favorite_team'));

@@ -89,21 +89,19 @@
                             {{ $pending->team1->group }}</span>
                         <span style="font-size: 11px; color: #ba7517; margin-left: 4px;"> Starting in
                             @php
-                                    $date = $pending->date;
-                                    $time = $pending->time;
-                                    $datetime = DateTime::createFromFormat('Y-m-d g:i a', $date . ' ' . $time);
-                                    $result = $datetime->format('Y-m-d H:i:s');
+                                $date = $pending->date;
+                                $time = $pending->time;
+                                $datetime = DateTime::createFromFormat('Y-m-d g:i a', $date . ' ' . $time);
+                                $result = $datetime->format('Y-m-d H:i:s');
 
-                                    $target = \Carbon\Carbon::parse($result, 'Asia/Dhaka');
-                                    $now = \Carbon\Carbon::now('Asia/Dhaka');
+                                $target = \Carbon\Carbon::parse($result, 'Asia/Dhaka');
+                                $now = \Carbon\Carbon::now('Asia/Dhaka');
 
-                                    $diff = $target->diff($now);
-                                    $totalHours = $diff->days * 24 + $diff->h;
-                                @endphp
-                                Starts in
-                                {{
-                                $totalHours . ' hours ' . $diff->i . ' minutes';
-                                }}
+                                $diff = $target->diff($now);
+                                $totalHours = $diff->days * 24 + $diff->h;
+                            @endphp
+                            Starts in
+                            {{ $totalHours . ' hours ' . $diff->i . ' minutes' }}
                             {{-- {{ \Carbon\Carbon::parse($pending->date)->diffForHumans(now(), ['parts' => 2]) }}</span> --}}
                     </div>
 
@@ -120,7 +118,9 @@
                     </div>
                     <div class="prediction-boxes">
                         @if ($pending->predictions->where('user_id', auth()->id())->first()->winning_team)
-                            <div class="prediction-box">👑 {{ $pending->predictions->where('user_id', auth()->id())->first()->winningTeam->name ?? '' }} wins
+                            <div class="prediction-box">👑
+                                {{ $pending->predictions->where('user_id', auth()->id())->first()->winningTeam->name ?? '' }}
+                                wins
                             </div>
                         @else
                             <div class="prediction-box">Draw</div>
@@ -139,18 +139,21 @@
                 </div>
 
                 <div class="card-actions">
-                    {{-- @if ( $pending->time > now() ) --}}
-                    <button class="secondary" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#predictionModal"
-                        data-fixture-id="{{ $pending->id }}"
-                        data-team1-name="{{ $pending->team1->name ?? $pending->team1_name }}"
-                        data-team1-rank="{{ $pending->team1->rank ?? ($pending->team1_rank ?? 'N/A') }}"
-                        data-team2-name="{{ $pending->team2->name ?? $pending->team2_name }}"
-                        data-team2-rank="{{ $pending->team2->rank ?? ($pending->team2_rank ?? 'N/A') }}"
-                        data-date="{{ \Carbon\Carbon::parse($pending->date)->format('M d, Y') }}"
-                        data-time="{{ \Carbon\Carbon::parse($pending->time)->format('g:i A') }}">
-                        Edit Prediction
-                    </button>
-                    {{-- @endif --}}
+
+                    @if ($pending->date >= now()->setTimezone('Asia/Dhaka')->format('Y-m-d'))
+                        @if (Carbon\Carbon::parse($pending->time)->format('H:i') > now()->setTimezone('Asia/Dhaka')->format('H:i'))
+                            <button class="secondary" style="width: 100%;" data-bs-toggle="modal"
+                                data-bs-target="#predictionModal" data-fixture-id="{{ $pending->id }}"
+                                data-team1-name="{{ $pending->team1->name ?? $pending->team1_name }}"
+                                data-team1-rank="{{ $pending->team1->rank ?? ($pending->team1_rank ?? 'N/A') }}"
+                                data-team2-name="{{ $pending->team2->name ?? $pending->team2_name }}"
+                                data-team2-rank="{{ $pending->team2->rank ?? ($pending->team2_rank ?? 'N/A') }}"
+                                data-date="{{ \Carbon\Carbon::parse($pending->date)->format('M d, Y') }}"
+                                data-time="{{ \Carbon\Carbon::parse($pending->time)->format('g:i A') }}">
+                                Edit Prediction
+                            </button>
+                        @endif
+                    @endif
                 </div>
             </div>
         @endforeach
@@ -190,8 +193,7 @@
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Who will win?</label>
                             <div class="d-flex flex-column gap-2" id="winnerOptions">
-                                <div class="border rounded-3 p-2"
-                                    style="background: #e6f1fb; border-color: #378add;">
+                                <div class="border rounded-3 p-2" style="background: #e6f1fb; border-color: #378add;">
                                     <div class="form-check d-flex justify-content-between align-items-center">
                                         <div>
                                             <input class="form-check-input" type="radio" name="winner" id="winnerTeam1"
