@@ -325,6 +325,295 @@
         .predictions-scroll:hover::-webkit-scrollbar-thumb {
             background: #cbd5e1;
         }
+
+        /* ── My Stats Overview ── */
+        .mystats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .pstat-card {
+            background: var(--ps-bg);
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            padding: 18px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--ps-border);
+            opacity: 0;
+            transform: translateY(14px);
+            animation: pstatIn 0.5s cubic-bezier(0.22,1,0.36,1) var(--anim-delay,0s) forwards;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 12px var(--ps-shadow);
+            cursor: default;
+        }
+
+        .pstat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px var(--ps-shadow);
+        }
+
+        @keyframes pstatIn { to { opacity:1; transform:translateY(0); } }
+
+        /* Decorative blobs */
+        .pstat-card::before {
+            content: '';
+            position: absolute;
+            top: -30px; right: -30px;
+            width: 115px; height: 115px;
+            border-radius: 50%;
+            background: var(--ps-blob);
+            pointer-events: none;
+        }
+
+        .pstat-card::after {
+            content: '';
+            position: absolute;
+            top: 28px; right: 18px;
+            width: 54px; height: 54px;
+            border-radius: 50%;
+            background: var(--ps-blob2);
+            pointer-events: none;
+        }
+
+        /* Color variants */
+        .pstat-green {
+            --ps-bg:       #f0fdf4;
+            --ps-border:   #bbf7d0;
+            --ps-shadow:   rgba(34,197,94,0.12);
+            --ps-blob:     #bbf7d0;
+            --ps-blob2:    #dcfce7;
+            --ps-icon-bg:  #dcfce7;
+            --ps-badge-bg: #dcfce7;
+            --ps-badge:    #15803d;
+            --ps-num:      #14532d;
+            --ps-lbl:      #15803d;
+            --ps-sub:      #16a34a;
+            --ps-divider:  #bbf7d0;
+            --ps-footer:   #4ade80;
+            --ps-bar:      #16a34a;
+            --ps-dot-win:  #16a34a;
+            --ps-dot-empty:#bbf7d0;
+        }
+
+        .pstat-blue {
+            --ps-bg:       #eff6ff;
+            --ps-border:   #bfdbfe;
+            --ps-shadow:   rgba(59,130,246,0.12);
+            --ps-blob:     #bfdbfe;
+            --ps-blob2:    #dbeafe;
+            --ps-icon-bg:  #dbeafe;
+            --ps-badge-bg: #dbeafe;
+            --ps-badge:    #1d4ed8;
+            --ps-num:      #1e3a8a;
+            --ps-lbl:      #1d4ed8;
+            --ps-sub:      #2563eb;
+            --ps-divider:  #bfdbfe;
+            --ps-footer:   #60a5fa;
+            --ps-bar:      #2563eb;
+            --ps-dot-win:  #2563eb;
+            --ps-dot-empty:#bfdbfe;
+        }
+
+        /* Top row: icon + badge */
+        .pstat-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pstat-icon-box {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            background: var(--ps-icon-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            animation: pstatIconIn 0.4s cubic-bezier(0.34,1.56,0.64,1) var(--anim-delay,0s) both;
+        }
+
+        @keyframes pstatIconIn {
+            from { opacity:0; transform:scale(0.6); }
+            to   { opacity:1; transform:scale(1); }
+        }
+
+        .pstat-badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 9px;
+            border-radius: 99px;
+            background: var(--ps-badge-bg);
+            color: var(--ps-badge);
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 1;
+            white-space: nowrap;
+        }
+
+        /* Numbers */
+        .pstat-num {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--ps-num);
+            line-height: 1;
+            letter-spacing: -1.5px;
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pstat-lbl {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ps-lbl);
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Progress bar */
+        .pstat-prog-track {
+            height: 6px;
+            background: var(--ps-divider);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 2px 0 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pstat-prog-fill {
+            height: 6px;
+            border-radius: 6px;
+            width: 0%;
+            background: var(--ps-bar);
+            transition: width 1.2s cubic-bezier(0.4,0,0.2,1) 0.5s;
+        }
+
+        /* Divider */
+        .pstat-divider {
+            height: 1px;
+            background: var(--ps-divider);
+            margin: 8px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        .pstat-footer {
+            font-size: 11px;
+            color: var(--ps-sub);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sub-section label */
+        .pstat-sub-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--ps-lbl);
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Streak dots */
+        .pstat-dots-row {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pstat-dot {
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            animation: pstatDotPop 0.28s cubic-bezier(0.34,1.56,0.64,1) var(--dot-delay,0.6s) forwards;
+        }
+
+        .pstat-dot.win   { background: var(--ps-dot-win); }
+        .pstat-dot.lose  { background: var(--ps-dot-empty); border: 1.5px solid var(--ps-footer); }
+        .pstat-dot.empty { background: var(--ps-dot-empty); }
+
+        @keyframes pstatDotPop { to { opacity:1; transform:scale(1); } }
+
+        /* Flame */
+        .pstat-flame {
+            font-size: 13px;
+            display: inline-block;
+            animation: pstatFlamePulse 1.3s ease-in-out infinite alternate;
+        }
+
+        @keyframes pstatFlamePulse {
+            from { filter: drop-shadow(0 0 2px rgba(251,146,60,0.4)); }
+            to   { filter: drop-shadow(0 0 8px rgba(251,146,60,0.9)); transform: scale(1.08); }
+        }
+
+        .pstat-countup { display: inline; }
+
+        @media (max-width: 640px) {
+            .mystats-grid { grid-template-columns: 1fr; }
+            .pstat-num { font-size: 30px; }
+        }
+
+        /* ── Top Standings toggle ── */
+        .standings-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            margin-bottom: 1rem;
+            padding: 4px 0;
+        }
+
+        .standings-header:hover .standings-arrow { color: #1d4ed8; }
+
+        .standings-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: #64748b;
+            transition: background 0.2s, color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .standings-arrow svg {
+            transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .standings-arrow.open svg {
+            transform: rotate(180deg);
+        }
+
+        @keyframes standingsSlideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .standings-body-visible {
+            animation: standingsSlideDown 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+        }
     </style>
 @endsection
 @section('content')
@@ -332,32 +621,64 @@
         <div class="row g-0 m-0">
             <div class="col-12 col-md-8 px-md-3">
 
-                <h2 class="section-title mt-1">Top Standings</h2>
-                <div class="medals mb-2">
-                    <div class="medal-card gold" data-rank="1">
-                        <div class="medal-top-bar"></div>
-                        <div class="medal-icon">🥇</div>
-                        <div class="medal-label">1st Place</div>
-                        <div class="medal-name">--</div>
-                        <div class="medal-ball">⚽ Top Predictor</div>
+                {{-- ── My Performance Overview ── --}}
+                @php
+                    $winRate    = $totalPredictions > 0
+                        ? round(($total_correct_predictions / $totalPredictions) * 100, 1)
+                        : 0;
+                    $last8Preds = $pred->filter(fn($p) => $p->is_correct !== null)
+                        ->values()->slice(-8)->values();
+                @endphp
+
+                <h2 class="section-title mt-1">My Performance</h2>
+                <div class="mystats-grid">
+
+                    {{-- Card 1: Points & Win Rate --}}
+                    <div class="pstat-card pstat-green" style="--anim-delay:0s">
+                        <div class="pstat-top">
+                            <div class="pstat-icon-box" style="--anim-delay:0.05s">⚡</div>
+                            <span class="pstat-badge">Win Rate {{ (int)$winRate }}%</span>
+                        </div>
+                        <div class="pstat-num pstat-countup" data-count="{{ (int)$totalPoints }}">0</div>
+                        <div class="pstat-lbl">Total Points</div>
+                        <div class="pstat-prog-track">
+                            <div class="pstat-prog-fill" data-pct="{{ $winRate }}"></div>
+                        </div>
+                        <div class="pstat-divider"></div>
+                        <div class="pstat-footer">{{ $total_correct_predictions }} wins &nbsp;·&nbsp; {{ $totalPredictions }} played</div>
                     </div>
-                    <div class="medal-card silver" data-rank="2">
-                        <div class="medal-top-bar"></div>
-                        <div class="medal-icon">🥈</div>
-                        <div class="medal-label">2nd Place</div>
-                        <div class="medal-name">--</div>
-                        <div class="medal-ball">⚽ Runner Up</div>
+
+                    {{-- Card 2: Rank & Streak --}}
+                    <div class="pstat-card pstat-blue" style="--anim-delay:0.1s">
+                        <div class="pstat-top">
+                            <div class="pstat-icon-box" style="--anim-delay:0.15s">🏆</div>
+                            <span class="pstat-badge">
+                                @if($myStreak > 0)
+                                    <span class="pstat-flame">🔥</span> {{ $myStreak }} streak
+                                @else
+                                    No streak
+                                @endif
+                            </span>
+                        </div>
+                        <div class="pstat-num">#{{ $myRank }}</div>
+                        <div class="pstat-lbl">Global Rank</div>
+                        <div class="pstat-sub-label">Last 8 predictions</div>
+                        <div class="pstat-dots-row">
+                            @foreach($last8Preds as $di => $dp)
+                                <div class="pstat-dot {{ (int)$dp->is_correct === 1 ? 'win' : 'lose' }}"
+                                     style="--dot-delay:{{ 0.5 + $di * 0.065 }}s"
+                                     title="{{ (int)$dp->is_correct === 1 ? 'Win' : 'Loss' }}"></div>
+                            @endforeach
+                            @for($dj = $last8Preds->count(); $dj < 8; $dj++)
+                                <div class="pstat-dot empty"
+                                     style="--dot-delay:{{ 0.5 + $dj * 0.065 }}s"></div>
+                            @endfor
+                        </div>
+                        <div class="pstat-divider"></div>
+                        <div class="pstat-footer">{{ $myStreak }} consecutive wins</div>
                     </div>
-                    <div class="medal-card bronze" data-rank="3">
-                        <div class="medal-top-bar"></div>
-                        <div class="medal-icon">🥉</div>
-                        <div class="medal-label">3rd Place</div>
-                        <div class="medal-name">--</div>
-                        <div class="medal-ball">⚽ 3rd Place</div>
-                    </div>
+
                 </div>
-
-
 
                 <h2 class="section-title">Upcoming Matches</h2>
 
@@ -590,6 +911,50 @@
 
 
 
+                <div class="standings-header mt-1" id="standingsToggle" onclick="toggleStandings()">
+                    <h2 class="section-title mb-0">Top Standings</h2>
+                    <div class="standings-arrow" id="standingsArrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                @php
+                    $medalMeta = [
+                        ['icon' => '🥇', 'label' => '1st Place', 'badge' => '⚽ Top Predictor', 'class' => 'gold'],
+                        ['icon' => '🥈', 'label' => '2nd Place', 'badge' => '⚽ Runner Up',     'class' => 'silver'],
+                        ['icon' => '🥉', 'label' => '3rd Place', 'badge' => '⚽ 3rd Place',     'class' => 'bronze'],
+                    ];
+                @endphp
+                <div class="medals mb-2" id="standingsBody" style="display:none;overflow:hidden;">
+                    @foreach ($medalMeta as $i => $meta)
+                        @php $p = $top3->get($i); @endphp
+                        <div class="medal-card {{ $meta['class'] }}" data-rank="{{ $i + 1 }}">
+                            <div class="medal-top-bar"></div>
+                            <div class="medal-icon">{{ $meta['icon'] }}</div>
+                            <div class="medal-label">{{ $meta['label'] }}</div>
+                            @if ($p)
+                                <div class="medal-name">{{ $p->full_name }}</div>
+                                <div class="medal-dept-name">{{ $p->depart_name }}</div>
+                                <div class="medal-pts-row">
+                                    <span class="medal-pts-val">{{ $p->total_points }}</span>
+                                    <span class="medal-pts-lbl">pts</span>
+                                </div>
+                                @if ($p->team_flag)
+                                    <div class="medal-team-flag">
+                                        <img src="{{ $p->team_flag }}" alt="{{ $p->team_name }}" width="20" height="14" style="border-radius:2px;object-fit:cover;margin-right:4px;">
+                                        {{ $p->team_name }}
+                                    </div>
+                                @endif
+                            @else
+                                <div class="medal-name">--</div>
+                            @endif
+                            <div class="medal-ball">{{ $meta['badge'] }}</div>
+                        </div>
+                    @endforeach
+                </div>
+
                 <h2 class="section-title" style="margin-top: 2rem;">Quick Links</h2>
                 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                     <button style="flex: 1; min-width: 150px;" onclick="showScreen('predictions')"
@@ -623,6 +988,56 @@
 
 @section('scripts')
     <script>
+        /* ── Top Standings toggle ── */
+        function toggleStandings() {
+            var body  = document.getElementById('standingsBody');
+            var arrow = document.getElementById('standingsArrow');
+            if (body.style.display === 'none' || body.style.display === '') {
+                body.style.display = 'flex';
+                body.classList.add('standings-body-visible');
+                arrow.classList.add('open');
+            } else {
+                body.style.display = 'none';
+                body.classList.remove('standings-body-visible');
+                arrow.classList.remove('open');
+            }
+        }
+
+        /* ── My Stats: count-up + donut animation ── */
+        document.addEventListener('DOMContentLoaded', function () {
+
+            function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+            function countUp(el, target, duration, delay) {
+                setTimeout(function () {
+                    if (target === 0) { el.textContent = '0'; return; }
+                    const start = performance.now();
+                    function tick(now) {
+                        const progress = Math.min((now - start) / duration, 1);
+                        el.textContent = Math.round(easeOutCubic(progress) * target);
+                        if (progress < 1) requestAnimationFrame(tick);
+                    }
+                    requestAnimationFrame(tick);
+                }, delay);
+            }
+
+            /* Count-up */
+            document.querySelectorAll('.pstat-countup[data-count]').forEach(function (el) {
+                const target = parseFloat(el.dataset.count) || 0;
+                countUp(el, target, 1100, 350);
+            });
+
+            /* Progress bar animation */
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    document.querySelectorAll('.pstat-prog-fill[data-pct]').forEach(function (el) {
+                        const pct = Math.min(Math.max(parseFloat(el.dataset.pct) || 0, 0), 100);
+                        el.style.width = pct + '%';
+                    });
+                });
+            });
+        });
+
         const buttons = document.querySelectorAll('.nav-tabs button');
         buttons.forEach(btn => btn.classList.remove('active'));
         if (buttons.length >= 1) {

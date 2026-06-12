@@ -68,7 +68,6 @@ class PredictionController extends Controller
                     $prediction->is_draw      = null; // Not a draw
                     $prediction->winning_team = $team ? $team->id : null;
                 }
-                $prediction->winning_team = $team ? $team->id : null;
                 $prediction->created_by   = Auth::id();
                 $prediction->save();
 
@@ -91,7 +90,6 @@ class PredictionController extends Controller
                     $prediction->is_draw      = null; // Not a draw
                     $prediction->winning_team = $team ? $team->id : null;
                 }
-                $prediction->winning_team = $team ? $team->id : null;
                 $prediction->created_by   = Auth::id();
                 $prediction->save();
 

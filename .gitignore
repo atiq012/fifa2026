@@ -25,3 +25,6 @@ yarn-error.log
 
 # Docker — local only, not committed
 docker/
+
+# Local docs — not for repo
+/docs/

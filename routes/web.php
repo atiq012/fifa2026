@@ -20,6 +20,7 @@ Route::post('/predictions-store', [PredictionController::class, 'store'])->middl
 Route::get('/predictionDetails/{id}', [PredictionController::class, 'predictionDetails'])->middleware(['auth', 'verified'])->name('predictionDetails');
 // leaderboard
 Route::get('/leaderboard', [DashboardController::class, 'leaderboard'])->middleware(['auth', 'verified'])->name('leaderboard');
+Route::get('/leaderboard/user/{userId}/predictions', [DashboardController::class, 'userPredictions'])->middleware(['auth', 'verified'])->name('leaderboard.userPredictions');
 
 // update result
 Route::get('/update_result', [DashboardController::class, 'update_result'])->middleware(['auth', 'verified'])->name('update_result');

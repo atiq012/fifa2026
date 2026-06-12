@@ -46,30 +46,46 @@
     </div>
 </div> --}}
 
-<div class="card">
-    <div class="card-body p-3">
-        <h2 class="section-title">Your Performance</h2>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-label">Your Rank</div>
-                <div class="stat-value">#</div>
-                <div class="stat-subtitle">of 700 employees</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Total Points</div>
-                <div class="stat-value">{{ $totalPoints }}</div>
-                <div class="stat-subtitle">{{ $total_correct_predictions }} correct predictions</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Accuracy</div>
-                <div class="stat-value">0%</div>
-                <div class="stat-subtitle">Above average</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Streak</div>
-                <div class="stat-value">0</div>
-                <div class="stat-subtitle">Keep it going!</div>
+<h2 class="section-title mt-3">Your Performance</h2>
+<div class="perf-card mb-3">
+    <div class="perf-header">
+        <div>
+            <div class="perf-header-title">Current Rank</div>
+            <div class="perf-rank-badge">
+                <span class="perf-rank-num">#{{ $myRank }}</span>
             </div>
         </div>
+        <div class="perf-trophy">🏆</div>
+    </div>
+
+    <div class="perf-stats-row">
+        <div class="perf-stat-cell">
+            <div class="perf-stat-val">{{ $totalPoints }}</div>
+            <div class="perf-stat-lbl">Points</div>
+        </div>
+        <div class="perf-stat-cell">
+            <div class="perf-stat-val">{{ $total_correct_predictions }}</div>
+            <div class="perf-stat-lbl">Correct</div>
+        </div>
+        <div class="perf-stat-cell">
+            <div class="perf-stat-val perf-streak-val">
+                {{ $myStreak > 0 ? '🔥' : '' }}{{ $myStreak }}
+            </div>
+            <div class="perf-stat-lbl">Streak</div>
+        </div>
+    </div>
+
+    <div class="perf-accuracy-wrap">
+        <div class="perf-accuracy-meta">
+            <span class="perf-accuracy-label">Goal Accuracy</span>
+            <span class="perf-accuracy-pct">{{ number_format($myAccuracy, 1) }}%</span>
+        </div>
+        <div class="perf-bar-track">
+            <div class="perf-bar-fill" style="width: {{ min((float)$myAccuracy, 100) }}%"></div>
+        </div>
+    </div>
+
+    <div class="perf-footer">
+        {{ $totalPredictions }} total predictions &nbsp;·&nbsp; {{ $total_correct_predictions }} wins
     </div>
 </div>
