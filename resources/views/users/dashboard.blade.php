@@ -683,29 +683,29 @@
                 <h2 class="section-title">Upcoming Matches</h2>
 
                 @foreach ($nextThreeMatches as $fixture)
-                    <div class="match-card">
+                    @php
+                        $date = $fixture->date;
+                        $time = $fixture->time;
+                        $datetime = DateTime::createFromFormat('Y-m-d g:i a', $date . ' ' . $time);
+                        $result = $datetime->format('Y-m-d H:i:s');
+                        $target = \Carbon\Carbon::parse($result, 'Asia/Dhaka');
+                    @endphp
+                    <div class="match-card" data-match-epoch="{{ $target->timestamp }}">
                         <div class="match-header">
                             <span class="match-time urgent">
                                 {{ \Carbon\Carbon::parse($fixture->date)->format('M d, Y') }}
                                 {{ \Carbon\Carbon::parse($fixture->time)->format('g:i A') }}
                             </span>
-                            <span class="text-muted" style="font-size: 12px;">
+                            <span class="match-time-static text-muted" style="font-size: 12px;">
                                 @php
-                                    $date = $fixture->date;
-                                    $time = $fixture->time;
-                                    $datetime = DateTime::createFromFormat('Y-m-d g:i a', $date . ' ' . $time);
-                                    $result = $datetime->format('Y-m-d H:i:s');
-
-                                    $target = \Carbon\Carbon::parse($result, 'Asia/Dhaka');
                                     $now = \Carbon\Carbon::now('Asia/Dhaka');
-
                                     $diff = $target->diff($now);
                                     $totalHours = $diff->days * 24 + $diff->h;
                                 @endphp
-                                Starts in
-                                {{
-                                $totalHours .'H ' . $diff->i .'M';
-                                }}
+                                Starts in {{ $totalHours }}H {{ $diff->i }}M
+                            </span>
+                            <span class="match-countdown-live" style="display:none; font-size:13px; font-weight:700; color:#e74c3c; letter-spacing:1px;">
+                                🔒 Closes in <span class="countdown-timer">--:--</span>
                             </span>
                         </div>
                         <div class="match-body">
@@ -1045,6 +1045,43 @@
         }
         preventNumberInputScroll('team1_goals');
         preventNumberInputScroll('team2_goals');
+
+        /* ── Match countdown: card locks 3 min before kickoff ── */
+        (function () {
+            var LOCK_BEFORE_MS = 3 * 60 * 1000; // 3 min
+
+            function updateCountdowns() {
+                document.querySelectorAll('.match-card[data-match-epoch]').forEach(function (card) {
+                    var matchEpoch = parseInt(card.dataset.matchEpoch, 10) * 1000;
+                    var closeEpoch = matchEpoch - LOCK_BEFORE_MS;
+                    var staticEl   = card.querySelector('.match-time-static');
+                    var liveEl     = card.querySelector('.match-countdown-live');
+                    var timerEl    = card.querySelector('.countdown-timer');
+                    var diffToClose = closeEpoch - Date.now();
+
+                    if (diffToClose <= 0) {
+                        card.style.display = 'none';
+                        return;
+                    }
+
+                    if (diffToClose <= 60 * 60 * 1000) {
+                        if (staticEl) staticEl.style.display = 'none';
+                        if (liveEl)   liveEl.style.display = 'inline';
+                        var totalSecs = Math.floor(diffToClose / 1000);
+                        var m = Math.floor(totalSecs / 60);
+                        var s = totalSecs % 60;
+                        var pad = function (n) { return String(n).padStart(2, '0'); };
+                        if (timerEl) timerEl.textContent = pad(m) + ':' + pad(s);
+                    } else {
+                        if (staticEl) staticEl.style.display = 'inline';
+                        if (liveEl)   liveEl.style.display = 'none';
+                    }
+                });
+            }
+
+            updateCountdowns();
+            setInterval(updateCountdowns, 1000);
+        })();
 
         function preventNumberInputScroll(inputId) {
             const input = document.getElementById(inputId);
