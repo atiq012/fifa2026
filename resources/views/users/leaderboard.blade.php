@@ -540,7 +540,7 @@
 @section('content')
     <!-- Leaderboard Screen -->
     <div id="leaderboard" class="screen active">
-        <h2 class="section-title">Global Rankings</h2>
+        <h2 class="section-title">Galaxy Leaderboard</h2>
 
         <div class="medals mb-2">
             <div class="medal-card gold">
@@ -579,7 +579,7 @@
                 <div class="leaderboard-cell cell-rank">#</div>
                 <div class="leaderboard-cell cell-player">Player</div>
                 <div class="leaderboard-cell cell-pts">Pts</div>
-                <div class="leaderboard-cell cell-acc">Goal Acc.</div>
+                <div class="leaderboard-cell cell-acc">Prediction Acc.</div>
             </div>
 
             @foreach ($players as $player)
