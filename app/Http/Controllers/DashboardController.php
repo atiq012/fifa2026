@@ -17,14 +17,14 @@ class DashboardController extends Controller
     {
 
         $nextThreeMatches = Fixture::where('date', '>=', now()->setTimezone('Asia/Dhaka')->startOfDay())
-            ->where('date', '<=', now()->setTimezone('Asia/Dhaka')->addDays(1))
+            ->where('date', '<=', now()->setTimezone('Asia/Dhaka')->addDays(2))
             ->where('actual_team1_goals', '=', null)
             ->with(['team1', 'team2'])
             ->orderBy('date', 'asc')
             ->orderBy('time', 'asc')
             ->limit(5)
             ->get();
-
+        // dd($nextThreeMatches);
         // $nextThreeMatches = Fixture::where(function ($query) {
         //     $query->where('date', '>', now()->toDateString()) // Future dates
         //         ->orWhere(function ($query) {
