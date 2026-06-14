@@ -95,8 +95,8 @@ class DashboardController extends Controller
             ->where('user_id', Auth::id())
             ->first();
 
-        $myRank      = $myLeaderboard->ranking ?? '--';
-        $myAccuracy  = $myLeaderboard ? (float) $myLeaderboard->goal_accuracy : 0;
+        $myRank     = $myLeaderboard->ranking ?? '--';
+        $myAccuracy = $myLeaderboard ? (float) $myLeaderboard->goal_accuracy : 0;
 
         // Total predictions submitted
         $totalPredictions = Prediction::where('user_id', Auth::id())->count();
@@ -125,7 +125,14 @@ class DashboardController extends Controller
             ->map(function ($predictions) {
                 return $predictions->first();
             });
-        $myPr = $allPred->where('user_id', Auth::id())->pluck('fixture_id')->map(fn($id) => (int) $id);
+
+        $myPr = Prediction::where('is_correct', null)
+            ->where('user_id', Auth::id())
+            ->pluck('fixture_id')
+            ->map(fn($id) => (int) $id)
+            ->unique();
+
+
 
         return view('users.dashboard', compact('myPr', 'nextThreeMatches', 'predictions', 'totalPoints', 'total_correct_predictions', 'teams', 'favorite_team', 'allPred', 'top3', 'myRank', 'myAccuracy', 'myStreak', 'totalPredictions', 'pred'));
     }
@@ -262,22 +269,22 @@ class DashboardController extends Controller
                 $fixture = $pred->fixture;
                 $detail  = $pred->predictiondetails;
                 return [
-                    'date'              => $fixture?->date,
-                    'team1_name'        => $fixture?->team1?->name,
-                    'team2_name'        => $fixture?->team2?->name,
-                    'team1_flag'        => $fixture?->team1?->flag,
-                    'team2_flag'        => $fixture?->team2?->flag,
-                    'actual_t1'         => $fixture?->actual_team1_goals,
-                    'actual_t2'         => $fixture?->actual_team2_goals,
-                    'pred_winner'       => $pred->is_draw ? 'Draw' : ($pred->winningTeam?->name ?? '—'),
-                    'pred_t1'           => $detail?->team1_goals,
-                    'pred_t2'           => $detail?->team2_goals,
-                    'winner_correct'    => (int) $pred->is_correct,
-                    'goal_t1_correct'   => $detail ? (int) $detail->team1_goal_correct : null,
-                    'goal_t2_correct'   => $detail ? (int) $detail->team2_goal_correct : null,
-                    'winner_points'     => (int) $pred->points,
-                    'goal_points'       => (int) ($detail?->points ?? 0),
-                    'points'            => (int) $pred->points + (int) ($detail?->points ?? 0),
+                    'date'            => $fixture?->date,
+                    'team1_name'      => $fixture?->team1?->name,
+                    'team2_name'      => $fixture?->team2?->name,
+                    'team1_flag'      => $fixture?->team1?->flag,
+                    'team2_flag'      => $fixture?->team2?->flag,
+                    'actual_t1'       => $fixture?->actual_team1_goals,
+                    'actual_t2'       => $fixture?->actual_team2_goals,
+                    'pred_winner'     => $pred->is_draw ? 'Draw' : ($pred->winningTeam?->name ?? '—'),
+                    'pred_t1'         => $detail?->team1_goals,
+                    'pred_t2'         => $detail?->team2_goals,
+                    'winner_correct'  => (int) $pred->is_correct,
+                    'goal_t1_correct' => $detail ? (int) $detail->team1_goal_correct : null,
+                    'goal_t2_correct' => $detail ? (int) $detail->team2_goal_correct : null,
+                    'winner_points'   => (int) $pred->points,
+                    'goal_points'     => (int) ($detail?->points ?? 0),
+                    'points'          => (int) $pred->points + (int) ($detail?->points ?? 0),
                 ];
             });
 
