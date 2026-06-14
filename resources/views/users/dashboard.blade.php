@@ -731,6 +731,7 @@
                         {{-- <p>Fixture ID: {{ $fixture->id }} | Type: {{ gettype($fixture->id) }}</p>
     <p>MyPr: {{ $myPr }}</p>
     <p>Contains: {{ $myPr->contains($fixture->id) ? 'YES' : 'NO' }}</p> --}}
+                        {{ $myPr }}
                         @if ($myPr->contains((int) $fixture->id))
 
                         @else
