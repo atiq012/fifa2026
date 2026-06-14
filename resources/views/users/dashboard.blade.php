@@ -728,10 +728,7 @@
                                     #{{ $fixture->team2->rank ?? ($fixture->team2_rank ?? 'N/A') }}</div>
                             </div>
                         </div>
-                        {{-- <p>Fixture ID: {{ $fixture->id }} | Type: {{ gettype($fixture->id) }}</p>
-    <p>MyPr: {{ $myPr }}</p>
-    <p>Contains: {{ $myPr->contains($fixture->id) ? 'YES' : 'NO' }}</p> --}}
-                        {{ $myPr }}
+
                         @if ($myPr->contains((int) $fixture->id))
 
                         @else
