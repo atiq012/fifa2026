@@ -26,7 +26,7 @@ class PredictionController extends Controller
             ->with(['team1', 'team2'])
             ->orderBy('date', 'asc')
             ->orderBy('time', 'asc')
-            ->limit(5)
+            // ->limit(5)
             ->get();
         // dd($pendingFixtures);
         $favorite_team = MyTeam::where('user_id', Auth::id())->first();
