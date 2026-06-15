@@ -22,7 +22,7 @@ class DashboardController extends Controller
             ->with(['team1', 'team2'])
             ->orderBy('date', 'asc')
             ->orderBy('time', 'asc')
-            ->limit(5)
+            // ->limit(5)
             ->get();
         // dd($nextThreeMatches);
         // $nextThreeMatches = Fixture::where(function ($query) {
