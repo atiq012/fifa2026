@@ -94,7 +94,7 @@
             </div>
             <div class="sh-tourn-info">
                 <span class="sh-tourn-name">FIFA WORLD CUP 2026</span>
-                <span class="sh-tourn-stage">Group Stage · 48 matches remaining</span>
+                {{-- <span class="sh-tourn-stage">Group Stage · 48 matches remaining</span> --}}
             </div>
         </div>
 
