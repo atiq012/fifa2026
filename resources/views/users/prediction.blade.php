@@ -140,8 +140,8 @@
 
                 <div class="card-actions">
 
-                    {{-- @if ($pending->date >= now()->setTimezone('Asia/Dhaka')->format('Y-m-d')) --}}
-                        {{-- @if (Carbon\Carbon::parse($pending->time)->format('H:i') > now()->setTimezone('Asia/Dhaka')->format('H:i')) --}}
+                    @if ($pending->date >= now()->setTimezone('Asia/Dhaka')->format('Y-m-d'))
+                        @if (Carbon\Carbon::parse($pending->time)->format('H:i') > now()->setTimezone('Asia/Dhaka')->format('H:i'))
                             <button class="secondary" style="width: 100%;" data-bs-toggle="modal"
                                 data-bs-target="#predictionModal" data-fixture-id="{{ $pending->id }}"
                                 data-team1-name="{{ $pending->team1->name ?? $pending->team1_name }}"
@@ -152,8 +152,8 @@
                                 data-time="{{ \Carbon\Carbon::parse($pending->time)->format('g:i A') }}">
                                 Edit Prediction
                             </button>
-                        {{-- @endif --}}
-                    {{-- @endif --}}
+                        @endif
+                    @endif
                 </div>
             </div>
         @endforeach
