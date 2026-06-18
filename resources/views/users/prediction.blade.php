@@ -140,8 +140,8 @@
 
                 <div class="card-actions">
 
-                    {{-- @if ($pending->date >= now()->setTimezone('Asia/Dhaka')->format('Y-m-d')) --}}
-                        {{-- @if (Carbon\Carbon::parse($pending->time)->format('H:i') > now()->setTimezone('Asia/Dhaka')->format('H:i')) --}}
+                    {{-- @if ($pending->date >= now()->setTimezone('Asia/Dhaka')->format('Y-m-d'))
+                        @if (Carbon\Carbon::parse($pending->time)->format('H:i') > now()->setTimezone('Asia/Dhaka')->format('H:i'))
                             <button class="secondary" style="width: 100%;" data-bs-toggle="modal"
                                 data-bs-target="#predictionModal" data-fixture-id="{{ $pending->id }}"
                                 data-team1-name="{{ $pending->team1->name ?? $pending->team1_name }}"
@@ -152,8 +152,30 @@
                                 data-time="{{ \Carbon\Carbon::parse($pending->time)->format('g:i A') }}">
                                 Edit Prediction
                             </button>
-                        {{-- @endif --}}
-                    {{-- @endif --}}
+                        @endif
+                    @endif --}}
+                    @php
+                        // Combine date + time into one Carbon instant in Dhaka timezone
+                        $matchDateTime = \Carbon\Carbon::parse(
+                            $pending->date . ' ' . \Carbon\Carbon::parse($pending->time)->format('H:i'),
+                            'Asia/Dhaka',
+                        );
+
+                        $cutoff = now('Asia/Dhaka')->addMinutes(5);
+                    @endphp
+
+                    @if ($matchDateTime->gt($cutoff))
+                        <button class="secondary" style="width: 100%;" data-bs-toggle="modal"
+                            data-bs-target="#predictionModal" data-fixture-id="{{ $pending->id }}"
+                            data-team1-name="{{ $pending->team1->name ?? $pending->team1_name }}"
+                            data-team1-rank="{{ $pending->team1->rank ?? ($pending->team1_rank ?? 'N/A') }}"
+                            data-team2-name="{{ $pending->team2->name ?? $pending->team2_name }}"
+                            data-team2-rank="{{ $pending->team2->rank ?? ($pending->team2_rank ?? 'N/A') }}"
+                            data-date="{{ $matchDateTime->format('M d, Y') }}"
+                            data-time="{{ $matchDateTime->format('g:i A') }}">
+                            Edit Prediction
+                        </button>
+                    @endif
                 </div>
             </div>
         @endforeach
