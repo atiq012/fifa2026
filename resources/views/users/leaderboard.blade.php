@@ -767,7 +767,7 @@
             ? `<span class="score-box">${m.pred_t1}<span class="score-sep">–</span>${m.pred_t2}</span>`
             : '<span style="color:#aab4c0">—</span>';
 
-        const winnerBadge = m.winner_correct==1            ? `<span style="display:inline-flex;align-items:center;gap:3px;background:#dcfce7;color:#15803d;padding:3px 9px;border-radius:99px;font-size:0.7rem;font-weight:700;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Win</span>`
+        const winnerBadge = m.winner_correct==1 ? `<span style="display:inline-flex;align-items:center;gap:3px;background:#dcfce7;color:#15803d;padding:3px 9px;border-radius:99px;font-size:0.7rem;font-weight:700;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Win</span>`
             : `<span style="display:inline-flex;align-items:center;gap:3px;background:#fee2e2;color:#b91c1c;padding:3px 9px;border-radius:99px;font-size:0.7rem;font-weight:700;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Loss</span>`;
 
         const wp = m.winner_points ?? 0;
