@@ -265,7 +265,6 @@ class DashboardController extends Controller
             ])
             ->orderBy('created_at', 'asc')
             ->get()
-
             ->map(function ($pred) {
                 $fixture = $pred->fixture;
                 $detail  = $pred->predictiondetails;

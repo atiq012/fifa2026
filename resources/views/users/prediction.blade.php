@@ -255,7 +255,7 @@
                             <label class="form-label fw-semibold"><span id="team1_name"></span>
                                 Goal Scrore</label>
                             <input type="number" id="team1_goals" class="form-control" name="team1_goals"
-                                placeholder="0">
+                                placeholder="0" value="0">
                         </div>
 
                         <div class="mb-3">
@@ -263,7 +263,7 @@
                                 Goal Scrore</label>
 
                             <input type="number" id="team2_goals" class="form-control" name="team2_goals"
-                                placeholder="0">
+                                placeholder="0" value="0">
                         </div>
 
                         <div class="alert alert-info small mb-0" role="alert">
