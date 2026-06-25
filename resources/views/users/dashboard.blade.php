@@ -690,7 +690,7 @@
                         $result = $datetime->format('Y-m-d H:i:s');
                         $target = \Carbon\Carbon::parse($result, 'Asia/Dhaka');
                     @endphp
-                    <div class="match-card" data-match-epoch="{{ $target->timestamp }}">
+                    <div class="match-card" >
                         <div class="match-header">
                             <span class="match-time urgent">
                                 {{ \Carbon\Carbon::parse($fixture->date)->format('M d, Y') }}
@@ -729,9 +729,9 @@
                             </div>
                         </div>
 
-                        @if ($myPr->contains((int) $fixture->id))
+                        {{-- @if ($myPr->contains((int) $fixture->id)) --}}
 
-                        @else
+                        {{-- @else --}}
                             <button class="primary" style="width: 100%;" data-bs-toggle="modal"
                                 data-bs-target="#predictionModal" data-fixture-id="{{ $fixture->id }}"
                                 data-team1-name="{{ $fixture->team1->name ?? $fixture->team1_name }}"
@@ -742,7 +742,7 @@
                                 data-time="{{ \Carbon\Carbon::parse($fixture->time)->format('g:i A') }}">
                                 🏆 Make Prediction
                             </button>
-                        @endif
+                        {{-- @endif --}}
 
                     </div>
                 @endforeach
