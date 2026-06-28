@@ -425,7 +425,7 @@
                     // clear form
                     document.getElementById('team1_goals').value = '';
                     document.getElementById('team2_goals').value = '';
-                    document.getElementById('winnerTeam1').checked = false;
+                    document.getElementById('winnerTeam1').checked = true;
                     document.getElementById('winnerTeam2').checked = false;
                     document.getElementById('winnerDraw').checked = false;
 

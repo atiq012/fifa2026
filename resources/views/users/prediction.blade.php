@@ -219,7 +219,7 @@
                                     <div class="form-check d-flex justify-content-between align-items-center">
                                         <div>
                                             <input class="form-check-input" type="radio" name="winner" id="winnerTeam1"
-                                                value="team1" checked>
+                                                value="team1">
                                             <label class="form-check-label fw-medium" id="winnerTeam1Label"
                                                 for="winnerTeam1">Argentina</label>
                                         </div>
