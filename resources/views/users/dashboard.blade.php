@@ -345,7 +345,7 @@
             border: 1px solid var(--ps-border);
             opacity: 0;
             transform: translateY(14px);
-            animation: pstatIn 0.5s cubic-bezier(0.22,1,0.36,1) var(--anim-delay,0s) forwards;
+            animation: pstatIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--anim-delay, 0s) forwards;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0 2px 12px var(--ps-shadow);
             cursor: default;
@@ -356,14 +356,21 @@
             box-shadow: 0 8px 28px var(--ps-shadow);
         }
 
-        @keyframes pstatIn { to { opacity:1; transform:translateY(0); } }
+        @keyframes pstatIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* Decorative blobs */
         .pstat-card::before {
             content: '';
             position: absolute;
-            top: -30px; right: -30px;
-            width: 115px; height: 115px;
+            top: -30px;
+            right: -30px;
+            width: 115px;
+            height: 115px;
             border-radius: 50%;
             background: var(--ps-blob);
             pointer-events: none;
@@ -372,8 +379,10 @@
         .pstat-card::after {
             content: '';
             position: absolute;
-            top: 28px; right: 18px;
-            width: 54px; height: 54px;
+            top: 28px;
+            right: 18px;
+            width: 54px;
+            height: 54px;
             border-radius: 50%;
             background: var(--ps-blob2);
             pointer-events: none;
@@ -381,41 +390,41 @@
 
         /* Color variants */
         .pstat-green {
-            --ps-bg:       #f0fdf4;
-            --ps-border:   #bbf7d0;
-            --ps-shadow:   rgba(34,197,94,0.12);
-            --ps-blob:     #bbf7d0;
-            --ps-blob2:    #dcfce7;
-            --ps-icon-bg:  #dcfce7;
+            --ps-bg: #f0fdf4;
+            --ps-border: #bbf7d0;
+            --ps-shadow: rgba(34, 197, 94, 0.12);
+            --ps-blob: #bbf7d0;
+            --ps-blob2: #dcfce7;
+            --ps-icon-bg: #dcfce7;
             --ps-badge-bg: #dcfce7;
-            --ps-badge:    #15803d;
-            --ps-num:      #14532d;
-            --ps-lbl:      #15803d;
-            --ps-sub:      #16a34a;
-            --ps-divider:  #bbf7d0;
-            --ps-footer:   #4ade80;
-            --ps-bar:      #16a34a;
-            --ps-dot-win:  #16a34a;
-            --ps-dot-empty:#bbf7d0;
+            --ps-badge: #15803d;
+            --ps-num: #14532d;
+            --ps-lbl: #15803d;
+            --ps-sub: #16a34a;
+            --ps-divider: #bbf7d0;
+            --ps-footer: #4ade80;
+            --ps-bar: #16a34a;
+            --ps-dot-win: #16a34a;
+            --ps-dot-empty: #bbf7d0;
         }
 
         .pstat-blue {
-            --ps-bg:       #eff6ff;
-            --ps-border:   #bfdbfe;
-            --ps-shadow:   rgba(59,130,246,0.12);
-            --ps-blob:     #bfdbfe;
-            --ps-blob2:    #dbeafe;
-            --ps-icon-bg:  #dbeafe;
+            --ps-bg: #eff6ff;
+            --ps-border: #bfdbfe;
+            --ps-shadow: rgba(59, 130, 246, 0.12);
+            --ps-blob: #bfdbfe;
+            --ps-blob2: #dbeafe;
+            --ps-icon-bg: #dbeafe;
             --ps-badge-bg: #dbeafe;
-            --ps-badge:    #1d4ed8;
-            --ps-num:      #1e3a8a;
-            --ps-lbl:      #1d4ed8;
-            --ps-sub:      #2563eb;
-            --ps-divider:  #bfdbfe;
-            --ps-footer:   #60a5fa;
-            --ps-bar:      #2563eb;
-            --ps-dot-win:  #2563eb;
-            --ps-dot-empty:#bfdbfe;
+            --ps-badge: #1d4ed8;
+            --ps-num: #1e3a8a;
+            --ps-lbl: #1d4ed8;
+            --ps-sub: #2563eb;
+            --ps-divider: #bfdbfe;
+            --ps-footer: #60a5fa;
+            --ps-bar: #2563eb;
+            --ps-dot-win: #2563eb;
+            --ps-dot-empty: #bfdbfe;
         }
 
         /* Top row: icon + badge */
@@ -429,7 +438,8 @@
         }
 
         .pstat-icon-box {
-            width: 38px; height: 38px;
+            width: 38px;
+            height: 38px;
             border-radius: 10px;
             background: var(--ps-icon-bg);
             display: flex;
@@ -437,12 +447,19 @@
             justify-content: center;
             font-size: 18px;
             flex-shrink: 0;
-            animation: pstatIconIn 0.4s cubic-bezier(0.34,1.56,0.64,1) var(--anim-delay,0s) both;
+            animation: pstatIconIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) var(--anim-delay, 0s) both;
         }
 
         @keyframes pstatIconIn {
-            from { opacity:0; transform:scale(0.6); }
-            to   { opacity:1; transform:scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.6);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .pstat-badge {
@@ -497,7 +514,7 @@
             border-radius: 6px;
             width: 0%;
             background: var(--ps-bar);
-            transition: width 1.2s cubic-bezier(0.4,0,0.2,1) 0.5s;
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
         }
 
         /* Divider */
@@ -540,18 +557,33 @@
         }
 
         .pstat-dot {
-            width: 9px; height: 9px;
+            width: 9px;
+            height: 9px;
             border-radius: 50%;
             opacity: 0;
             transform: scale(0);
-            animation: pstatDotPop 0.28s cubic-bezier(0.34,1.56,0.64,1) var(--dot-delay,0.6s) forwards;
+            animation: pstatDotPop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) var(--dot-delay, 0.6s) forwards;
         }
 
-        .pstat-dot.win   { background: var(--ps-dot-win); }
-        .pstat-dot.lose  { background: var(--ps-dot-empty); border: 1.5px solid var(--ps-footer); }
-        .pstat-dot.empty { background: var(--ps-dot-empty); }
+        .pstat-dot.win {
+            background: var(--ps-dot-win);
+        }
 
-        @keyframes pstatDotPop { to { opacity:1; transform:scale(1); } }
+        .pstat-dot.lose {
+            background: var(--ps-dot-empty);
+            border: 1.5px solid var(--ps-footer);
+        }
+
+        .pstat-dot.empty {
+            background: var(--ps-dot-empty);
+        }
+
+        @keyframes pstatDotPop {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
         /* Flame */
         .pstat-flame {
@@ -561,15 +593,28 @@
         }
 
         @keyframes pstatFlamePulse {
-            from { filter: drop-shadow(0 0 2px rgba(251,146,60,0.4)); }
-            to   { filter: drop-shadow(0 0 8px rgba(251,146,60,0.9)); transform: scale(1.08); }
+            from {
+                filter: drop-shadow(0 0 2px rgba(251, 146, 60, 0.4));
+            }
+
+            to {
+                filter: drop-shadow(0 0 8px rgba(251, 146, 60, 0.9));
+                transform: scale(1.08);
+            }
         }
 
-        .pstat-countup { display: inline; }
+        .pstat-countup {
+            display: inline;
+        }
 
         @media (max-width: 640px) {
-            .mystats-grid { grid-template-columns: 1fr; }
-            .pstat-num { font-size: 30px; }
+            .mystats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pstat-num {
+                font-size: 30px;
+            }
         }
 
         /* ── Top Standings toggle ── */
@@ -583,7 +628,9 @@
             padding: 4px 0;
         }
 
-        .standings-header:hover .standings-arrow { color: #1d4ed8; }
+        .standings-header:hover .standings-arrow {
+            color: #1d4ed8;
+        }
 
         .standings-arrow {
             display: flex;
@@ -599,7 +646,7 @@
         }
 
         .standings-arrow svg {
-            transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .standings-arrow.open svg {
@@ -607,12 +654,19 @@
         }
 
         @keyframes standingsSlideDown {
-            from { opacity: 0; transform: translateY(-8px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .standings-body-visible {
-            animation: standingsSlideDown 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+            animation: standingsSlideDown 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
     </style>
 @endsection
@@ -623,11 +677,13 @@
 
                 {{-- ── My Performance Overview ── --}}
                 @php
-                    $winRate    = $totalPredictions > 0
-                        ? round(($total_correct_predictions / $totalPredictions) * 100, 1)
-                        : 0;
-                    $last8Preds = $pred->filter(fn($p) => $p->is_correct !== null)
-                        ->values()->slice(-8)->values();
+                    $winRate =
+                        $totalPredictions > 0 ? round(($total_correct_predictions / $totalPredictions) * 100, 1) : 0;
+                    $last8Preds = $pred
+                        ->filter(fn($p) => $p->is_correct !== null)
+                        ->values()
+                        ->slice(-8)
+                        ->values();
                 @endphp
 
                 <h2 class="section-title mt-1">My Performance</h2>
@@ -637,15 +693,16 @@
                     <div class="pstat-card pstat-green" style="--anim-delay:0s">
                         <div class="pstat-top">
                             <div class="pstat-icon-box" style="--anim-delay:0.05s">⚡</div>
-                            <span class="pstat-badge">Win Rate {{ (int)$winRate }}%</span>
+                            <span class="pstat-badge">Win Rate {{ (int) $winRate }}%</span>
                         </div>
-                        <div class="pstat-num pstat-countup" data-count="{{ (int)$totalPoints }}">0</div>
+                        <div class="pstat-num pstat-countup" data-count="{{ (int) $totalPoints }}">0</div>
                         <div class="pstat-lbl">Total Points</div>
                         <div class="pstat-prog-track">
                             <div class="pstat-prog-fill" data-pct="{{ $winRate }}"></div>
                         </div>
                         <div class="pstat-divider"></div>
-                        <div class="pstat-footer">{{ $total_correct_predictions }} wins &nbsp;·&nbsp; {{ $totalPredictions }} played</div>
+                        <div class="pstat-footer">{{ $total_correct_predictions }} wins &nbsp;·&nbsp;
+                            {{ $totalPredictions }} played</div>
                     </div>
 
                     {{-- Card 2: Rank & Streak --}}
@@ -653,7 +710,7 @@
                         <div class="pstat-top">
                             <div class="pstat-icon-box" style="--anim-delay:0.15s">🏆</div>
                             <span class="pstat-badge">
-                                @if($myStreak > 0)
+                                @if ($myStreak > 0)
                                     <span class="pstat-flame">🔥</span> {{ $myStreak }} streak
                                 @else
                                     No streak
@@ -664,14 +721,13 @@
                         <div class="pstat-lbl">Global Rank</div>
                         <div class="pstat-sub-label">Last 8 predictions</div>
                         <div class="pstat-dots-row">
-                            @foreach($last8Preds as $di => $dp)
-                                <div class="pstat-dot {{ (int)$dp->is_correct === 1 ? 'win' : 'lose' }}"
-                                     style="--dot-delay:{{ 0.5 + $di * 0.065 }}s"
-                                     title="{{ (int)$dp->is_correct === 1 ? 'Win' : 'Loss' }}"></div>
+                            @foreach ($last8Preds as $di => $dp)
+                                <div class="pstat-dot {{ (int) $dp->is_correct === 1 ? 'win' : 'lose' }}"
+                                    style="--dot-delay:{{ 0.5 + $di * 0.065 }}s"
+                                    title="{{ (int) $dp->is_correct === 1 ? 'Win' : 'Loss' }}"></div>
                             @endforeach
-                            @for($dj = $last8Preds->count(); $dj < 8; $dj++)
-                                <div class="pstat-dot empty"
-                                     style="--dot-delay:{{ 0.5 + $dj * 0.065 }}s"></div>
+                            @for ($dj = $last8Preds->count(); $dj < 8; $dj++)
+                                <div class="pstat-dot empty" style="--dot-delay:{{ 0.5 + $dj * 0.065 }}s"></div>
                             @endfor
                         </div>
                         <div class="pstat-divider"></div>
@@ -704,7 +760,8 @@
                                 @endphp
                                 Starts in {{ $totalHours }}H {{ $diff->i }}M
                             </span>
-                            <span class="match-countdown-live" style="display:none; font-size:13px; font-weight:700; color:#e74c3c; letter-spacing:1px;">
+                            <span class="match-countdown-live"
+                                style="display:none; font-size:13px; font-weight:700; color:#e74c3c; letter-spacing:1px;">
                                 🔒 Closes in <span class="countdown-timer">--:--</span>
                             </span>
                         </div>
@@ -730,7 +787,6 @@
                         </div>
 
                         @if ($myPr->contains((int) $fixture->id))
-
                         @else
                             <button class="primary" style="width: 100%;" data-bs-toggle="modal"
                                 data-bs-target="#predictionModal" data-fixture-id="{{ $fixture->id }}"
@@ -759,8 +815,7 @@
 
                             <div class="modal-body">
                                 <div class="text-center mb-3 pb-2 border-bottom">
-                                    <p class="mb-1 small text-secondary" id="modalMatchGroup">Group A •
-                                        Match 5</p>
+                                    <p class="mb-1 small text-secondary" id="modalMatchGroup">Round 32</p>
                                     <p class="mb-0 small text-secondary" id="modalDateTime">Today 8:00 PM
                                     </p>
                                 </div>
@@ -780,7 +835,7 @@
                                         <p class="mb-0 small text-secondary" id="team2Rank">Rank #49</p>
                                     </div>
                                 </div>
-
+                                </p>
                                 <!-- Head-to-Head Section -->
                                 {{-- <div class="bg-light p-3 rounded-3 mb-4">
                                 <p class="mb-2 small fw-semibold text-secondary">Head-to-Head (Last 5)
@@ -838,6 +893,7 @@
                                     </div>
                                 </div>
 
+                                <p class="mb-2 small fw-semibold text-danger">*Predict Match Score (Including Penalties)
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold"><span id="team1_name"></span>
@@ -912,8 +968,9 @@
                 <div class="standings-header mt-1" id="standingsToggle" onclick="toggleStandings()">
                     <h2 class="section-title mb-0">Top Standings</h2>
                     <div class="standings-arrow" id="standingsArrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
@@ -921,8 +978,8 @@
                 @php
                     $medalMeta = [
                         ['icon' => '🥇', 'label' => '1st Place', 'badge' => '⚽ Top Predictor', 'class' => 'gold'],
-                        ['icon' => '🥈', 'label' => '2nd Place', 'badge' => '⚽ Runner Up',     'class' => 'silver'],
-                        ['icon' => '🥉', 'label' => '3rd Place', 'badge' => '⚽ 3rd Place',     'class' => 'bronze'],
+                        ['icon' => '🥈', 'label' => '2nd Place', 'badge' => '⚽ Runner Up', 'class' => 'silver'],
+                        ['icon' => '🥉', 'label' => '3rd Place', 'badge' => '⚽ 3rd Place', 'class' => 'bronze'],
                     ];
                 @endphp
                 <div class="medals mb-2" id="standingsBody" style="display:none;overflow:hidden;">
@@ -941,7 +998,8 @@
                                 </div>
                                 @if ($p->team_flag)
                                     <div class="medal-team-flag">
-                                        <img src="{{ $p->team_flag }}" alt="{{ $p->team_name }}" width="20" height="14" style="border-radius:2px;object-fit:cover;margin-right:4px;">
+                                        <img src="{{ $p->team_flag }}" alt="{{ $p->team_name }}" width="20"
+                                            height="14" style="border-radius:2px;object-fit:cover;margin-right:4px;">
                                         {{ $p->team_name }}
                                     </div>
                                 @endif
@@ -988,7 +1046,7 @@
     <script>
         /* ── Top Standings toggle ── */
         function toggleStandings() {
-            var body  = document.getElementById('standingsBody');
+            var body = document.getElementById('standingsBody');
             var arrow = document.getElementById('standingsArrow');
             if (body.style.display === 'none' || body.style.display === '') {
                 body.style.display = 'flex';
@@ -1002,14 +1060,20 @@
         }
 
         /* ── My Stats: count-up + donut animation ── */
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
 
-            function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+            function easeOutCubic(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
 
             function countUp(el, target, duration, delay) {
-                setTimeout(function () {
-                    if (target === 0) { el.textContent = '0'; return; }
+                setTimeout(function() {
+                    if (target === 0) {
+                        el.textContent = '0';
+                        return;
+                    }
                     const start = performance.now();
+
                     function tick(now) {
                         const progress = Math.min((now - start) / duration, 1);
                         el.textContent = Math.round(easeOutCubic(progress) * target);
@@ -1020,16 +1084,17 @@
             }
 
             /* Count-up */
-            document.querySelectorAll('.pstat-countup[data-count]').forEach(function (el) {
+            document.querySelectorAll('.pstat-countup[data-count]').forEach(function(el) {
                 const target = parseFloat(el.dataset.count) || 0;
                 countUp(el, target, 1100, 350);
             });
 
             /* Progress bar animation */
-            requestAnimationFrame(function () {
-                requestAnimationFrame(function () {
-                    document.querySelectorAll('.pstat-prog-fill[data-pct]').forEach(function (el) {
-                        const pct = Math.min(Math.max(parseFloat(el.dataset.pct) || 0, 0), 100);
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    document.querySelectorAll('.pstat-prog-fill[data-pct]').forEach(function(el) {
+                        const pct = Math.min(Math.max(parseFloat(el.dataset.pct) || 0, 0),
+                            100);
                         el.style.width = pct + '%';
                     });
                 });
@@ -1045,16 +1110,16 @@
         preventNumberInputScroll('team2_goals');
 
         /* ── Match countdown: card locks 3 min before kickoff ── */
-        (function () {
+        (function() {
             var LOCK_BEFORE_MS = 3 * 60 * 1000; // 3 min
 
             function updateCountdowns() {
-                document.querySelectorAll('.match-card[data-match-epoch]').forEach(function (card) {
+                document.querySelectorAll('.match-card[data-match-epoch]').forEach(function(card) {
                     var matchEpoch = parseInt(card.dataset.matchEpoch, 10) * 1000;
                     var closeEpoch = matchEpoch - LOCK_BEFORE_MS;
-                    var staticEl   = card.querySelector('.match-time-static');
-                    var liveEl     = card.querySelector('.match-countdown-live');
-                    var timerEl    = card.querySelector('.countdown-timer');
+                    var staticEl = card.querySelector('.match-time-static');
+                    var liveEl = card.querySelector('.match-countdown-live');
+                    var timerEl = card.querySelector('.countdown-timer');
                     var diffToClose = closeEpoch - Date.now();
 
                     if (diffToClose <= 0) {
@@ -1064,15 +1129,17 @@
 
                     if (diffToClose <= 60 * 60 * 1000) {
                         if (staticEl) staticEl.style.display = 'none';
-                        if (liveEl)   liveEl.style.display = 'inline';
+                        if (liveEl) liveEl.style.display = 'inline';
                         var totalSecs = Math.floor(diffToClose / 1000);
                         var m = Math.floor(totalSecs / 60);
                         var s = totalSecs % 60;
-                        var pad = function (n) { return String(n).padStart(2, '0'); };
+                        var pad = function(n) {
+                            return String(n).padStart(2, '0');
+                        };
                         if (timerEl) timerEl.textContent = pad(m) + ':' + pad(s);
                     } else {
                         if (staticEl) staticEl.style.display = 'inline';
-                        if (liveEl)   liveEl.style.display = 'none';
+                        if (liveEl) liveEl.style.display = 'none';
                     }
                 });
             }

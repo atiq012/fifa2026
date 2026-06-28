@@ -249,6 +249,7 @@
                                 </div>
                             </div>
                         </div>
+                                <p class="mb-2 small fw-semibold text-danger">*Predict Match Score (Including Penalties)
 
 
                         <div class="mb-3">
