@@ -226,7 +226,7 @@
                                         <span class="small text-success fw-semibold">+5 pts</span>
                                     </div>
                                 </div>
-                                <div class="border rounded-3 p-2">
+                                {{-- <div class="border rounded-3 p-2">
                                     <div class="form-check d-flex justify-content-between align-items-center">
                                         <div>
                                             <input class="form-check-input" type="radio" name="winner" id="winnerDraw"
@@ -235,7 +235,7 @@
                                         </div>
                                         <span class="small text-success fw-semibold">+5 pts</span>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="border rounded-3 p-2 option-team2">
                                     <div class="form-check d-flex justify-content-between align-items-center">
                                         <div>
