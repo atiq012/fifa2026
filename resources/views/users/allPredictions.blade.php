@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div class="team-row">
+                {{-- <div class="team-row">
                     <div class="team-name-group">
                         <span class="team-short">🤝</span>
                         <span class="team-full">Draw</span>
@@ -40,7 +40,7 @@
                     <div class="team-score-group">
                         <span class="runs"><span class="pred-icon">🤝</span><span>{{ $pred->total_draw_predictions($pred->fixture_id, $pred->is_draw) }} Predicted</span></span>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Result message -->
                 <div class="result-message">
