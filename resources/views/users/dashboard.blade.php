@@ -815,7 +815,7 @@
 
                             <div class="modal-body">
                                 <div class="text-center mb-3 pb-2 border-bottom">
-                                    <p class="mb-1 small text-secondary" id="modalMatchGroup">Round 32</p>
+                                    <p class="mb-1 small text-secondary" id="modalMatchGroup">Round of 32</p>
                                     <p class="mb-0 small text-secondary" id="modalDateTime">Today 8:00 PM
                                     </p>
                                 </div>
