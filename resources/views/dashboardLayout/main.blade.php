@@ -335,7 +335,7 @@
             // Get selected winner
             const selectedWinner = document.querySelector('input[name="winner"]:checked');
             if (!selectedWinner) {
-                showToast('Please select a winner / draw', 'warning');
+                showToast('Please select a winner team', 'warning');
                 return;
             }
 
