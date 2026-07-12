@@ -815,7 +815,7 @@
 
                             <div class="modal-body">
                                 <div class="text-center mb-3 pb-2 border-bottom">
-                                    <p class="mb-1 small text-secondary" id="modalMatchGroup">Quarter Final</p>
+                                    <p class="mb-1 small text-secondary" id="modalMatchGroup">Semi Final</p>
                                     <p class="mb-0 small text-secondary" id="modalDateTime">Today 8:00 PM
                                     </p>
                                 </div>
